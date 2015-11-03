@@ -18,22 +18,73 @@ class ReEngDLL TextureClass
 	String m_sName = "NULL";
 	String m_sFileName = "NULL";
 public:
+	/*
+	Method: TextureClass
+	Usage: Constructor
+	Arguments: ---
+	Output: class object
+	*/
 	TextureClass(void); //Constructor
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	TextureClass(const TextureClass& other); //Copy Constructor
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	TextureClass& operator=(const TextureClass& other); //Copy Assignment Operator
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void); //Release the fields in the class
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~TextureClass(void); //Destructor
 
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void LoadTexture(String a_sFileName);
 //Accessors
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	GLuint GetGLTextureID(void); //Returns the OpenGL Identifier
-	__declspec(property(get = GetGLTextureID)) GLuint GLTextureID;
+	//__declspec(property(get = GetGLTextureID)) GLuint GLTextureID;
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	String GetTextureName(void); //Returns the name of the texture
-	__declspec(property(get = GetTextureName)) String TextureName;
+	//__declspec(property(get = GetTextureName)) String TextureName;
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	String GetTextureFileName(void); //Returns the filename of the texture
-	__declspec(property(get = GetTextureFileName)) String TextureFileName;
+	//__declspec(property(get = GetTextureFileName)) String TextureFileName;
 
 private:
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void); //Initializes the variables
 };
 

@@ -12,7 +12,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3967FCB2-CF32-4899-9E66-1F888500EEE0}</ProjectGuid>
-    <RootNamespace>E13_BoundingBoxClass</RootNamespace>
+    <RootNamespace>A10_BoundingObjectManager</RootNamespace>
     <ProjectName>A10_BoundingObjectManager</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

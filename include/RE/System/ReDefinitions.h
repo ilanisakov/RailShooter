@@ -15,6 +15,10 @@ Date: 2015/06
 #include <assert.h>
 #include <math.h>
 #include <vector>
+#include <locale>
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
 // Include GLM
 #include <glm\glm.hpp>
@@ -38,6 +42,7 @@ typedef std::string String;
 typedef glm::vec2 vector2;
 typedef glm::vec3 vector3;
 typedef glm::vec4 vector4;
+typedef glm::mat3 matrix3;
 typedef glm::mat4 matrix4;
 typedef unsigned int uint;
 typedef glm::quat quaternion;
@@ -54,8 +59,7 @@ typedef glm::quat quaternion;
 //	} 
 //}
 #define PI 3.14159265358979323846
-#define IDENTITY 1.0f
-#define REIDENTITY matrix4()
+#define IDENTITY_M4 matrix4(1.0f)
 
 #define REBLACK vector3(0.0f, 0.0f, 0.0f)
 #define REWHITE vector3(1.0f, 1.0f, 1.0f)
@@ -79,7 +83,7 @@ typedef glm::quat quaternion;
 
 #define REDEFAULT vector3(-1.0f, -1.0f, -1.0f)
 
-#define REVECTORZERO vector3(0.0f, 0.0f, 0.0f)
+#define ZERO_V3 vector3(0.0f, 0.0f, 0.0f)
 #define REAXISX vector3(1.0f, 0.0f, 0.0f)
 #define REAXISY vector3(0.0f, 1.0f, 0.0f)
 #define REAXISZ vector3(0.0f, 0.0f, 1.0f)
@@ -108,6 +112,7 @@ enum REERRORS
 	ERROR_FILE = 7,
 	DONE = 8,
 	RUNNING = 9,
+	ERROR_NO_EXTENSION = 10,
 };
 enum REAXIS
 {
@@ -120,6 +125,13 @@ enum RERENDER
 {
 	SOLID = 1,
 	WIRE = 2,
+};
+enum CAMERAMODE
+{
+	CAMPERSP = 0,
+	CAMROTHOX = 1,
+	CAMROTHOY = 2,
+	CAMROTHOZ = 3,
 };
 
 

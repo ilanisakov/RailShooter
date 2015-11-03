@@ -17,34 +17,90 @@ class ReEngDLL ExampleClass
 	std::vector<int> m_lData; //list of elements
 
 public:
-	/* Constructor */
+	/*
+	Method: ExampleClass
+	Usage: Constructor
+	Arguments: ---
+	Output: class object
+	*/
 	ExampleClass(void);
-	/* Copy Constructor */
+	/*
+	Method: ExampleClass
+	Usage: Copy Constructor
+	Arguments: class object to copy
+	Output: class object instance
+	*/
 	ExampleClass(ExampleClass const& other);
-	/* Copy Assignment Operator*/
+	/*
+	Method: operator=
+	Usage: Copy Assignment Operator
+	Arguments: class object to copy
+	Output: ---
+	*/
 	ExampleClass& operator=(ExampleClass const& other);
-	/* Destructor */
+	/*
+	Method: ~ExampleClass
+	Usage: Destructor
+	Arguments: ---
+	Output: ---
+	*/
 	~ExampleClass(void);
 
-	/* Swaps the contents of the object with another object's content */
+	/*
+	Method: Swap
+	Usage: Changes object contents for other object's
+	Arguments:
+	other -> object to swap content from
+	Output: ---
+	*/
 	void Swap(ExampleClass& other);
 
-	/* Gets the number of enties of the list */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output:
+	*/
 	int GetData(void);
-	/* Sets a value in the list */
-	void SetData( int a_nData = 1);
-	/* Property GetData/SetData */
-	__declspec(property(get = GetData, put = SetData)) int Data;
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output: ---
+	*/
+	void SetData(int a_nData = 1);
+	/* Property */
+	//__declspec(property(get = GetData, put = SetData)) int Data;
 
-	/* Set data on the list at the end */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetDataOnVector(int a_nData);
-	/* Gets data out of the list at the specified index */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	int& GetDataOnVector(int a_nIndex);
-	
+
 private:
-	/* Releases the object from memory */
+	/*
+	Method: Release
+	Usage: Deallocates member fields
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
-	/* Initialize the object's fields */
+	/*
+	Method: Init
+	Usage: Allocates member fields
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void);
 };
 

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A08_CameraClass", "A08_CameraClass\A08_CameraClass.vcxproj", "{0D690B4A-EEED-45DD-9651-D80BB36C0C76}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A10_BoundingObjectManager", "A10_BoundingObjectManager\E13_BoundingBoxClass.vcxproj", "{3967FCB2-CF32-4899-9E66-1F888500EEE0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A10_BoundingObjectManager", "A10_BoundingObjectManager\A10_BoundingObjectManager.vcxproj", "{3967FCB2-CF32-4899-9E66-1F888500EEE0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

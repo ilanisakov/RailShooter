@@ -37,167 +37,347 @@ class ReEngDLL BoundingObjectClass
 
 public:
 	/* Constructor 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	BoundingObjectClass(std::vector<vector3> a_lVertex, matrix4 a_m4ToWorld, String a_sInstanceName);
 	/* Constructor 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	BoundingObjectClass(vector3 a_v3Center, float a_fSize);
 	/* Copy Constructor */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	BoundingObjectClass(BoundingObjectClass const& other);
 	/* Copy Assignment Operator	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	BoundingObjectClass& operator=(BoundingObjectClass const& other);
 	/*	Destructor	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~BoundingObjectClass(void);
 
 	/* Gets the name of the model associated with this bounding box from model manager */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	String GetInstanceName(void);
 	/* Property:
 	GetInstanceName()*/
-	__declspec(property(get = GetInstanceName)) String InstanceName;
+	//__declspec(property(get = GetInstanceName)) String InstanceName;
 
 	/* Gets the "ModelToWorld" matrix associated with the bounding box */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	matrix4 GetModelMatrix(void);
 	/* Sets the "ModelToWorld" matrix associated with the bounding box */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetModelMatrix(matrix4 a_m4ToWorld);
 	/* "ModelToWorld"
 	GetModelMatrix() or SetModelMatrix() */
-	__declspec(property(get = GetModelMatrix, put = SetModelMatrix)) matrix4 ModelMatrix;
+	//__declspec(property(get = GetModelMatrix, put = SetModelMatrix)) matrix4 ModelMatrix;
 
 	/*Sets the visibility of the OBB the AABB and the BS
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetVisible(bool a_bVisible);
 	/* Property:
 	SetVisibleOBB()*/
-	__declspec(property(put = SetVisible)) bool Visible;
+	//__declspec(property(put = SetVisible)) bool Visible;
 
 	/*Sets the visibility of the OBB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetVisibleOBB(bool a_bVisible);
 	/*Gets the visibility of the OBB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	bool GetVisibleOBB(void);
 	/* Property: GetVisibleBS/SetVisibleOBB()*/
-	__declspec(property(get = GetVisibleOBB, put = SetVisibleOBB)) bool VisibleOBB;
+	//__declspec(property(get = GetVisibleOBB, put = SetVisibleOBB)) bool VisibleOBB;
 	
 	/*Sets the visibility of the AABB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetVisibleAABB(bool a_bVisible);
 	/*Gets the visibility of the AABB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	bool GetVisibleAABB(void);
 	/* Property: GetVisibleAABB/SetVisibleAABB()*/
-	__declspec(property(get = GetVisibleAABB, put = SetVisibleAABB)) bool VisibleAABB;
+	//__declspec(property(get = GetVisibleAABB, put = SetVisibleAABB)) bool VisibleAABB;
 
 	/*Sets the visibility of the BS
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetVisibleBS(bool a_bVisible);
 	/*Gets the visibility of the OBB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	bool GetVisibleBS(void);
 	/* Property: GetVisibleBS/SetVisibleBS() */
-	__declspec(property(get = GetVisibleBS, put = SetVisibleBS)) bool VisibleBS;
+	//__declspec(property(get = GetVisibleBS, put = SetVisibleBS)) bool VisibleBS;
 
 	/* Gets the color vector of the AABB */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetColorAABB(void);
 	/* Sets the color vector of the AABB */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetColorAABB(vector3 a_v3Color);
 	/* Property:
 	GetColorAABB() or SetColorAABB() */
-	__declspec(property(get = GetColorAABB, put = SetColorAABB)) vector3 ColorAABB;
+	//__declspec(property(get = GetColorAABB, put = SetColorAABB)) vector3 ColorAABB;
 
 	/* Gets the color vector of the OBB */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetColorOBB(void);
 	/* Sets the color vector of the OBB */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetColorOBB(vector3 a_v3Color);
 	/* Property:
 	GetColorOBB() or SetColorOBB() */
-	__declspec(property(get = GetColorOBB, put = SetColorOBB)) vector3 ColorOBB;
+	//__declspec(property(get = GetColorOBB, put = SetColorOBB)) vector3 ColorOBB;
 
 	/* Gets the color vector of the BS */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetColorBS(void);
 	/* Sets the color vector of the BS */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetColorBS(vector3 a_v3Color);
 	/* Property:
 	GetColorBS() or SetColorBS() */
-	__declspec(property(get = GetColorBS, put = SetColorBS)) vector3 ColorBS;
+	//__declspec(property(get = GetColorBS, put = SetColorBS)) vector3 ColorBS;
 
 	/* Gets the centroid of the Bounding object in Local coordinates */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetCentroidLocal(void);
 	/* Property:
 	GetCentroidLocal() */
-	__declspec(property(get = GetCentroidLocal)) vector3 CentroidLocal;
+	//__declspec(property(get = GetCentroidLocal)) vector3 CentroidLocal;
 	/* Gets the  centroid of the Bounding object in Global coordinates*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetCentroidGlobal(void);
 	/* Property:
 	GetCentroidGlobal() */
-	__declspec(property(get = GetCentroidGlobal)) vector3 CentroidGlobal;
+	//__declspec(property(get = GetCentroidGlobal)) vector3 CentroidGlobal;
 	/* Gets the HalfWidth vector of the object (half the size of each side)*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetHalfWidth(void);
 	/* Property:
 	GetHalfWidth() */
-	__declspec(property(get = GetHalfWidth)) vector3 HalfWidth;
+	//__declspec(property(get = GetHalfWidth)) vector3 HalfWidth;
 
 	/* Gets the Radius size of the Bounding Sphere*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	float GetRadius(void);
 	/* Property:
 	GetRadius() */
-	__declspec(property(get = GetRadius)) float Radius;
+	//__declspec(property(get = GetRadius)) float Radius;
 
 	/* Reinitialize the Bounding Object from a subset of different Bounding Objects
 	Args:
 		a_vBO a List of the sub bounding objects
 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void Reinitialize(std::vector<BoundingObjectClass*> a_vBO);
 
 	/* Reinitialize the Bounding Object using the incomming BO with the specidied matrix)*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void Reinitialize(BoundingObjectClass& a_pBO, matrix4 a_m4ToWorld);
 
 	/* Test agains another Bounding Object
 		Args:
 			other -> incoming object to test */
-	bool IsColliding( BoundingObjectClass& other, bool a_bCheckOctants = true);
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
+	bool IsColliding(BoundingObjectClass& other, bool a_bCheckOctants = true);
 	/* Test agains a ray
 		Args:
 			a_v3RayOrigin -> The origin of the ray
 			a_v3RayDirection -> The direction in which the ray is moving
 			a_fDistance -> the distance in which the collision is happening from the origin
 	*/
-	bool IsColliding( vector3 a_v3RayOrigin, vector3 a_v3RayDirection, float& a_fDistance);
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
+	bool IsColliding(vector3 a_v3RayOrigin, vector3 a_v3RayDirection, float& a_fDistance);
 
 	/*
 	SetsThe name of the Bounding Object
 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetName(String a_sName);
 	/*
 	Gets the name of the Bounding Object
+	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
 	*/
 	String GetName(void);
 
 	/*
 		Sets the current object to know its in the specified octant
 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetInOctantList(int a_nOctant);
 	/*
 		Sets the current object to know its in the specified octant list
 	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetOctantList(std::vector<int> a_vOctantList);
 	/*
 		Gets the octant list this object is into
+	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
 	*/
 	std::vector<int> GetOctantList(void);
 
 	/*
 		Clears the Octant List in this Bounding Object
 	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void ClearOctantList(void);
 
 	/*
 		Asks if the incomming Bounding Object is in at least one of the same octants
+	*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
 	*/
 	bool InTheSameOctant(BoundingObjectClass& other);
 	
@@ -205,30 +385,60 @@ public:
 		Args:
 			a_v3Color -> determinate the color of the box to be rendered, if REDEFAULT
 			it will render the shape in the constructed color (white) */
-	void AddToRenderList( bool bForceDraw = false );
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
+	void AddToRenderList(bool bForceDraw = false);
 
 	/*
 		Gets the Max vector of the AABB in global space
+	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
 	*/
 	vector3 GetAABBMax(void);
 
 	/*
 		Gets the Min vector of the AABB in global space
 	*/
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	vector3 GetAABBMin(void);
 
 private:
 	/* Released Memory and objects allocated. */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
 	/* Calculates the Oriented Bounding Box, Axis Alligned Bounding Box and the Bounding Sphere from the instance
 	Args:
 		a_lVertex: The vertices for which we want to create the BO from */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void Initializate(std::vector<vector3> a_lVertex);
 
 	/* Calculates the Axis Aligned Bounding Box from the instance from the OBB*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void CalculateAABB();
 };
-//
+
 //EXPIMP_TEMPLATE template class ReEngDLL std::vector<BoundingObjectClass>;
 //EXPIMP_TEMPLATE template class ReEngDLL std::vector<BoundingObjectClass*>;
 

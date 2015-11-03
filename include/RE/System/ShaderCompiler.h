@@ -11,7 +11,13 @@ Date: 2015/06
 #include <GL\wglew.h>
 #include "RE\system\REDefinitions.h" //ReEng basic Definitions
 
-ReEngDLL GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path);
+/*
+Method:
+Usage:
+Arguments:
+Output:
+*/
+ReEngDLL GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path);
 
 
 #endif //__SHADER_H__

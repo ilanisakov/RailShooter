@@ -16,7 +16,7 @@ namespace ReEng
 class ReEngDLL LightManagerSingleton
 {
 	//Private Fields
-	int m_nLights = 0;		//Number of Lights
+	int m_nLightCount = 0;		//Number of Lights
 	float m_fAmbient = 0.0f;	//Ambient power
 	static LightManagerSingleton* m_pInstance; // Singleton
 	std::vector<LightClass*> m_lLight; //vector of lights
@@ -24,41 +24,121 @@ class ReEngDLL LightManagerSingleton
 public:
 	//Public Accessors
 	/* Gets/Constructs the singleton pointer */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	static LightManagerSingleton* GetInstance();
 	/* Releases the singleton pointer */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	static void ReleaseInstance(void);
 	/* Adds a light to the list of lights */
-	void AddLight(	vector3 a_v4Position = vector3(1,1,1),
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
+	void AddLight(vector3 a_v4Position = vector3(1, 1, 1),
 					vector3 a_v3Color = vector3(1,1,1),
 					float a_vIntensity = 10.0f);
 	/* Gets a copy from a light in the list of lights */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	LightClass* GetLight(int a_nIndex = 1);
 	/* Sets the position of a light in the list of lights*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetPosition(vector3 a_v4Position, int a_nLight = 1);
 	/* Gets the position of a light in the list of lights*/
-	vector3 GetPosition( int a_nLight = 1);
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
+	vector3 GetPosition(int a_nLight = 1);
 	/* Sets the color of a light in the list of lights*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetColor(vector3 a_v3Color, int a_nLight = 1);
 	/* Gets the color of a light in the list of lights*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	vector3 GetColor(int a_nLight = 1);
 	/* Sets the intensity of a light in the list of lights*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetIntensity(float a_fIntensity, int a_nLight = 1);
 	/* Gets the intensity of a light in the list of lights*/
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	float GetIntensity(int a_nLight = 1);
 
 private:
 	/* Constructor */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output:
+	*/
 	LightManagerSingleton(void);
 	/* Copy Constructor */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	LightManagerSingleton(LightManagerSingleton const& other);
 	/* Copy Assignment Operator */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	LightManagerSingleton& operator=(LightManagerSingleton const& other);
 	/* Destructor */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~LightManagerSingleton(void);
 
 	/* Releases Memory */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
 	/* Initialize variables */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void);
 };
 

@@ -15,7 +15,7 @@ namespace ReEng
 //System Class
 class ReEngDLL ShaderManagerSingleton
 {
-	int m_nShaders = 0; //Number of shaders
+	int m_nShaderCount = 0; //Number of shaders
 
 	static ShaderManagerSingleton* m_pInstance; // Singleton
 	
@@ -24,40 +24,112 @@ class ReEngDLL ShaderManagerSingleton
 
 public:
 	/* Singleton accessor */
-	static ShaderManagerSingleton* GetInstance(); 
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
+	static ShaderManagerSingleton* GetInstance();
 
 	/* Singleton Release */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	static void ReleaseInstance(void);
 	
 	/* Compiles a shader program and returns the OpenGL identifier */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	GLuint CompileShader(String a_sVertexShader, String a_sFragmentShader, String a_sName = "");
 
 	/* Asks the manager for the OpenGL identifier for the specified name*/
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	GLuint GetShaderID(String a_sName);
 
 	/* Asks the manager for the OpenGL identifier for the specified index*/
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	GLuint GetShaderID(int a_nIndex);
 
 	/* Ask for the Index in the vector of the specified shader name*/
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	int IdentifyShader(String a_sName);
 
 private:
 	/* Constructor */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output:
+	*/
 	ShaderManagerSingleton(void);
 
 	/* Copy Constructor */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	ShaderManagerSingleton(ShaderManagerSingleton const& other);
 
 	/* Copy Assignment Operator */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	ShaderManagerSingleton& operator=(ShaderManagerSingleton const& other);
 
 	/* Destructor */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~ShaderManagerSingleton(void);
 
 	/* Release Memory */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
 
 	/* Initialize variables */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void);
 };
 

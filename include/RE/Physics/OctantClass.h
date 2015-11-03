@@ -35,14 +35,33 @@ public:
 	std::vector<BoundingObjectClass*> m_lBoundingObject;//List of bounding objects inside the octant
 	
 // Methods
-
-	/* Constructor */
+	/*
+	Method: OctantClass
+	Usage: Constructor
+	Arguments: ---
+	Output: class object
+	*/
 	OctantClass(void);
 	/* Copy constructor */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	OctantClass(OctantClass const& other);
 	/* Copy Assignment Operator */
+	/*
+	Method: Usage:
+	Arguments:
+	Output:
+	*/
 	OctantClass& operator=(OctantClass const& other);
 	/* Destructor */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~OctantClass(void);
 
 	////Properties
@@ -63,19 +82,44 @@ public:
 
 	
 	/* Renders the AABB of the octant if its not empty */
-	void Render();
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
+	void Render(void);
 	
 	/* Calculates the collider of the octant based on the center and its size */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void CalculateCollider(void);
 	
 private:
 	/* Releases the object from memory */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
 
 	/* Initialize the object's fields */
+	/*
+	Method: Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void);
 
 	/* Swaps the content of one octant with another */
+	/*
+	Method: Usage:
+	Arguments:
+	Output: ---
+	*/
 	void Swap(OctantClass& other);
 };
 

@@ -17,39 +17,96 @@ class ReEngDLL ExampleSingleton
 	static ExampleSingleton* m_pInstance; // Singleton pointer
 	std::vector<int> m_lData; //list of elements
 public:
-	/* Gets/Constructs the singleton pointer */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	static ExampleSingleton* GetInstance();
-	/* Destroys the singleton */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	static void ReleaseInstance(void);
 
-	/* Asks the singleton for the number of elements in the list */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output:
+	*/
 	int GetData(void);
-	/* Sets a value in the list */
-	void SetData( int a_nData = 1);
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output: ---
+	*/
+	void SetData(int a_nData = 1);
 	/* Property GetData/SetData */
-	__declspec(property(get = GetData, put = SetData)) int Data;
+	//__declspec(property(get = GetData, put = SetData)) int Data;
 
-	/* Set data on the list at the end */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output: ---
+	*/
 	void SetDataOnVector(int a_nData);
-	/* Gets data out of the list at the specified index */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	int& GetDataOnVector(int a_nIndex);
 
 private:
-	/* Constructor */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output:
+	*/
 	ExampleSingleton(void);
-	/* Copy Constructor */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	ExampleSingleton(ExampleSingleton const& other);
-	/* Copy Assignment Operator */
+	/*
+	Method:
+	Usage:
+	Arguments:
+	Output:
+	*/
 	ExampleSingleton& operator=(ExampleSingleton const& other);
-	/* Destructor */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	~ExampleSingleton(void);
-
-	/* Releases the objects memory */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Release(void);
-	/* Initializates the objects fields */
+	/*
+	Method:
+	Usage:
+	Arguments: ---
+	Output: ---
+	*/
 	void Init(void);
-	
-	
 };
 
 }
