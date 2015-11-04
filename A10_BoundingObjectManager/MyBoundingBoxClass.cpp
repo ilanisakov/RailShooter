@@ -75,6 +75,7 @@ MyBoundingBoxClass::MyBoundingBoxClass(std::vector<vector3> a_lVectorList)
 	m_v3HalfWidth.y = glm::distance(vector3(0.0f, m_v3Min.y, 0.0f), vector3(0.0f, m_v3Max.y, 0.0f)) / 2.0f;
 	m_v3HalfWidth.z = glm::distance(vector3(0.0f, 0.0f, m_v3Min.z), vector3(0.0f, 0.0f, m_v3Max.z)) / 2.0f;
 	
+	radius = glm::distance(m_v3Center, m_v3Max);
 }
 MyBoundingBoxClass::MyBoundingBoxClass(MyBoundingBoxClass const& other)
 {
@@ -150,10 +151,13 @@ void MyBoundingBoxClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	m_v3HalfWidthNEW.y = glm::distance(vector3(0.0f, m_v3MinNEW.y, 0.0f), vector3(0.0f, m_v3MaxNEW.y, 0.0f)) / 2.0f;
 	m_v3HalfWidthNEW.z = glm::distance(vector3(0.0f, 0.0f, m_v3MinNEW.z), vector3(0.0f, 0.0f, m_v3MaxNEW.z)) / 2.0f;
 
+	radius = glm::distance(m_v3Center, m_v3Center + m_v3HalfWidthNEW);
+
 }
 matrix4 MyBoundingBoxClass::GetModelMatrix(void){ return m_m4ToWorld; }
 vector3 MyBoundingBoxClass::GetCenterLocal(void){ return m_v3Center; }
 vector3 MyBoundingBoxClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center,1.0f)); }
+float MyBoundingBoxClass::GetRadius(void){ return radius; }
 vector3 MyBoundingBoxClass::GetHalfWidth(bool aligned)
 {
 	if (aligned)

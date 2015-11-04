@@ -21,6 +21,8 @@ void AppClass::InitVariables(void)
 
 	m_pBB1 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Steve"));
 	m_pBB2 = new MyBoundingBoxClass(m_pMeshMngr->GetVertexList("Creeper"));
+
+
 }
 
 void AppClass::Update(void)
@@ -56,6 +58,9 @@ void AppClass::Update(void)
 	//Axis oriented bounding box
 	m_pMeshMngr->AddCubeToQueue(m_pBB1->GetModelMatrix() * glm::translate(IDENTITY_M4, m_pBB1->GetCenterLocal()) * glm::scale(m_pBB1->GetHalfWidth(false) * 2.0f), v3Color, WIRE);
 	m_pMeshMngr->AddCubeToQueue(m_pBB2->GetModelMatrix() * glm::translate(IDENTITY_M4, m_pBB2->GetCenterLocal()) * glm::scale(m_pBB2->GetHalfWidth(false) * 2.0f), v3Color, WIRE);
+	//Spheres around AABB
+	m_pMeshMngr->AddSphereToQueue(glm::translate(IDENTITY_M4, m_pBB1->GetCenterGlobal()) * glm::scale(vector3(m_pBB1->GetRadius()) * 2.0f), v3Color, WIRE);
+	m_pMeshMngr->AddSphereToQueue(glm::translate(IDENTITY_M4, m_pBB2->GetCenterGlobal()) * glm::scale(vector3(m_pBB2->GetRadius()) * 2.0f), v3Color, WIRE);
 
 	//Adds all loaded instance to the render list
 	m_pMeshMngr->AddInstanceToRenderList("ALL");

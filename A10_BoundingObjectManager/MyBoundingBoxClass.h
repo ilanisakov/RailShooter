@@ -21,6 +21,8 @@ class MyBoundingBoxClass
 	vector3 m_v3MaxNEW = vector3(0.0f);
 	vector3 m_v3HalfWidthNEW = vector3(0.0f);
 
+	float radius;
+
 public:
 	/*
 	Method: MyBoundingBoxClass
@@ -112,6 +114,8 @@ public:
 	Output: bool -> check of the collision
 	*/
 	bool IsColliding(MyBoundingBoxClass* const a_pOther);
+
+	float GetRadius(void);
 
 private:
 	/*
