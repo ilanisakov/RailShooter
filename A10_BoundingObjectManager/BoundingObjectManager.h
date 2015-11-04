@@ -21,9 +21,12 @@ class BoundingObjectManager
 private:
 	static BoundingObjectManager* inst;  //Singleton Manager Instance
 
+//	MeshManagerSingleton* m_pMeshMngr;
+
 	std::map<String, MyBoundingObjectClass> objMap;
 
 	typedef std::map<String, MyBoundingObjectClass>::iterator objMapIt;
+	typedef std::pair<String, MyBoundingObjectClass> objMapPair;
 
 	/////////////////////////////////////////////////////////////////
 	//  BoundingObjectManager() - Private singleton constructor

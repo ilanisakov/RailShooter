@@ -1,14 +1,19 @@
-/*
-GROUP:
-Ilan Isakov
-Marty Kurtz
-Mary Spencer
-*/
+/////////////////////////////////////////////////////////////////////
+// File: MyBoundingObjectClass.cpp
+// DSA2 A10_BoundingObjectManager
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 
 
-#include "MyBoundingBoxClass.h"
-//  MyBoundingBoxClass
-void MyBoundingBoxClass::Init(void)
+#include "MyBoundingObjectClass.h"
+//  MyBoundingObjectClass
+void MyBoundingObjectClass::Init(void)
 {
 	m_m4ToWorld = IDENTITY_M4;
 
@@ -18,7 +23,7 @@ void MyBoundingBoxClass::Init(void)
 
 	m_v3HalfWidth = vector3(0.0f);
 }
-void MyBoundingBoxClass::Swap(MyBoundingBoxClass& other)
+void MyBoundingObjectClass::Swap(MyBoundingObjectClass& other)
 {
 	std::swap(m_m4ToWorld, other.m_m4ToWorld);
 
@@ -28,12 +33,12 @@ void MyBoundingBoxClass::Swap(MyBoundingBoxClass& other)
 
 	std::swap(m_v3HalfWidth, other.m_v3HalfWidth);
 }
-void MyBoundingBoxClass::Release(void)
+void MyBoundingObjectClass::Release(void)
 {
 
 }
 //The big 3
-MyBoundingBoxClass::MyBoundingBoxClass(std::vector<vector3> a_lVectorList)
+MyBoundingObjectClass::MyBoundingObjectClass(std::vector<vector3> a_lVectorList)
 {
 	//Init the default values
 	Init();
@@ -77,7 +82,7 @@ MyBoundingBoxClass::MyBoundingBoxClass(std::vector<vector3> a_lVectorList)
 	
 	radius = glm::distance(m_v3Center, m_v3Max);
 }
-MyBoundingBoxClass::MyBoundingBoxClass(MyBoundingBoxClass const& other)
+MyBoundingObjectClass::MyBoundingObjectClass(MyBoundingObjectClass const& other)
 {
 	m_m4ToWorld = other.m_m4ToWorld;
 
@@ -87,20 +92,20 @@ MyBoundingBoxClass::MyBoundingBoxClass(MyBoundingBoxClass const& other)
 
 	m_v3HalfWidth = other.m_v3HalfWidth;
 }
-MyBoundingBoxClass& MyBoundingBoxClass::operator=(MyBoundingBoxClass const& other)
+MyBoundingObjectClass& MyBoundingObjectClass::operator=(MyBoundingObjectClass const& other)
 {
 	if (this != &other)
 	{
 		Release();
 		Init();
-		MyBoundingBoxClass temp(other);
+		MyBoundingObjectClass temp(other);
 		Swap(temp);
 	}
 	return *this;
 }
-MyBoundingBoxClass::~MyBoundingBoxClass(){ Release(); };
+MyBoundingObjectClass::~MyBoundingObjectClass(){ Release(); };
 //Accessors
-void MyBoundingBoxClass::SetModelMatrix(matrix4 a_m4ToWorld)
+void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 { 
 	m_m4ToWorld = a_m4ToWorld;
 
@@ -154,19 +159,52 @@ void MyBoundingBoxClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	radius = glm::distance(m_v3Center, m_v3Center + m_v3HalfWidthNEW);
 
 }
-matrix4 MyBoundingBoxClass::GetModelMatrix(void){ return m_m4ToWorld; }
-vector3 MyBoundingBoxClass::GetCenterLocal(void){ return m_v3Center; }
-vector3 MyBoundingBoxClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center,1.0f)); }
-float MyBoundingBoxClass::GetRadius(void){ return radius; }
-vector3 MyBoundingBoxClass::GetHalfWidth(bool aligned)
+matrix4 MyBoundingObjectClass::GetModelMatrix(void){ return m_m4ToWorld; }
+vector3 MyBoundingObjectClass::GetCenterLocal(void){ return m_v3Center; }
+vector3 MyBoundingObjectClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center,1.0f)); }
+float MyBoundingObjectClass::GetRadius(void){ return radius; }
+vector3 MyBoundingObjectClass::GetHalfWidth(bool aligned)
 {
 	if (aligned)
 		return m_v3HalfWidthNEW;
 	else
 		return m_v3HalfWidth;
 }
+
+/////////////////////////////////////////////////////////////////
+// SetAABBVisible()
+/////////////////////////////////////////////////////////////////
+void MyBoundingObjectClass::SetAABBVisible(bool visible)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////
+// SetBOColor()
+/////////////////////////////////////////////////////////////////
+void MyBoundingObjectClass::SetBOColor(vector3 v3color)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////
+// SetBOVisible()
+/////////////////////////////////////////////////////////////////
+void MyBoundingObjectClass::SetBOVisible(bool visible)
+{
+
+}
+
+/////////////////////////////////////////////////////////////////
+// Render()
+/////////////////////////////////////////////////////////////////
+void MyBoundingObjectClass::Render()
+{
+
+}
+
 //--- Non Standard Singleton Methods
-bool MyBoundingBoxClass::IsColliding(MyBoundingBoxClass* const a_pOther)
+bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 {
 	//Get all vectors in global space
 //	vector3 v3Min = vector3(m_m4ToWorld * vector4(m_v3Min, 1.0f));

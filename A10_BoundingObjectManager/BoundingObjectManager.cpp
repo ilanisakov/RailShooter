@@ -20,7 +20,7 @@ BoundingObjectManager* BoundingObjectManager::inst = nullptr;
 /////////////////////////////////////////////////////////////////////
 BoundingObjectManager::BoundingObjectManager()
 {
-	//TODO......
+//	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -60,7 +60,7 @@ BoundingObjectManager::~BoundingObjectManager()
 /////////////////////////////////////////////////////////////////////
 int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
 {
-	std::pair<objMapIt,bool> stat = objMap.insert(name, MyBoundingObjectClass(VectorList));
+	std::pair<objMapIt,bool> stat = objMap.insert(objMapPair(name, MyBoundingObjectClass(VectorList)));
 	if (stat.second == false)
 		return 0;
 	return 1;
@@ -75,6 +75,7 @@ void BoundingObjectManager::SetAABBVisible(bool visible)
 	{
 		it->second.SetAABBVisible(visible);
 	}
+	
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -140,7 +141,7 @@ void BoundingObjectManager::CheckCollision()
 	{
 		for (it2 = (it1++); it2 != objMap.end(); it2++)
 		{
-			bool collision = it1->second.IsColliding(it2->second);
+			bool collision = it1->second.IsColliding(&it2->second);
 			if (collision)
 			{
 				//do something about it.....

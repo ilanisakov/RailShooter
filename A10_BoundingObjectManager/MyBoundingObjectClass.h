@@ -2,14 +2,14 @@
 Programmer: Alberto Bobadilla (labigm@gmail.com)
 Date: 2015/10
 ----------------------------------------------*/
-#ifndef __MYBOUNDINGBOXCLASS_H_
-#define __MYBOUNDINGBOXCLASS_H_
+#ifndef _MYBOUNDINGOBJECTCLASS_H_
+#define _MYBOUNDINGOBJECTCLASS_H_
 
 #include "RE\ReEng.h"
 
 
 //System Class
-class MyBoundingBoxClass
+class MyBoundingObjectClass
 {
 	matrix4 m_m4ToWorld = IDENTITY_M4; //Matrix that will take us from local to world coordinate
 	vector3 m_v3Center = vector3(0.0f); //Will store the center point of the box Class
@@ -25,33 +25,33 @@ class MyBoundingBoxClass
 
 public:
 	/*
-	Method: MyBoundingBoxClass
+	Method: MyBoundingObjectClass
 	Usage: Constructor
 	Arguments: ---
 	Output: class object
 	*/
-	MyBoundingBoxClass(std::vector<vector3> a_lVectorList);
+	MyBoundingObjectClass(std::vector<vector3> a_lVectorList);
 	/*
-	Method: MyBoundingBoxClass
+	Method: MyBoundingObjectClass
 	Usage: Copy Constructor
 	Arguments: class object to copy
 	Output: class object instance
 	*/
-	MyBoundingBoxClass(MyBoundingBoxClass const& other);
+	MyBoundingObjectClass(MyBoundingObjectClass const& other);
 	/*
 	Method: operator=
 	Usage: Copy Assignment Operator
 	Arguments: class object to copy
 	Output: ---
 	*/
-	MyBoundingBoxClass& operator=(MyBoundingBoxClass const& other);
+	MyBoundingObjectClass& operator=(MyBoundingObjectClass const& other);
 	/*
-	Method: ~MyBoundingBoxClass
+	Method: ~MyBoundingObjectClass
 	Usage: Destructor
 	Arguments: ---
 	Output: ---
 	*/
-	~MyBoundingBoxClass(void);
+	~MyBoundingObjectClass(void);
 
 	/*
 	Method: Swap
@@ -60,7 +60,7 @@ public:
 	other -> object to swap content from
 	Output: ---
 	*/
-	void Swap(MyBoundingBoxClass& other);
+	void Swap(MyBoundingObjectClass& other);
 
 	/*
 	Method: SetToWorldMatrix
@@ -110,12 +110,34 @@ public:
 	Method: IsColliding
 	Usage: Asks if there is a collision with another Bounding Box Object
 	Arguments:
-	MyBoundingBoxClass* const a_pOther -> Other object to check collision with
+	MyBoundingObjectClass* const a_pOther -> Other object to check collision with
 	Output: bool -> check of the collision
 	*/
-	bool IsColliding(MyBoundingBoxClass* const a_pOther);
+	bool IsColliding(MyBoundingObjectClass* const a_pOther);
 
 	float GetRadius(void);
+
+
+	/////////////////////////////////////////////////////////////////
+	// SetAABBVisible()
+	/////////////////////////////////////////////////////////////////
+	void SetAABBVisible(bool visible);
+
+	/////////////////////////////////////////////////////////////////
+	// SetBOColor()
+	/////////////////////////////////////////////////////////////////
+	void SetBOColor(vector3 v3color);
+
+	/////////////////////////////////////////////////////////////////
+	// SetBOVisible()
+	/////////////////////////////////////////////////////////////////
+	void SetBOVisible(bool visible);
+
+	/////////////////////////////////////////////////////////////////
+	// Render()
+	/////////////////////////////////////////////////////////////////
+	void Render();
+
 
 private:
 	/*
@@ -134,4 +156,4 @@ private:
 	void Init(void);
 };
 
-#endif //__MYBOUNDINGBOXCLASS_H__
+#endif //_MYBOUNDINGOBJECTCLASS_H__
