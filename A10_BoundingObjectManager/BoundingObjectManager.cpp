@@ -15,13 +15,17 @@
 
 BoundingObjectManager* BoundingObjectManager::inst = nullptr;
 
-//Private Constructor
+/////////////////////////////////////////////////////////////////////
+//  BoundingObjectManager() - Private singleton constructor
+/////////////////////////////////////////////////////////////////////
 BoundingObjectManager::BoundingObjectManager()
 {
 	//TODO......
-
 }
-//Get instance of camera
+
+/////////////////////////////////////////////////////////////////////
+// GetInstance() - return the singleton inst of BO manager
+/////////////////////////////////////////////////////////////////////
 BoundingObjectManager* BoundingObjectManager::GetInstance()
 {
 	if (inst == nullptr)
@@ -30,7 +34,10 @@ BoundingObjectManager* BoundingObjectManager::GetInstance()
 	}
 	return inst;
 }
-//Release the camera singleton instance
+
+/////////////////////////////////////////////////////////////////////
+// ReleaseInst() - Release the BO manager singleton instance
+/////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::ReleaseInst()
 {
 	if (inst != nullptr)
@@ -39,6 +46,109 @@ void BoundingObjectManager::ReleaseInst()
 		inst = nullptr;
 	}
 }
+
+/////////////////////////////////////////////////////////////////////
+// ~BoundingObjectManager()
+/////////////////////////////////////////////////////////////////////
+BoundingObjectManager::~BoundingObjectManager()
+{
+	ReleaseInst();
+}
+
+/////////////////////////////////////////////////////////////////////
+// AddBox
+/////////////////////////////////////////////////////////////////////
+int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
+{
+	std::pair<objMapIt,bool> stat = objMap.insert(name, MyBoundingObjectClass(VectorList));
+	if (stat.second == false)
+		return 0;
+	return 1;
+}
+
+/////////////////////////////////////////////////////////////////////
+// SetAABBVisible
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::SetAABBVisible(bool visible)
+{
+	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
+	{
+		it->second.SetAABBVisible(visible);
+	}
+}
+
+/////////////////////////////////////////////////////////////////////
+// GetNumberBO()
+/////////////////////////////////////////////////////////////////////
+int BoundingObjectManager::GetNumberBO()
+{
+	return objMap.size();
+}
+
+/////////////////////////////////////////////////////////////////////
+// SetBOColor()
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::SetBOColor(String name, vector3 v3color)
+{
+	objMapIt it = objMap.find(name);
+	if (it == objMap.end())
+		return;
+	it->second.SetBOColor(v3color);
+}
+
+
+/////////////////////////////////////////////////////////////////////
+// SetBOVisibile
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::SetBOVisible(String name, bool visible)
+{
+	objMapIt it = objMap.find(name);
+	if (it == objMap.end())
+		return;
+	it->second.SetBOVisible(visible);
+}
+
+
+/////////////////////////////////////////////////////////////////////
+// RenderBO
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::RenderBO(String name)
+{
+	objMapIt it;
+	if (name.compare("all") || name.compare("All"))
+	{
+		for (it = objMap.begin(); it != objMap.end(); it++)
+		{
+			it->second.Render();
+		}
+		return;
+	}
+	it = objMap.find(name);
+	if (it == objMap.end())
+		return;
+	it->second.Render();
+}
+
+/////////////////////////////////////////////////////////////////////
+// CheckCollision
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::CheckCollision()
+{
+	objMapIt it1, it2;
+	//Check every BO with every other BO
+	for (it1 = objMap.begin(); it1 != objMap.end(); it1++)
+	{
+		for (it2 = (it1++); it2 != objMap.end(); it2++)
+		{
+			bool collision = it1->second.IsColliding(it2->second);
+			if (collision)
+			{
+				//do something about it.....
+			}
+		}
+	}
+}
+
 
 
 
