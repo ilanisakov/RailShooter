@@ -100,9 +100,7 @@ public:
 	Usage: Gets the Bounding Box sizes for all sides (divided in half)
 	Arguments: ---
 	Output: vector3 -> HalfWidth Vector
-
 	bool aligned - whether axis oriented or axis re-aligned
-
 	*/
 	vector3 GetHalfWidth(bool alligned);
 

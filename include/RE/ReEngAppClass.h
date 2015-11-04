@@ -23,6 +23,8 @@ namespace ReEng
 		bool m_bFPC = false;// First Person Camera flag
 		bool m_bArcBall = false;// Arcball flag
 
+		float m_dMinDelta = 0.0166f;
+
 		int m_nCmdShow;	// Number of starting commands on startup
 		HINSTANCE m_hInstance; // Windows application Instance
 		LPWSTR m_lpCmdLine; // Command line arguments
@@ -74,6 +76,8 @@ namespace ReEng
 
 			//Run the main loop until the exit message is sent
 			MSG msg = { 0 };
+			DWORD dCumulative = 0;
+			DWORD dLastTime = GetTickCount();
 			while (WM_QUIT != msg.message)
 			{
 				//Peek the message send by windows and do something dispatch it
@@ -84,14 +88,26 @@ namespace ReEng
 				}
 				else //If no message was sent continue the regular fields
 				{
-					if (GetFocus() != NULL) //If the window is focused...
+					DWORD dCurrentTime = GetTickCount();//Current time in the clock
+					DWORD dDeltaTime = dCurrentTime - dLastTime; //Calculate the dif between calls
+					dLastTime = dCurrentTime; //Set the last time the method was call
+			
+					dCumulative += dDeltaTime;//Calculate the cumulative time
+					if (static_cast<float>(dCumulative/1000.0f) >= m_dMinDelta) //if more than the minimum delta time has passed
 					{
-						ProcessKeyboard(); //Check for keyboard input
-						ProcessMouse(); //Check for mouse input
-						ProcessJoystick(); //Check for Joystick input
+						if (GetFocus() != NULL) //If the window is focused...
+						{
+							ProcessKeyboard(); //Check for keyboard input
+							ProcessMouse(); //Check for mouse input
+							ProcessJoystick(); //Check for Joystick input
+						}
+						Update(); //Update the scene
+						Display(); //Display the changes on the scene
+
+						dCumulative = dDeltaTime; //reset cumulative time
 					}
-					Update(); //Update the scene
-					Display(); //Display the changes on the scene
+
+					
 				}
 				Idle(); //Every cycle execute idle code.
 			}
@@ -158,7 +174,7 @@ namespace ReEng
 			m_pWindow->CalculateWindowSize(); //Ask WinApi for the window size and store it in System
 			int nWidth = m_pWindow->GetWidth(); //Get the width of the window
 			int nHeight = m_pWindow->GetHeight();//Get the height of the window
-			printf("\nNew Window size: [%d, %d]\n", nWidth, nHeight);//inform the new window size
+			printf("Window size: [%d, %d]\n", nWidth, nHeight);//inform the new window size
 			glViewport(0, 0, nWidth, nHeight);//resize the viewport
 		}
 		/*
@@ -176,6 +192,8 @@ namespace ReEng
 			// Get the system singleton
 			m_pSystem = SystemSingleton::GetInstance();
 
+			SetMaxFramerate(60.0f);
+
 			m_pSystem->SetUsingConsole(a_bUsingConsole);
 			// Is this running within Visual Studio?
 			if (IsDebuggerPresent())
@@ -186,7 +204,6 @@ namespace ReEng
 			if (m_pSystem->GetUsingConsole()) //If using the window
 			{
 				m_pWindow->CreateConsoleWindow();//create a new console window
-				printf("Shaders: ");
 			}
 
 			m_pSelfPointer = this; //make the shared pointer of the class object point to this object
@@ -241,7 +258,7 @@ namespace ReEng
 			
 			// Setting the camera position.
 			m_pCameraMngr = CameraManagerSingleton::GetInstance();
-			m_pCameraMngr->SetPosition(vector3(0.0f, 0.5f, 10.0f));
+			m_pCameraMngr->SetPosition(vector3(0.0f, 0.0f, 10.0f));
 
 			// Initialize the App Variables
 			InitVariables();
@@ -585,6 +602,16 @@ namespace ReEng
 		Output: ---
 		*/
 		virtual void InitVariables(void){}
+
+		/*
+		Method: SetMaxFramerate
+		Usage:	Will initialize the maximum frame rate and the max delta frame 
+		Arguments: 
+			float a_fMaxFrameRate -> maximum frame rate the system can execute
+		Output: ---
+		*/
+		virtual void SetMaxFramerate(float a_fFrameRateLimit) final { m_dMinDelta = 1.0f / a_fFrameRateLimit; }
+
 		/*
 		Method: Release
 		Usage: Releases the application

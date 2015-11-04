@@ -17,8 +17,8 @@ namespace ReEng
 class ReEngDLL GLSystemSingleton
 {
 	//--Members
-	HDC   m_hDC;		// Private GDI Device Context
-	HGLRC m_hRC;		// Permanent Rendering Context
+	HDC   m_hDC = NULL;		// Private GDI Device Context
+	HGLRC m_hRC = NULL;		// Permanent Rendering Context
 	float m_fGLVersion = 0.0f; // OpenGL version
 	bool m_bForceOldGL = false;	// Forces OpenGL 2.1 to be initialized
 public:

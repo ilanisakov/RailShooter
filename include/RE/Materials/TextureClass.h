@@ -6,7 +6,8 @@ Date: 2015/06
 #define __TEXTURECLASS_H_
 
 #include "RE\system\SystemSingleton.h"
-#include "SOIL\SOIL.h"
+#include "RE\system\filereaderclass.h"
+#include "FreeImage\FreeImage.h"
 
 namespace ReEng
 {
@@ -17,6 +18,7 @@ class ReEngDLL TextureClass
 	SystemSingleton* m_pSystem = nullptr;
 	String m_sName = "NULL";
 	String m_sFileName = "NULL";
+
 public:
 	/*
 	Method: TextureClass

@@ -79,7 +79,7 @@ MyBoundingObjectClass::MyBoundingObjectClass(std::vector<vector3> a_lVectorList)
 	m_v3HalfWidth.x = glm::distance(vector3(m_v3Min.x, 0.0f, 0.0f), vector3(m_v3Max.x, 0.0f, 0.0f)) / 2.0f;
 	m_v3HalfWidth.y = glm::distance(vector3(0.0f, m_v3Min.y, 0.0f), vector3(0.0f, m_v3Max.y, 0.0f)) / 2.0f;
 	m_v3HalfWidth.z = glm::distance(vector3(0.0f, 0.0f, m_v3Min.z), vector3(0.0f, 0.0f, m_v3Max.z)) / 2.0f;
-	
+
 	radius = glm::distance(m_v3Center, m_v3Max);
 }
 MyBoundingObjectClass::MyBoundingObjectClass(MyBoundingObjectClass const& other)
@@ -106,7 +106,7 @@ MyBoundingObjectClass& MyBoundingObjectClass::operator=(MyBoundingObjectClass co
 MyBoundingObjectClass::~MyBoundingObjectClass(){ Release(); };
 //Accessors
 void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
-{ 
+{
 	m_m4ToWorld = a_m4ToWorld;
 
 	//compute aligned box points
@@ -161,7 +161,7 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 }
 matrix4 MyBoundingObjectClass::GetModelMatrix(void){ return m_m4ToWorld; }
 vector3 MyBoundingObjectClass::GetCenterLocal(void){ return m_v3Center; }
-vector3 MyBoundingObjectClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center,1.0f)); }
+vector3 MyBoundingObjectClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center, 1.0f)); }
 float MyBoundingObjectClass::GetRadius(void){ return radius; }
 vector3 MyBoundingObjectClass::GetHalfWidth(bool aligned)
 {
@@ -207,11 +207,11 @@ void MyBoundingObjectClass::Render()
 bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 {
 	//Get all vectors in global space
-//	vector3 v3Min = vector3(m_m4ToWorld * vector4(m_v3Min, 1.0f));
-//	vector3 v3Max = vector3(m_m4ToWorld * vector4(m_v3Max, 1.0f));
+	//	vector3 v3Min = vector3(m_m4ToWorld * vector4(m_v3Min, 1.0f));
+	//	vector3 v3Max = vector3(m_m4ToWorld * vector4(m_v3Max, 1.0f));
 
-//	vector3 v3MinO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Min, 1.0f));
-//	vector3 v3MaxO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Max, 1.0f));
+	//	vector3 v3MinO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Min, 1.0f));
+	//	vector3 v3MaxO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Max, 1.0f));
 
 	//New box is already is global space
 	vector3 v3Min = m_v3MinNEW;
@@ -224,7 +224,7 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	For boxes we will assume they are colliding, unless at least one of the following conditions is not met
 	*/
 	bool bColliding = true;
-	
+
 	//Check for X
 	if (v3Max.x < v3MinO.x)
 		bColliding = false;

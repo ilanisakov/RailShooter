@@ -21,7 +21,7 @@ namespace ReEng
 		vector2 m_v2NearFar = vector2(0.001f, 1000.0f);
 
 		vector3 m_v3Position = vector3(0.0f, 0.0f, 5.0f);
-		vector3 m_v3Target = vector3(0.0f, 0.0f, 5.0f);
+		vector3 m_v3Target = vector3(0.0f, 0.0f, 0.0f);
 		vector3 m_v3Top = vector3(0.0f, 1.0f, 0.0f);
 
 		vector3 m_v3Forward = vector3(0.0f, 0.0f, -1.0f);
@@ -170,7 +170,7 @@ namespace ReEng
 		Arguments:
 		Output:
 		*/
-		void SetPositionAndTarget(vector3 a_v3Position, vector3 a_v3Target);
+		void SetPositionTargetAndView(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward);
 
 		/*
 		Method: 
@@ -280,7 +280,7 @@ namespace ReEng
 		Arguments: ---
 		Output: ---
 		*/
-		void Init(void);
+		void Init(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward);
 		
 		/*
 		Method: 

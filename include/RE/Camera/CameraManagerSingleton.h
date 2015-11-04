@@ -40,7 +40,7 @@ namespace ReEng
 		Arguments:
 		Output:
 		*/
-		uint AddCamera(vector3 a_v3Eye, vector3 a_v3Target, vector3 a_v3Up);
+		uint AddCamera(vector3 a_v3Eye, vector3 a_v3Target, vector3 a_v3Upwards);
 
 		/* Calculates the view of the camera specified by index, if -1 it will use the active camera */
 		/*
@@ -125,7 +125,7 @@ namespace ReEng
 			int a_nIndex = -1 -> Index of the camera, -1 will use the active camera's index
 		Output: ---
 		*/
-		void SetPositionAndTarget(vector3 a_v3Position, vector3 a_v3Target, int a_nIndex = -1);
+		void SetPositionTargetAndView(vector3 a_v3Position, vector3 a_v3Target, vector3 a_v3Upward, int a_nIndex = -1);
 
 		/* Gets the camera space just in front of the camera by index, if -1 it will use the active camera */
 		/*

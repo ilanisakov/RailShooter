@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3967FCB2-CF32-4899-9E66-1F888500EEE0}</ProjectGuid>
+    <ProjectGuid>{BF513FFF-F302-41F7-A86A-BEB3E94CEB10}</ProjectGuid>
     <RootNamespace>A10_BoundingObjectManager</RootNamespace>
     <ProjectName>A10_BoundingObjectManager</ProjectName>
   </PropertyGroup>
@@ -44,14 +44,14 @@
     <IntDir>$(SolutionDir)Z_DELETE\$(ProjectName)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)D</TargetName>
     <ExecutablePath>$(SolutionDir)include\GL\bin;$(SolutionDir)include\RE\bin;$(SolutionDir)include\SFML\bin;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)include;$(SolutionDir)include\RE;$(SolutionDir)res;$(SolutionDir)Solution;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)res;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)include\GL\lib;$(SolutionDir)include\RE\lib;$(SolutionDir)include\SFML\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Z_DELETE\</OutDir>
     <IntDir>$(SolutionDir)Z_DELETE\$(ProjectName)\$(Configuration)\</IntDir>
     <ExecutablePath>$(SolutionDir)include\GL\bin;$(SolutionDir)include\RE\bin;$(SolutionDir)include\SFML\bin;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(SolutionDir)include;$(SolutionDir)include\RE;$(SolutionDir)res;$(SolutionDir)Solution;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)include;$(SolutionDir)res;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)include\GL\lib;$(SolutionDir)include\RE\lib;$(SolutionDir)include\SFML\lib;$(LibraryPath)</LibraryPath>
     <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>

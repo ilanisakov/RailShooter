@@ -17,7 +17,7 @@ class AppClass : public ReEngAppClass
 	MyBoundingObjectClass* m_pBB2 = nullptr;
 
 	vector3 m_v3O1 = vector3(-2.5f, 0.0f, 0.0f);
-	vector3 m_v3O2 = vector3( 2.5f, 0.0f, 0.0f);
+	vector3 m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
 public:
 	typedef ReEngAppClass super;
 

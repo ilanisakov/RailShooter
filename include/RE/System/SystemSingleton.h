@@ -29,13 +29,13 @@ class ReEngDLL SystemSingleton
 	static SystemSingleton* m_pInstance; // Singleton
 
 	String m_sWindowName = "ReEng"; // Window Name
-	String m_sAppName = "Application";
+	String m_sAppName = "Application";//Name of the Application
 
 	DWORD m_dTimerStart = 0; //Start time of the program
 	DWORD m_dStartingTime = 0; //Start time of the program
 	DWORD m_dLastFPS = 0; //Last time the time was called
 
-	std::vector<DWORD> lClock;//clocks list
+	std::vector<DWORD> m_lClock;//clocks list
 	
 public:
 	/*
@@ -257,14 +257,24 @@ public:
 	Arguments:
 	Output: ---
 	*/
-	void StartClock(unsigned int a_nClock = 1);//Starts a time count for the specified clock
+	void StartClock(unsigned int a_nClock = 0);//Starts a time count for the specified clock
 	/*
-	Method:
-	Usage:
+	Method: LapClock
+	Usage: Gets the time difference between the last time this method was called for this particular clock
 	Arguments:
 	Output:
 	*/
-	float LapClock(unsigned int a_nClock = 1);//Gets the time difference between the last time this method was called for this particular clock
+	double LapClock(unsigned int a_nClock = 0);
+
+	/*
+	Method: AddClock
+	Usage: Adds a clock to the list and return said clock's index
+	Arguments: ---
+	Output: uint -> index of the new clock;
+	*/
+	uint AddClock(void);
+
+
 	/*
 	Method:
 	Usage:

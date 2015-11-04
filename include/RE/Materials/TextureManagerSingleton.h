@@ -56,7 +56,7 @@ public:
 	Arguments:
 	Output:
 	*/
-	GLuint ReturnGLIndex(int a_nIndex); //Returns the OpenGL Buffer ID in the vector location of the provided Index
+	GLuint ReturnGLIndex(uint a_nIndex); //Returns the OpenGL Buffer ID in the vector location of the provided Index
 private:
 	/*
 	Method: Usage:
