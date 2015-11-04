@@ -14,11 +14,7 @@
 #define _BOUNDINGOBJECTMANAGER_H_
 
 #include "RE\ReEng.h"
-
-//TODO: Delete this later (forward decl for compilation)
-class MyBoundingObjectClass;
-
-
+#include "MyBoundingObjectClass.h"
 
 class BoundingObjectManager
 {
