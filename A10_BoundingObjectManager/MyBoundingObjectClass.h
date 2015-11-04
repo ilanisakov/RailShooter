@@ -11,6 +11,8 @@ Date: 2015/10
 //System Class
 class MyBoundingObjectClass
 {
+	MeshManagerSingleton* m_pMeshMngr;
+
 	matrix4 m_m4ToWorld = IDENTITY_M4; //Matrix that will take us from local to world coordinate
 	vector3 m_v3Center = vector3(0.0f); //Will store the center point of the box Class
 	vector3 m_v3Min = vector3(0.0f); //Will store the minimum vector of the box Class
@@ -23,14 +25,23 @@ class MyBoundingObjectClass
 
 	float radius;
 
+	bool bAABBVisible;
+	bool bBOVisible;
+	vector3 v3BOColor;
+
+	
+
 public:
+	//debugging....
+	String sName;
+
 	/*
 	Method: MyBoundingObjectClass
 	Usage: Constructor
 	Arguments: ---
 	Output: class object
 	*/
-	MyBoundingObjectClass(std::vector<vector3> a_lVectorList);
+	MyBoundingObjectClass(std::vector<vector3> a_lVectorList,String name);
 	/*
 	Method: MyBoundingObjectClass
 	Usage: Copy Constructor
@@ -100,7 +111,9 @@ public:
 	Usage: Gets the Bounding Box sizes for all sides (divided in half)
 	Arguments: ---
 	Output: vector3 -> HalfWidth Vector
+
 	bool aligned - whether axis oriented or axis re-aligned
+
 	*/
 	vector3 GetHalfWidth(bool alligned);
 
@@ -114,6 +127,10 @@ public:
 	bool IsColliding(MyBoundingObjectClass* const a_pOther);
 
 	float GetRadius(void);
+
+	vector3 GetMax(bool global);
+
+	vector3 GetMin(bool global);
 
 
 	/////////////////////////////////////////////////////////////////
@@ -134,7 +151,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// Render()
 	/////////////////////////////////////////////////////////////////
-	void Render();
+	void UpdateRender();
 
 
 private:

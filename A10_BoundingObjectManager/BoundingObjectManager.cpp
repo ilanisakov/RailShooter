@@ -52,6 +52,11 @@ void BoundingObjectManager::ReleaseInst()
 /////////////////////////////////////////////////////////////////////
 BoundingObjectManager::~BoundingObjectManager()
 {
+	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
+	{
+		delete it->second;
+	}
+	objMap.erase(objMap.begin(), objMap.end());
 	ReleaseInst();
 }
 
@@ -60,9 +65,20 @@ BoundingObjectManager::~BoundingObjectManager()
 /////////////////////////////////////////////////////////////////////
 int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
 {
-	std::pair<objMapIt,bool> stat = objMap.insert(objMapPair(name, MyBoundingObjectClass(VectorList)));
+	std::pair<objMapIt,bool> stat = objMap.insert(objMapPair(name, new MyBoundingObjectClass(VectorList,name)));
 	if (stat.second == false)
 		return 0;
+//	objMap[name] = new MyBoundingObjectClass(VectorList, name);
+
+
+
+	//Debugging print all members name
+//	printf("\nManager List:\n");
+//	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
+//	{
+//		std::cout << it->first << "   "<< it->second->sName <<std::endl;
+//		//std::cout << it->second.sName << std::endl;
+//	}
 	return 1;
 }
 
@@ -73,7 +89,7 @@ void BoundingObjectManager::SetAABBVisible(bool visible)
 {
 	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
 	{
-		it->second.SetAABBVisible(visible);
+		it->second->SetAABBVisible(visible);
 	}
 	
 }
@@ -87,6 +103,17 @@ int BoundingObjectManager::GetNumberBO()
 }
 
 /////////////////////////////////////////////////////////////////////
+// SetModelMatrix
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::SetModelMatrix(String name, matrix4 mToWorld)
+{
+	objMapIt it = objMap.find(name);
+	if (it == objMap.end())
+		return;
+	it->second->SetModelMatrix(mToWorld);
+}
+
+/////////////////////////////////////////////////////////////////////
 // SetBOColor()
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::SetBOColor(String name, vector3 v3color)
@@ -94,7 +121,7 @@ void BoundingObjectManager::SetBOColor(String name, vector3 v3color)
 	objMapIt it = objMap.find(name);
 	if (it == objMap.end())
 		return;
-	it->second.SetBOColor(v3color);
+	it->second->SetBOColor(v3color);
 }
 
 
@@ -106,28 +133,28 @@ void BoundingObjectManager::SetBOVisible(String name, bool visible)
 	objMapIt it = objMap.find(name);
 	if (it == objMap.end())
 		return;
-	it->second.SetBOVisible(visible);
+	it->second->SetBOVisible(visible);
 }
 
 
 /////////////////////////////////////////////////////////////////////
 // RenderBO
 /////////////////////////////////////////////////////////////////////
-void BoundingObjectManager::RenderBO(String name)
+void BoundingObjectManager::UpdateRenderList(String name)
 {
 	objMapIt it;
-	if (name.compare("all") || name.compare("All"))
+	if (name.compare("ALL") == 0)
 	{
 		for (it = objMap.begin(); it != objMap.end(); it++)
 		{
-			it->second.Render();
+			it->second->UpdateRender();
 		}
 		return;
 	}
 	it = objMap.find(name);
 	if (it == objMap.end())
 		return;
-	it->second.Render();
+	it->second->UpdateRender();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -135,20 +162,28 @@ void BoundingObjectManager::RenderBO(String name)
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::CheckCollision()
 {
-	objMapIt it1, it2;
+	objMapIt it1, it2, it3;
+	//Reset color to neutral
+	for (it1 = objMap.begin(); it1 != objMap.end(); it1++)
+	{
+		it1->second->SetBOColor(REWHITE);
+	}
 	//Check every BO with every other BO
 	for (it1 = objMap.begin(); it1 != objMap.end(); it1++)
 	{
-		for (it2 = (it1++); it2 != objMap.end(); it2++)
+		it3 = it1;
+		it3++;
+		for (it2 = (it3); it2 != objMap.end(); it2++)
 		{
-			bool collision = it1->second.IsColliding(&it2->second);
-			if (collision)
+			if (it1->second->IsColliding(it2->second))
 			{
-				//do something about it.....
+				it1->second->SetBOColor(RERED);
+				it2->second->SetBOColor(RERED);
 			}
 		}
 	}
 }
+
 
 
 

@@ -23,10 +23,10 @@ private:
 
 //	MeshManagerSingleton* m_pMeshMngr;
 
-	std::map<String, MyBoundingObjectClass> objMap;
+	std::map<String, MyBoundingObjectClass*> objMap;
 
-	typedef std::map<String, MyBoundingObjectClass>::iterator objMapIt;
-	typedef std::pair<String, MyBoundingObjectClass> objMapPair;
+	typedef std::map<String, MyBoundingObjectClass*>::iterator objMapIt;
+	typedef std::pair<String, MyBoundingObjectClass*> objMapPair;
 
 	/////////////////////////////////////////////////////////////////
 	//  BoundingObjectManager() - Private singleton constructor
@@ -52,7 +52,7 @@ public:
 	~BoundingObjectManager();
 
 	/////////////////////////////////////////////////////////////////
-	// AddBox
+	// AddBox - names must be unique
 	/////////////////////////////////////////////////////////////////
 	int AddBox(String name, std::vector<vector3> VectorList);
 
@@ -67,6 +67,11 @@ public:
 	int GetNumberBO();
 
 	/////////////////////////////////////////////////////////////////
+	// SetModelMatrix
+	/////////////////////////////////////////////////////////////////
+	void SetModelMatrix(String name, matrix4 mToWorld);
+
+	/////////////////////////////////////////////////////////////////
 	// SetBOColor()
 	/////////////////////////////////////////////////////////////////
 	void SetBOColor(String name, vector3 v3color);
@@ -79,7 +84,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// RenderBO
 	/////////////////////////////////////////////////////////////////
-	void RenderBO(String name);
+	void UpdateRenderList(String name);
 
 	/////////////////////////////////////////////////////////////////
 	// CheckCollision
@@ -90,4 +95,3 @@ public:
 
 
 #endif /*_BOUNDINGOBJECTMANAGER_H_*/
-
