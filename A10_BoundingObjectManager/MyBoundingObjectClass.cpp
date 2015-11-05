@@ -166,6 +166,8 @@ void MyBoundingObjectClass::SetModelMatrix(matrix4 a_m4ToWorld)
 	radius = glm::distance(m_v3Center, m_v3Center + m_v3HalfWidthNEW);
 
 }
+
+//accessors
 matrix4 MyBoundingObjectClass::GetModelMatrix(void){ return m_m4ToWorld; }
 vector3 MyBoundingObjectClass::GetCenterLocal(void){ return m_v3Center; }
 vector3 MyBoundingObjectClass::GetCenterGlobal(void){ return vector3(m_m4ToWorld * vector4(m_v3Center,1.0f)); }
@@ -207,6 +209,17 @@ void MyBoundingObjectClass::SetBOVisible(bool visible)
 /////////////////////////////////////////////////////////////////
 void MyBoundingObjectClass::UpdateRender()
 {
+	//print out info (directions only once)
+	if (sName == "Creeper"){
+		m_pMeshMngr->PrintLine("V:toggle bounding sphere B: toggle bounding box ", REYELLOW);
+	}
+	m_pMeshMngr->Print(sName + " Max:", RERED);
+	m_pMeshMngr->Print("(" + std::to_string(GetMax(true).x) + "," + std::to_string(GetMax(true).y) + "," + std::to_string(GetMax(true).z) + ")\n");
+	m_pMeshMngr->Print(sName + " Min:", REBLUE);
+	m_pMeshMngr->Print("(" + std::to_string(GetMin(true).x) + "," + std::to_string(GetMin(true).y) + "," + std::to_string(GetMin(true).z) + ")\n");
+
+	m_pMeshMngr->PrintLine(sName + " centroid: (" + std::to_string(GetCenterGlobal().x) + "," + std::to_string(GetCenterGlobal().y) + "," + std::to_string(GetCenterGlobal().z) + ")", REBLACK);
+
 	if (bBOVisible)
 	{
 		//Axis Oriented Bounding box
@@ -279,4 +292,13 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 		bColliding = false;
 
 	return bColliding;
+}
+
+vector3 MyBoundingObjectClass::GetMax(bool global){
+	std::cout << m_v3MaxNEW.x;
+	return m_v3MaxNEW;
+}
+
+vector3 MyBoundingObjectClass::GetMin(bool global){
+	return m_v3MinNEW;
 }

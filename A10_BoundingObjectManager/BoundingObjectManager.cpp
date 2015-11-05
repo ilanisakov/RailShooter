@@ -92,6 +92,7 @@ void BoundingObjectManager::SetAABBVisible(bool visible)
 		it->second->SetAABBVisible(visible);
 	}
 	
+	aabbVisible = visible;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -134,6 +135,8 @@ void BoundingObjectManager::SetBOVisible(String name, bool visible)
 	if (it == objMap.end())
 		return;
 	it->second->SetBOVisible(visible);
+
+	boVisible = visible;
 }
 
 

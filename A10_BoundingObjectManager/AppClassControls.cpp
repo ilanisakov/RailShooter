@@ -59,6 +59,40 @@ void AppClass::ProcessKeyboard(void)
 		m_v3O1.y += 0.1f;
 #pragma endregion
 
+#pragma region A10 actions
+	//toggle bounding box visibility
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
+
+		//toggle off
+		if (m_pBndObjMngr->boVisible){
+			m_pBndObjMngr->SetBOVisible("Steve", false);
+			m_pBndObjMngr->SetBOVisible("Creeper", false);
+		}
+
+		//toggle on
+		else if (!(m_pBndObjMngr->boVisible)){
+			m_pBndObjMngr->SetBOVisible("Steve", true);
+			m_pBndObjMngr->SetBOVisible("Creeper", true);
+		}
+	}
+
+	//toggle bounding box visibility
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
+
+		//toggle off
+		if (m_pBndObjMngr->aabbVisible){
+			m_pBndObjMngr->SetAABBVisible(false);
+			m_pBndObjMngr->SetAABBVisible(false);
+		}
+
+		//toggle on
+		else if (!(m_pBndObjMngr->aabbVisible)){
+			m_pBndObjMngr->SetAABBVisible( true);
+			m_pBndObjMngr->SetAABBVisible( true);
+		}
+	}
+
+
 #pragma region Other Actions
 	ON_KEY_PRESS_RELEASE(Escape, NULL, PostMessage(m_pWindow->GetHandler(), WM_QUIT, NULL, NULL));
 	ON_KEY_PRESS_RELEASE(F1, NULL, m_pCameraMngr->SetCameraMode(CAMPERSP));

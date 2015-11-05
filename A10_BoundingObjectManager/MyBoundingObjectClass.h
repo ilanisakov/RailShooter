@@ -128,8 +128,21 @@ public:
 
 	float GetRadius(void);
 
+	/*
+	Method: GetMax
+	Usage: Gets max of the bounding object
+	Arguments:
+	Output: vector3 -> Max
+	*/
 	vector3 GetMax(bool global);
 
+
+	/*
+	Method: GetMin
+	Usage: Gets min of the bounding object
+	Arguments:
+	Output: vector3 -> min
+	*/
 	vector3 GetMin(bool global);
 
 
