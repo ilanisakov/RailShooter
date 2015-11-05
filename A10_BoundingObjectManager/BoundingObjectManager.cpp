@@ -61,12 +61,15 @@ BoundingObjectManager::~BoundingObjectManager()
 }
 
 /////////////////////////////////////////////////////////////////////
-// AddBox
+// AddBox - names must be unique
+//    name - unique key for BO
+//    VectorList - vertices to generate BOClass
 /////////////////////////////////////////////////////////////////////
 int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
 {
+	//insert into map
 	std::pair<objMapIt,bool> stat = objMap.insert(objMapPair(name, new MyBoundingObjectClass(VectorList,name)));
-	if (stat.second == false)
+	if (stat.second == false) //check for failure
 		return 0;
 //	objMap[name] = new MyBoundingObjectClass(VectorList, name);
 
@@ -83,7 +86,8 @@ int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
 }
 
 /////////////////////////////////////////////////////////////////////
-// SetAABBVisible
+// SetAABBVisible 
+//    visible - whether spehere/axis re-aligned is visible for ALL
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::SetAABBVisible(bool visible)
 {
@@ -96,7 +100,7 @@ void BoundingObjectManager::SetAABBVisible(bool visible)
 }
 
 /////////////////////////////////////////////////////////////////////
-// GetNumberBO()
+// GetNumberBO() - return number of BO objs in manager
 /////////////////////////////////////////////////////////////////////
 int BoundingObjectManager::GetNumberBO()
 {
@@ -105,6 +109,8 @@ int BoundingObjectManager::GetNumberBO()
 
 /////////////////////////////////////////////////////////////////////
 // SetModelMatrix
+//    name - unique key for BO
+//    mToWorld matrix
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::SetModelMatrix(String name, matrix4 mToWorld)
 {
@@ -116,6 +122,8 @@ void BoundingObjectManager::SetModelMatrix(String name, matrix4 mToWorld)
 
 /////////////////////////////////////////////////////////////////////
 // SetBOColor()
+//    name - unique key for BO
+//    v3Color - color of BO box/sphere
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::SetBOColor(String name, vector3 v3color)
 {
@@ -128,6 +136,8 @@ void BoundingObjectManager::SetBOColor(String name, vector3 v3color)
 
 /////////////////////////////////////////////////////////////////////
 // SetBOVisibile
+//    name - unique key for BO
+//    visible - whether all BO shapes are visible
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::SetBOVisible(String name, bool visible)
 {
@@ -141,7 +151,9 @@ void BoundingObjectManager::SetBOVisible(String name, bool visible)
 
 
 /////////////////////////////////////////////////////////////////////
-// RenderBO
+// UpdateRenderList
+//    name - unique key for BO
+//         - "ALL" special case to render all BOs
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::UpdateRenderList(String name)
 {
@@ -161,7 +173,7 @@ void BoundingObjectManager::UpdateRenderList(String name)
 }
 
 /////////////////////////////////////////////////////////////////////
-// CheckCollision
+// CheckCollision - checks collosions with all BOs
 /////////////////////////////////////////////////////////////////////
 void BoundingObjectManager::CheckCollision()
 {
@@ -175,7 +187,7 @@ void BoundingObjectManager::CheckCollision()
 	for (it1 = objMap.begin(); it1 != objMap.end(); it1++)
 	{
 		it3 = it1;
-		it3++;
+		it3++; //don't check withs self or previous
 		for (it2 = (it3); it2 != objMap.end(); it2++)
 		{
 			if (it1->second->IsColliding(it2->second))
