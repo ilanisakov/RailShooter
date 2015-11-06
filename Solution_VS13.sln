@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A10_BoundingObjectManager",
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "A08_CameraClass", "A08_CameraClass\A08_CameraClass.vcxproj", "{0D690B4A-EEED-45DD-9651-D80BB36C0C76}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PokemanSafari_M1", "PokemanSafari_M1\PokemanSafari_M1.vcxproj", "{C52B98A4-3069-4D45-AB2E-0A4086BEE9FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,10 @@ Global
 		{0D690B4A-EEED-45DD-9651-D80BB36C0C76}.Debug|Win32.Build.0 = Debug|Win32
 		{0D690B4A-EEED-45DD-9651-D80BB36C0C76}.Release|Win32.ActiveCfg = Release|Win32
 		{0D690B4A-EEED-45DD-9651-D80BB36C0C76}.Release|Win32.Build.0 = Release|Win32
+		{C52B98A4-3069-4D45-AB2E-0A4086BEE9FA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C52B98A4-3069-4D45-AB2E-0A4086BEE9FA}.Debug|Win32.Build.0 = Debug|Win32
+		{C52B98A4-3069-4D45-AB2E-0A4086BEE9FA}.Release|Win32.ActiveCfg = Release|Win32
+		{C52B98A4-3069-4D45-AB2E-0A4086BEE9FA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
