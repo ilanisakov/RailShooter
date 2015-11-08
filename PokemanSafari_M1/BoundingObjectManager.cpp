@@ -229,6 +229,8 @@ void BoundingObjectManager::CheckCollisions()
 						//Remove pokecube & pokeman
 						delete cIt1->second;
 						delete pIt1->second;
+						charMap.erase(cIt1);
+						projMap.erase(pIt1);
 					}
 				}
 			}
@@ -247,6 +249,8 @@ void BoundingObjectManager::CheckCollisions()
 						//Remove spaceship & rock
 						delete cIt1->second;
 						delete pIt1->second;
+						charMap.erase(cIt1);
+						projMap.erase(pIt1);
 					}
 				}
 			}
@@ -264,6 +268,7 @@ void BoundingObjectManager::CheckCollisions()
 
 						//Remove net
 						delete pIt1->second;
+						projMap.erase(pIt1);
 					}
 				}
 			}
