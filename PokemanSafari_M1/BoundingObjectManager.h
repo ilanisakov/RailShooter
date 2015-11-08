@@ -16,6 +16,9 @@
 #include "RE\ReEng.h"
 #include "MyBoundingObjectClass.h"
 
+#include "Character.h"
+#include "Projectile.h"
+
 class BoundingObjectManager
 {
 private:
@@ -27,6 +30,18 @@ private:
 
 	typedef std::map<String, MyBoundingObjectClass*>::iterator objMapIt;
 	typedef std::pair<String, MyBoundingObjectClass*> objMapPair;
+
+//*******************************************************************
+//*******************************************************************
+	std::map<String, Character*> charMap;
+	std::map<String, Projectile*> projMap;
+
+	typedef std::map<String, Character*>::iterator charMapIt;
+	typedef std::pair<String, Character*> charMapPair;
+
+	typedef std::map<String, Projectile*>::iterator projMapIt;
+	typedef std::pair<String, Projectile*> projMapPair;
+
 
 	/////////////////////////////////////////////////////////////////
 	//  BoundingObjectManager() - Private singleton constructor
@@ -103,6 +118,39 @@ public:
 	// CheckCollision - checks collosions with all BOs
 	/////////////////////////////////////////////////////////////////
 	void CheckCollision();
+
+
+
+//*******************************************************************
+//New code....
+//*******************************************************************
+
+	/////////////////////////////////////////////////////////////////
+	// UpdateCharacterRenderList()
+	/////////////////////////////////////////////////////////////////
+	void UpdateCharacterRenderList(String name);
+
+	/////////////////////////////////////////////////////////////////
+	// UpdateProjectileRenderList()
+	/////////////////////////////////////////////////////////////////
+	void UpdateProjectileRenderList(String name);
+
+
+	/////////////////////////////////////////////////////////////////
+	// CheckCollisions - checks collosions with all Char/Proj
+	/////////////////////////////////////////////////////////////////
+	void CheckCollisions();
+
+	/////////////////////////////////////////////////////////////////
+	// AddCharacter
+	/////////////////////////////////////////////////////////////////
+	int AddCharacter(String name, Character* c);
+
+	/////////////////////////////////////////////////////////////////
+	// AddProjectile
+	/////////////////////////////////////////////////////////////////
+	int AddProjectile(String name, Projectile* p);
+
 };
 
 

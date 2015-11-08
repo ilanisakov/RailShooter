@@ -197,9 +197,148 @@ void BoundingObjectManager::CheckCollision()
 			}
 		}
 	}
+
 }
 
+/////////////////////////////////////////////////////////////////////
+// CheckCollisions - checks collosions with all chars/projs
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::CheckCollisions()
+{
+	/*POKEMAN SAFARI Collisoin Checks
+	Pokeman <-> PokeCube
+	Spaceship <-> Rock
+	Player <-> Net
+	*/
+	charMapIt cIt1;
+	projMapIt pIt1;
+	//For every character
+	for (cIt1 = charMap.begin(); cIt1 != charMap.end(); cIt1++)
+	{
+		if (cIt1->second->charType == CT_POKEMAN)
+		{
+			//Check against pokecube
+			for (pIt1 = projMap.begin(); pIt1 != projMap.end(); pIt1++)
+			{
+				if (pIt1->second->projType == PJ_POKECUBE)
+				{
+					if (cIt1->second->IsColliding(pIt1->second))
+					{
+						//Update score manager?
 
+						//Remove pokecube & pokeman
+						delete cIt1->second;
+						delete pIt1->second;
+					}
+				}
+			}
+		}
+		else if (cIt1->second->charType == CT_SPACESHIP)
+		{
+			//Check against rocks
+			for (pIt1 = projMap.begin(); pIt1 != projMap.end(); pIt1++)
+			{
+				if (pIt1->second->projType == PJ_ROCK)
+				{
+					if (cIt1->second->IsColliding(pIt1->second))
+					{
+						//Update score manager?
+
+						//Remove spaceship & rock
+						delete cIt1->second;
+						delete pIt1->second;
+					}
+				}
+			}
+		}
+		else   //CT_PLAYER
+		{
+			//Check against nets
+			for (pIt1 = projMap.begin(); pIt1 != projMap.end(); pIt1++)
+			{
+				if (pIt1->second->projType == PJ_ROCK)
+				{
+					if (cIt1->second->IsColliding(pIt1->second))
+					{
+						//Update score manager?
+
+						//Remove net
+						delete pIt1->second;
+					}
+				}
+			}
+		}
+	}
+}
+
+/////////////////////////////////////////////////////////////////////
+// UpdateCharacterRenderList()
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::UpdateCharacterRenderList(String name)
+{
+
+	//This also might be a good place to control what character
+	//objects get updated. i.e not all pokeman need to be active
+	//if totally out of sight/range/area
+
+	charMapIt it;
+	if (name.compare("ALL") == 0)
+	{
+		for (it = charMap.begin(); it != charMap.end(); it++)
+		{
+			it->second->UpdateRender();
+		}
+		return;
+	}
+	it = charMap.find(name);
+	if (it == charMap.end())
+		return;
+	it->second->UpdateRender();
+}
+
+/////////////////////////////////////////////////////////////////////
+// UpdateProjectileRenderList()
+/////////////////////////////////////////////////////////////////////
+void BoundingObjectManager::UpdateProjectileRenderList(String name)
+{
+	projMapIt it;
+	if (name.compare("ALL") == 0)
+	{
+		for (it = projMap.begin(); it != projMap.end(); it++)
+		{
+			it->second->UpdateRender();
+		}
+		return;
+	}
+	it = projMap.find(name);
+	if (it == projMap.end())
+		return;
+	it->second->UpdateRender();
+}
+
+/////////////////////////////////////////////////////////////////////
+// AddCharacter
+/////////////////////////////////////////////////////////////////////
+int BoundingObjectManager::AddCharacter(String name, Character* c)
+{
+	std::pair<charMapIt, bool> stat = charMap.insert(charMapPair(name, c));
+	if (stat.second == false) //check for failure
+		return 0;
+
+	return 1;
+}
+
+/////////////////////////////////////////////////////////////////
+// AddProjectile
+/////////////////////////////////////////////////////////////////
+int BoundingObjectManager::AddProjectile(String name, Projectile* p)
+{
+	std::pair<projMapIt, bool> stat = projMap.insert(projMapPair(name, p));
+	if (stat.second == false) //check for failure
+		return 0;
+
+	return 1;
+}
 
 
 
