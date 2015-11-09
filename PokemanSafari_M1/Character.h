@@ -27,19 +27,21 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// Constructor
 	/////////////////////////////////////////////////////////////////
-	Character(CHARACTER_TYPE type, String name, std::vector<vector3> a_lVectorList);
+	Character(CHARACTER_TYPE type, String name,std::vector<vector3> movementPath, std::vector<vector3> a_lVectorList);
 
 	/////////////////////////////////////////////////////////////////
 	// Render()
 	/////////////////////////////////////////////////////////////////
 	void UpdateRender();
 
+	void UpdateLocation();
+
 	//TODO
 	//Handle character path, stats updates here?...
 
 private:
-
-
+	std::vector<vector3> path;
+	int currentSeg;
 };
 
 

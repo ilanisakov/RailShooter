@@ -16,10 +16,13 @@
 // Constructor
 /////////////////////////////////////////////////////////////////////
 Character::Character(CHARACTER_TYPE type, String name,
-	std::vector<vector3> VectorList) :
+	std::vector<vector3> VectorList,
+	std::vector<vector3> movementPath) :
 	MyBoundingObjectClass(VectorList, name)
 {
+	this->path = movementPath; // path for the character
 	this->charType = type;
+	this->currentSeg = 0; //current line segment of the track 
 }
 
 /////////////////////////////////////////////////////////////////
@@ -27,5 +30,11 @@ Character::Character(CHARACTER_TYPE type, String name,
 /////////////////////////////////////////////////////////////////
 void Character::UpdateRender()
 {
+
+}
+/////////////////////////////////////////////////////////////////
+// UpdateLocation()
+/////////////////////////////////////////////////////////////////
+void Character::UpdateLocation(){
 
 }
