@@ -22,13 +22,14 @@ void AppClass::InitVariables(void)
 	m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
 
 	//Load Models
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
-	m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+	//m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
+	//m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
+	m_pMeshMngr->LoadModel("PokemanSafari\\testEnvironment.obj", "Environment");
 
+	//m_pBndObjMngr->AddBox("Steve", m_pMeshMngr->GetVertexList("Steve"));
+	//m_pBndObjMngr->AddBox("Creeper", m_pMeshMngr->GetVertexList("Creeper"));
+	m_pBndObjMngr->AddBox("Environment", m_pMeshMngr->GetVertexList("Environment"));
 
-	m_pBndObjMngr->AddBox("Steve", m_pMeshMngr->GetVertexList("Steve"));
-	m_pBndObjMngr->AddBox("Creeper", m_pMeshMngr->GetVertexList("Creeper"));
-	
 }
 
 void AppClass::Update(void)
@@ -46,14 +47,17 @@ void AppClass::Update(void)
 	ArcBall();
 
 	//Set the model matrices for both objects and Bounding Spheres
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
+	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Environment");
 
-	m_pBndObjMngr->SetModelMatrix("Steve", m_pMeshMngr->GetModelMatrix("Steve"));
-	m_pBndObjMngr->SetModelMatrix("Creeper", m_pMeshMngr->GetModelMatrix("Creeper"));
+
+	//m_pBndObjMngr->SetModelMatrix("Steve", m_pMeshMngr->GetModelMatrix("Steve"));
+	//m_pBndObjMngr->SetModelMatrix("Creeper", m_pMeshMngr->GetModelMatrix("Creeper"));
+	m_pBndObjMngr->SetModelMatrix("Environment", m_pMeshMngr->GetModelMatrix("Environment"));
 
 	m_pBndObjMngr->CheckCollision();
-	m_pBndObjMngr->UpdateRenderList("ALL");
+	m_pBndObjMngr->UpdateRenderList("Environment");
 
 	//m_pCameraMngr->SetPositionTargetAndView(m_pCamera->m_v3Position,m_pCamera->m_v3Target,m_pCamera->)
 
@@ -77,22 +81,21 @@ void AppClass::Display(void)
 	//Render the grid based on the camera's mode:
 	switch (m_pCameraMngr->GetCameraMode())
 	{
-	default: //Perspective
-		m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XY); //renders the XY grid with a 100% scale
-		break;
-	case CAMERAMODE::CAMROTHOX:
-		m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::YZ, RERED * 0.75f); //renders the YZ grid with a 100% scale
-		break;
-	case CAMERAMODE::CAMROTHOY:
-		m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XZ, REGREEN * 0.75f); //renders the XZ grid with a 100% scale
-		break;
-	case CAMERAMODE::CAMROTHOZ:
-		m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XY, REBLUE * 0.75f); //renders the XY grid with a 100% scale
-		break;
+	//default: //Perspective
+	//	m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XY); //renders the XY grid with a 100% scale
+	//	break;
+	//case CAMERAMODE::CAMROTHOX:
+	//	m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::YZ, RERED * 0.75f); //renders the YZ grid with a 100% scale
+	//	break;
+	//case CAMERAMODE::CAMROTHOY:
+	//	m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XZ, REGREEN * 0.75f); //renders the XZ grid with a 100% scale
+	//	break;
+	//case CAMERAMODE::CAMROTHOZ:
+	//	m_pMeshMngr->AddGridToQueue(1.0f, REAXIS::XY, REBLUE * 0.75f); //renders the XY grid with a 100% scale
+	//	break;
 	}
 	
 	m_pMeshMngr->Render(); //renders the render list
-
 	m_pGLSystem->GLSwapBuffers(); //Swaps the OpenGL buffers
 }
 
