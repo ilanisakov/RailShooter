@@ -57,6 +57,11 @@ void AppClass::ProcessKeyboard(void)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 		m_v3O1.y += 0.1f;
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageUp))
+		m_v3O1.z += 0.1f;
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::PageDown))
+		m_v3O1.z -= 0.1f;
 #pragma endregion
 
 #pragma region A10 actions

@@ -210,15 +210,15 @@ void MyBoundingObjectClass::SetBOVisible(bool visible)
 void MyBoundingObjectClass::UpdateRender()
 {
 	//print out info (directions only once)
-	if (sName == "Creeper"){
+	/*if (sName == "Creeper"){
 		m_pMeshMngr->PrintLine("V:toggle bounding sphere B: toggle bounding box ", REYELLOW);
-	}
-	m_pMeshMngr->Print(sName + " Max:", RERED);
+	}*/
+	/*m_pMeshMngr->Print(sName + " Max:", RERED);
 	m_pMeshMngr->Print("(" + std::to_string(GetMax(true).x) + "," + std::to_string(GetMax(true).y) + "," + std::to_string(GetMax(true).z) + ")\n");
 	m_pMeshMngr->Print(sName + " Min:", REBLUE);
 	m_pMeshMngr->Print("(" + std::to_string(GetMin(true).x) + "," + std::to_string(GetMin(true).y) + "," + std::to_string(GetMin(true).z) + ")\n");
 
-	m_pMeshMngr->PrintLine(sName + " centroid: (" + std::to_string(GetCenterGlobal().x) + "," + std::to_string(GetCenterGlobal().y) + "," + std::to_string(GetCenterGlobal().z) + ")", REBLACK);
+	m_pMeshMngr->PrintLine(sName + " centroid: (" + std::to_string(GetCenterGlobal().x) + "," + std::to_string(GetCenterGlobal().y) + "," + std::to_string(GetCenterGlobal().z) + ")", REBLACK);*/
 
 	if (bBOVisible)
 	{
@@ -244,55 +244,303 @@ void MyBoundingObjectClass::UpdateRender()
 //--- Non Standard Singleton Methods
 bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 {
-	//Get all vectors in global space
-//	vector3 v3Min = vector3(m_m4ToWorld * vector4(m_v3Min, 1.0f));
-//	vector3 v3Max = vector3(m_m4ToWorld * vector4(m_v3Max, 1.0f));
-//	vector3 v3MinO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Min, 1.0f));
-//	vector3 v3MaxO = vector3(a_pOther->m_m4ToWorld * vector4(a_pOther->m_v3Max, 1.0f));
+	//NO precheck sphere collisions
+	//vector3 v3MyCenter = GetCenterGlobal();
+	//vector3 v3OtherCenter = a_pOther->GetCenterGlobal();
+	//float dist = glm::distance(v3MyCenter, v3OtherCenter);
+	//if (dist >= (GetRadius() + a_pOther->GetRadius()))
+	//{
+	//	return false;
+	//}
 
-	//First precheck sphere collisions
-	vector3 v3MyCenter = GetCenterGlobal();
-	vector3 v3OtherCenter = a_pOther->GetCenterGlobal();
 
-	float dist = glm::distance(v3MyCenter, v3OtherCenter);
-	if (dist >= (GetRadius() + a_pOther->GetRadius()))
-	{
-		return false;
-	}
-	//Continue on and check AABB
+	//Pre-check AABB collision
 
 	//New box is already is global space
-	vector3 v3Min = m_v3MinNEW;
+	/*vector3 v3Min = m_v3MinNEW;
 	vector3 v3Max = m_v3MaxNEW;
 	vector3 v3MinO = a_pOther->m_v3MinNEW;
-	vector3 v3MaxO = a_pOther->m_v3MaxNEW;
+	vector3 v3MaxO = a_pOther->m_v3MaxNEW;*/
 
-	/*
-	Are they colliding?
-	For boxes we will assume they are colliding, unless at least one of the following conditions is not met
-	*/
-	bool bColliding = true;
-	
-	//Check for X
-	if (v3Max.x < v3MinO.x)
-		bColliding = false;
-	if (v3Min.x > v3MaxO.x)
-		bColliding = false;
+	//Are they colliding?
+	//For boxes we will assume they are colliding, unless at least 
+	//one of the following conditions is not met
+	//bool bColliding = true;
+	////Check for X
+	//if (v3Max.x < v3MinO.x)
+	//	bColliding = false;
+	//if (v3Min.x > v3MaxO.x)
+	//	bColliding = false;
+	////Check for Y
+	//if (v3Max.y < v3MinO.y)
+	//	bColliding = false;
+	//if (v3Min.y > v3MaxO.y)
+	//	bColliding = false;
+	////Check for Z
+	//if (v3Max.z < v3MinO.z)
+	//	bColliding = false;
+	//if (v3Min.z > v3MaxO.z)
+	//	bColliding = false;
 
-	//Check for Y
-	if (v3Max.y < v3MinO.y)
-		bColliding = false;
-	if (v3Min.y > v3MaxO.y)
-		bColliding = false;
+	//if (!bColliding)
+	//	return bColliding;
 
-	//Check for Z
-	if (v3Max.z < v3MinO.z)
-		bColliding = false;
-	if (v3Min.z > v3MaxO.z)
-		bColliding = false;
+	//Else AABB is colliding, continue with Spanning Axis Test
 
-	return bColliding;
+	//Form rotational matrix representing b in a's coord ref
+	matrix3 R, RAbs;
+	    //represent axiis in global
+	//std::vector<vector4> Aaxis = { vector4(1.0f, 0.0f, 0.0f, 0.0f) /* this->GetModelMatrix()*/,
+	//	                           vector4(0.0f, 1.0f, 0.0f, 0.0f) /* this->GetModelMatrix()*/, 
+	//	                           vector4(0.0f, 0.0f, 1.0f, 0.0f) /* this->GetModelMatrix()*/ };
+
+	//std::vector<vector3> Aaxis = { vector3(1.0f, 0.0f, 0.0f) * matrix3(this->GetModelMatrix()),
+	//	                           vector3(0.0f, 1.0f, 0.0f) * matrix3(this->GetModelMatrix()), 
+	//	                           vector3(0.0f, 0.0f, 1.0f) * matrix3(this->GetModelMatrix()) };
+
+
+	std::vector<vector3> Aaxis = { vector3(1.0f, 0.0f, 0.0f),
+		vector3(0.0f, 1.0f, 0.0f),
+		vector3(0.0f, 0.0f, 1.0f) };
+
+	//??????
+	//std::vector<vector4> Baxis = { vector4(1.0f, 0.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() *glm::inverse(this->GetModelMatrix())),
+	//	vector4(0.0f, 1.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() * glm::inverse(this->GetModelMatrix())),
+	//	vector4(0.0f, 0.0f, 1.0f, 0.0f) * (a_pOther->GetModelMatrix() *  glm::inverse(this->GetModelMatrix())) };
+	//std::vector<vector4> Baxis = { vector4(1.0f, 0.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix()),
+	//	vector4(0.0f, 1.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() ),
+	//	vector4(0.0f, 0.0f, 1.0f, 0.0f) * (a_pOther->GetModelMatrix() ) };
+	std::vector<vector3> Baxis = { vector3(1.0f, 0.0f, 0.0f) * matrix3(a_pOther->GetModelMatrix()),
+		vector3(0.0f, 1.0f, 0.0f) * matrix3(a_pOther->GetModelMatrix()),
+		vector3(0.0f, 0.0f, 1.0f) * matrix3(a_pOther->GetModelMatrix()) };
+
+
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			R[i][j] = glm::dot(Aaxis[i], Baxis[j]);
+		}
+	}
+
+
+	//Get T
+	vector3 T = vector3(a_pOther->GetCenterGlobal() - this->GetCenterGlobal());
+	T = vector3(glm::dot(T, Aaxis[0]), glm::dot(T, Aaxis[1]), glm::dot(T, Aaxis[2]));
+
+
+	//Compute Abs...
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			RAbs[i][j] = glm::abs(R[i][j]);
+		}
+	}
+
+
+	float rA, rB;
+	vector3 hwA = this->GetHalfWidth(false);
+	//???????
+	//vector3 hwB = a_pOther->GetHalfWidth(false);
+	vector3 hwB = a_pOther->GetHalfWidth(false) * matrix3(a_pOther->GetModelMatrix());
+
+	/*printf("hwA x[%f]y[%f]z[%f]  \n", hwA[0], hwA[1], hwA[2]);
+	printf("hwB x[%f]y[%f]z[%f]  \n", hwB.x, hwB.y, hwB.z);
+	std::cout << "A:" << this->sName << "  B:" << a_pOther->sName << std::endl;
+	printf("Tx[%f] Ty[%f] Tz[%f]\n", T[0], T[1], T[2]);*/
+
+
+
+
+	for (int i = 0; i < 3; i++)
+	{
+		rA = hwA[i];
+		rB = ((hwB[0] * RAbs[i][0]) + (hwB[1] * RAbs[i][1]) + (hwB[2] * RAbs[i][2]));
+		//printf("hwA x[%f]y[%f]z[%f]  \n", hwA[0], hwA[1], hwA[2]);
+
+		//printf("hwB x[%f]y[%f]z[%f]  \n", (hwB[0] * RAbs[i][0]), (hwB[1] * RAbs[i][1]), (hwB[2] * RAbs[i][2])
+		//	);
+		//printf("\n\t A_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
+
+		bool check = (glm::abs(T[i]) >(rA + rB));
+		if (check){
+			return false;
+
+		}
+
+		//printf(" T>a+b =Plane\n");
+		else{
+			printf(" T>a+b =none\n");
+		}
+	}
+	//Test B's x,y,z axis (L = B0,B1,B2)
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	rA = ((hwA[0] * RAbs[0][i]) + (hwA[1] * RAbs[1][i]) + (hwA[2] * RAbs[2][i]));
+	//	rB = hwB[i];
+	//	float td = glm::abs(T[0] * R[0][i] + T[1] * R[1][i] + T[2] * R[2][i]);
+	//	//printf("\n\t B_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
+
+	//	bool check = (td >(rA + rB));
+	//	if (check){
+	//		return false;
+	//	}
+	//	//printf(" T>a+b =Plane\n");
+	//	else{
+	//		printf(" T>a+b =none\n");
+	//	}
+	//}
+	printf(" Before 0");
+	// A0 x B0
+	rA = hwA[1] * RAbs[2][0] + hwA[2] * RAbs[1][0];
+	rB = hwB[1] * RAbs[0][2] + hwB[2] * RAbs[0][1];
+	if (!glm::abs(T[2] * R[1][0] - T[1] * R[2][0]) > (rA + rB)) 
+		return true;
+	printf("1");
+	// A0 x B1
+	rA = hwA[1] * RAbs[2][1] + hwA[2] * RAbs[1][1];
+	rB = hwB[0] * RAbs[0][2] + hwB[2] * RAbs[0][0];
+    if (!glm::abs(T[2] * R[1][1] - T[1] * R[2][1]) > (rA + rB))
+		return true;
+	printf("2");
+
+	// A0 x B2
+	rA = hwA[1] * RAbs[2][2] + hwA[2] * RAbs[1][2];
+	rB = hwB[0] * RAbs[0][1] + hwB[1] * RAbs[0][0];
+	if (!glm::abs(T[2] * R[1][2] - T[1] * R[2][2]) > (rA + rB))
+		return true;
+	printf("3");
+
+	// A1 x B0
+	rA = hwA[0] * RAbs[2][0] + hwA[2] * RAbs[0][0];
+	rB = hwB[1] * RAbs[1][2] + hwB[2] * RAbs[1][1];
+	if (!glm::abs(T[0] * R[2][0] - T[2] * R[0][0]) > (rA + rB))
+		return true;
+	printf("4");
+
+	// A1 x B1
+	rA = hwA[0] * RAbs[2][1] + hwA[2] * RAbs[0][1];
+	rB = hwB[0] * RAbs[1][2] + hwB[2] * RAbs[1][0];
+	if (!glm::abs(T[0] * R[2][1] - T[2] * R[0][1]) > (rA + rB))
+		return true;
+	printf("5");
+
+	// A1 x B2
+	rA = hwA[0] * RAbs[2][2] + hwA[2] * RAbs[0][2];
+	rB = hwB[0] * RAbs[1][1] + hwB[1] * RAbs[1][0];
+	if (!glm::abs(T[0] * R[2][2] - T[2] * R[0][2]) > (rA + rB))
+		return true;
+	printf("6");
+
+	// A2 x B0
+	rA = hwA[0] * RAbs[1][0] + hwA[1] * RAbs[0][0];
+	rB = hwB[1] * RAbs[2][2] + hwB[2] * RAbs[2][1];
+	if (!glm::abs(T[1] * R[0][0] - T[0] * R[1][0]) > (rA + rB))
+		return true;
+	printf("7");
+
+	// A2 x B1
+	rA = hwA[0] * RAbs[1][1] + hwA[1] * RAbs[0][1];
+	rB = hwB[0] * RAbs[2][2] + hwB[2] * RAbs[2][0];
+	if (!glm::abs(T[1] * R[0][1] - T[0] * R[1][1]) > (rA + rB))
+		return true;
+	printf("8");
+
+	// A2 x B2
+	rA = hwA[0] * RAbs[1][2] + hwA[1] * RAbs[0][2];
+	rB = hwB[0] * RAbs[2][1] + hwB[1] * RAbs[2][0];
+	if (!glm::abs(T[1] * R[0][2] - T[0] * R[1][2]) > (rA + rB))
+		return true;
+	printf("9");
+
+
+	//float rA, rB; //the projection of radii on axis
+	//Convert matrix B into matrix A coordinates (WtoA * BtoW)
+	matrix4 WtoA = glm::inverse(this->GetModelMatrix());
+	matrix4 WtoB = glm::inverse(a_pOther->GetModelMatrix());
+	matrix4 AtoB = this->GetModelMatrix() * WtoB;
+	matrix4 BtoA = a_pOther->GetModelMatrix() * WtoA;
+	//Compute T translatoin vector
+	vector3 t3, t3a, t3b;
+	t3b = a_pOther->GetCenterGlobal();
+	t3a = this->GetCenterGlobal();
+	//vector4 T = vector4((t3b[0] - t3a[0]),(t3b[1] - t3a[1]),(t3b[2] - t3a[2]),0.0f);
+	//Convert to A's coords
+	//T = T * WtoA;
+	std::cout << "A:" << this->sName << "  B:" << a_pOther->sName << std::endl;
+	printf("Tx[%f] Ty[%f] Tz[%f]", T[0], T[1], T[2]);
+
+	//Test A's x, y, z axis  (L = A0,A1,A2)
+	vector4 bHalfWidthInA = vector4(a_pOther->m_v3HalfWidth, 0.0f) * BtoA;
+	vector4 bHalfWidthInG = vector4(a_pOther->m_v3HalfWidth, 0.0f) * a_pOther->GetModelMatrix();
+	vector4 aHalfWidth = vector4(this->m_v3HalfWidth, 0.0f) * this->GetModelMatrix();
+	for (int i = 0; i < 3; i++)
+	{
+		rA = this->m_v3HalfWidth[i];
+		rB = bHalfWidthInA[i];
+		//radiusA = the hlaf width on this axis
+		rA = aHalfWidth[i];
+		//radiusB = the halfwidth of B in A coords
+		rB = bHalfWidthInG[i];
+
+		printf("\n\t A_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
+
+		bool check = (glm::abs(T[i]) >(glm::abs(rA) + glm::abs(rB)));
+		if (check){
+			return false;
+			printf(" T>a+b =Plane\n");
+		}
+		else{
+			printf(" T>a+b =none\n");
+		}
+	}
+	//Test B's x,y,z axis (L = B0,B1,B2)
+	vector4 aHalfWidthInB = vector4(this->m_v3HalfWidth, 0.0f) * AtoB;
+	for (int i = 0; i < 3; i++)
+	{
+		rB = a_pOther->m_v3HalfWidth[i];
+		rA = aHalfWidthInB[i];
+		printf("\n\t B_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
+
+		bool check = (glm::abs(T[i]) >(rA + rB));
+		if (check){
+			printf(" T>a+b =[N]");
+			return false;
+		}
+		else{
+			printf(" T>a+b =[Y]");
+		}
+	}
+
+
+
+
+
+
+	//Basic sudo code comments outline from OrangeBook
+	// -Compute rotation matrix expressing b in a’s coordinate frame
+	// -Compute translation vector t
+	// -Bring translation into a’s coordinate frame
+	// -Compute common subexpressions. Add in an epsilon term to
+	// counteract arithmetic errors when two edges are parallel and
+	// their cross product is (near) null (see text for details)
+	// -Test axes L = A0, L = A1, L = A2
+	// -Test axes L = B0, L = B1, L = B2
+	// -Test axis L = A0 x B0
+	// -Test axis L = A0 x B1
+	// -Test axis L = A0 x B2
+	// -Test axis L = A1 x B0
+	// -Test axis L = A1 x B1
+	// -Test axis L = A1 x B2
+	// -Test axis L = A2 x B0
+	// -Test axis L = A2 x B1
+	// -Test axis L = A2 x B2
+
+	//Otherwise they must be intersecting
+	return true;
 }
+
 
 vector3 MyBoundingObjectClass::GetMax(bool global){
 	std::cout << m_v3MaxNEW.x;

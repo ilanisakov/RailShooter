@@ -20,7 +20,7 @@ BoundingObjectManager* BoundingObjectManager::inst = nullptr;
 /////////////////////////////////////////////////////////////////////
 BoundingObjectManager::BoundingObjectManager()
 {
-//	m_pMeshMngr = MeshManagerSingleton::GetInstance();
+	//	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -68,20 +68,20 @@ BoundingObjectManager::~BoundingObjectManager()
 int BoundingObjectManager::AddBox(String name, std::vector<vector3> VectorList)
 {
 	//insert into map
-	std::pair<objMapIt,bool> stat = objMap.insert(objMapPair(name, new MyBoundingObjectClass(VectorList,name)));
+	std::pair<objMapIt, bool> stat = objMap.insert(objMapPair(name, new MyBoundingObjectClass(VectorList, name)));
 	if (stat.second == false) //check for failure
 		return 0;
-//	objMap[name] = new MyBoundingObjectClass(VectorList, name);
+	//	objMap[name] = new MyBoundingObjectClass(VectorList, name);
 
 
 
 	//Debugging print all members name
-//	printf("\nManager List:\n");
-//	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
-//	{
-//		std::cout << it->first << "   "<< it->second->sName <<std::endl;
-//		//std::cout << it->second.sName << std::endl;
-//	}
+	//	printf("\nManager List:\n");
+	//	for (objMapIt it = objMap.begin(); it != objMap.end(); it++)
+	//	{
+	//		std::cout << it->first << "   "<< it->second->sName <<std::endl;
+	//		//std::cout << it->second.sName << std::endl;
+	//	}
 	return 1;
 }
 
@@ -95,7 +95,7 @@ void BoundingObjectManager::SetAABBVisible(bool visible)
 	{
 		it->second->SetAABBVisible(visible);
 	}
-	
+
 	aabbVisible = visible;
 }
 
@@ -190,7 +190,10 @@ void BoundingObjectManager::CheckCollision()
 		it3++; //don't check withs self or previous
 		for (it2 = (it3); it2 != objMap.end(); it2++)
 		{
-			if (it1->second->IsColliding(it2->second))
+
+			//UNDO THIS
+			//if (it1->second->IsColliding(it2->second))
+			if (it2->second->IsColliding(it1->second))
 			{
 				it1->second->SetBOColor(RERED);
 				it2->second->SetBOColor(RERED);
@@ -198,14 +201,3 @@ void BoundingObjectManager::CheckCollision()
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
