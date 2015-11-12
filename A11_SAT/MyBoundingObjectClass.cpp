@@ -233,10 +233,10 @@ void MyBoundingObjectClass::UpdateRender()
 			m_pMeshMngr->AddCubeToQueue(glm::translate(GetCenterGlobal()) *
 				glm::scale(GetHalfWidth(true) *2.0f), v3BOColor, WIRE);
 
-			//Sphere Around AABB
-			m_pMeshMngr->AddSphereToQueue(
-				glm::translate(IDENTITY_M4, GetCenterGlobal()) *
-				glm::scale(vector3(GetRadius()) *2.0f), v3BOColor, WIRE);
+			////Sphere Around AABB
+			//m_pMeshMngr->AddSphereToQueue(
+			//	glm::translate(IDENTITY_M4, GetCenterGlobal()) *
+			//	glm::scale(vector3(GetRadius()) *2.0f), v3BOColor, WIRE);
 		}
 	}
 }
@@ -257,39 +257,39 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	//Pre-check AABB collision
 
 	//New box is already is global space
-	/*vector3 v3Min = m_v3MinNEW;
+	vector3 v3Min = m_v3MinNEW;
 	vector3 v3Max = m_v3MaxNEW;
 	vector3 v3MinO = a_pOther->m_v3MinNEW;
-	vector3 v3MaxO = a_pOther->m_v3MaxNEW;*/
+	vector3 v3MaxO = a_pOther->m_v3MaxNEW;
 
 	//Are they colliding?
 	//For boxes we will assume they are colliding, unless at least 
 	//one of the following conditions is not met
-	//bool bColliding = true;
-	////Check for X
-	//if (v3Max.x < v3MinO.x)
-	//	bColliding = false;
-	//if (v3Min.x > v3MaxO.x)
-	//	bColliding = false;
-	////Check for Y
-	//if (v3Max.y < v3MinO.y)
-	//	bColliding = false;
-	//if (v3Min.y > v3MaxO.y)
-	//	bColliding = false;
-	////Check for Z
-	//if (v3Max.z < v3MinO.z)
-	//	bColliding = false;
-	//if (v3Min.z > v3MaxO.z)
-	//	bColliding = false;
+	bool bColliding = true;
+	//Check for X
+	if (v3Max.x < v3MinO.x)
+		bColliding = false;
+	if (v3Min.x > v3MaxO.x)
+		bColliding = false;
+	//Check for Y
+	if (v3Max.y < v3MinO.y)
+		bColliding = false;
+	if (v3Min.y > v3MaxO.y)
+		bColliding = false;
+	//Check for Z
+	if (v3Max.z < v3MinO.z)
+		bColliding = false;
+	if (v3Min.z > v3MaxO.z)
+		bColliding = false;
 
-	//if (!bColliding)
-	//	return bColliding;
+	if (!bColliding)
+		return bColliding;
 
 	//Else AABB is colliding, continue with Spanning Axis Test
 
 	//Form rotational matrix representing b in a's coord ref
 	matrix3 R, RAbs;
-	    //represent axiis in global
+	//Represent A's local Axis
 	//std::vector<vector4> Aaxis = { vector4(1.0f, 0.0f, 0.0f, 0.0f) /* this->GetModelMatrix()*/,
 	//	                           vector4(0.0f, 1.0f, 0.0f, 0.0f) /* this->GetModelMatrix()*/, 
 	//	                           vector4(0.0f, 0.0f, 1.0f, 0.0f) /* this->GetModelMatrix()*/ };
@@ -297,13 +297,11 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	//std::vector<vector3> Aaxis = { vector3(1.0f, 0.0f, 0.0f) * matrix3(this->GetModelMatrix()),
 	//	                           vector3(0.0f, 1.0f, 0.0f) * matrix3(this->GetModelMatrix()), 
 	//	                           vector3(0.0f, 0.0f, 1.0f) * matrix3(this->GetModelMatrix()) };
-
-
 	std::vector<vector3> Aaxis = { vector3(1.0f, 0.0f, 0.0f),
-		vector3(0.0f, 1.0f, 0.0f),
-		vector3(0.0f, 0.0f, 1.0f) };
+		                           vector3(0.0f, 1.0f, 0.0f),
+		                           vector3(0.0f, 0.0f, 1.0f) };
 
-	//??????
+	//Represent B's local Axis in global space?
 	//std::vector<vector4> Baxis = { vector4(1.0f, 0.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() *glm::inverse(this->GetModelMatrix())),
 	//	vector4(0.0f, 1.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() * glm::inverse(this->GetModelMatrix())),
 	//	vector4(0.0f, 0.0f, 1.0f, 0.0f) * (a_pOther->GetModelMatrix() *  glm::inverse(this->GetModelMatrix())) };
@@ -311,10 +309,10 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	//	vector4(0.0f, 1.0f, 0.0f, 0.0f) * (a_pOther->GetModelMatrix() ),
 	//	vector4(0.0f, 0.0f, 1.0f, 0.0f) * (a_pOther->GetModelMatrix() ) };
 	std::vector<vector3> Baxis = { vector3(1.0f, 0.0f, 0.0f) * matrix3(a_pOther->GetModelMatrix()),
-		vector3(0.0f, 1.0f, 0.0f) * matrix3(a_pOther->GetModelMatrix()),
-		vector3(0.0f, 0.0f, 1.0f) * matrix3(a_pOther->GetModelMatrix()) };
+		                           vector3(0.0f, 1.0f, 0.0f) * matrix3(a_pOther->GetModelMatrix()),
+		                           vector3(0.0f, 0.0f, 1.0f) * matrix3(a_pOther->GetModelMatrix()) };
 
-
+    //Form the rotation matrix by dotting the axiis with each other
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -324,12 +322,11 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	}
 
 
-	//Get T
+	//Get T is A's coordinate frame
 	vector3 T = vector3(a_pOther->GetCenterGlobal() - this->GetCenterGlobal());
 	T = vector3(glm::dot(T, Aaxis[0]), glm::dot(T, Aaxis[1]), glm::dot(T, Aaxis[2]));
 
-
-	//Compute Abs...
+	//Compute Abs... to simplify computations
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 3; j++)
@@ -338,27 +335,27 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 		}
 	}
 
-
 	float rA, rB;
+	//Get A's local half width
 	vector3 hwA = this->GetHalfWidth(false);
-	//???????
+
+	//Get B's half width in global coord space?
 	//vector3 hwB = a_pOther->GetHalfWidth(false);
 	vector3 hwB = a_pOther->GetHalfWidth(false) * matrix3(a_pOther->GetModelMatrix());
 
+	//debugging
 	/*printf("hwA x[%f]y[%f]z[%f]  \n", hwA[0], hwA[1], hwA[2]);
 	printf("hwB x[%f]y[%f]z[%f]  \n", hwB.x, hwB.y, hwB.z);
 	std::cout << "A:" << this->sName << "  B:" << a_pOther->sName << std::endl;
 	printf("Tx[%f] Ty[%f] Tz[%f]\n", T[0], T[1], T[2]);*/
 
-
-
-
+	//Test A's 3 axiis (Ax, Ay, Az)
 	for (int i = 0; i < 3; i++)
 	{
 		rA = hwA[i];
 		rB = ((hwB[0] * RAbs[i][0]) + (hwB[1] * RAbs[i][1]) + (hwB[2] * RAbs[i][2]));
-		//printf("hwA x[%f]y[%f]z[%f]  \n", hwA[0], hwA[1], hwA[2]);
 
+		//printf("hwA x[%f]y[%f]z[%f]  \n", hwA[0], hwA[1], hwA[2]);
 		//printf("hwB x[%f]y[%f]z[%f]  \n", (hwB[0] * RAbs[i][0]), (hwB[1] * RAbs[i][1]), (hwB[2] * RAbs[i][2])
 		//	);
 		//printf("\n\t A_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
@@ -366,88 +363,91 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 		bool check = (glm::abs(T[i]) >(rA + rB));
 		if (check){
 			return false;
-
+			//printf(" T>a+b =Plane\n");
 		}
+		else{
+			printf(" T>a+b =none\n");
+		}
+	}
 
+	//Test B's 3 axiis (Bx, By, Bz)
+	for (int i = 0; i < 3; i++)
+	{
+		rA = ((hwA[0] * RAbs[0][i]) + (hwA[1] * RAbs[1][i]) + (hwA[2] * RAbs[2][i]));
+		rB = hwB[i];
+		float td = glm::abs(T[0] * R[0][i] + T[1] * R[1][i] + T[2] * R[2][i]);
+		//printf("\n\t B_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
+
+		bool check = (td >(rA + rB));
+		if (check){
+			return false;
+		}
 		//printf(" T>a+b =Plane\n");
 		else{
 			printf(" T>a+b =none\n");
 		}
 	}
-	//Test B's x,y,z axis (L = B0,B1,B2)
-	//for (int i = 0; i < 3; i++)
-	//{
-	//	rA = ((hwA[0] * RAbs[0][i]) + (hwA[1] * RAbs[1][i]) + (hwA[2] * RAbs[2][i]));
-	//	rB = hwB[i];
-	//	float td = glm::abs(T[0] * R[0][i] + T[1] * R[1][i] + T[2] * R[2][i]);
-	//	//printf("\n\t B_AXII RA%d[%f] RB%d[%f]", i, rA, i, rB);
-
-	//	bool check = (td >(rA + rB));
-	//	if (check){
-	//		return false;
-	//	}
-	//	//printf(" T>a+b =Plane\n");
-	//	else{
-	//		printf(" T>a+b =none\n");
-	//	}
-	//}
 	printf(" Before 0");
-	// A0 x B0
+
+	//Check for the other axiis by applying crossproduct between the axiis
+
+	// Ax X Bx
 	rA = hwA[1] * RAbs[2][0] + hwA[2] * RAbs[1][0];
 	rB = hwB[1] * RAbs[0][2] + hwB[2] * RAbs[0][1];
 	if (!glm::abs(T[2] * R[1][0] - T[1] * R[2][0]) > (rA + rB)) 
 		return true;
 	printf("1");
-	// A0 x B1
+
+	// Ax X By
 	rA = hwA[1] * RAbs[2][1] + hwA[2] * RAbs[1][1];
 	rB = hwB[0] * RAbs[0][2] + hwB[2] * RAbs[0][0];
     if (!glm::abs(T[2] * R[1][1] - T[1] * R[2][1]) > (rA + rB))
 		return true;
 	printf("2");
 
-	// A0 x B2
+	// Ax X Bz
 	rA = hwA[1] * RAbs[2][2] + hwA[2] * RAbs[1][2];
 	rB = hwB[0] * RAbs[0][1] + hwB[1] * RAbs[0][0];
 	if (!glm::abs(T[2] * R[1][2] - T[1] * R[2][2]) > (rA + rB))
 		return true;
 	printf("3");
 
-	// A1 x B0
+	// Ay X Bx
 	rA = hwA[0] * RAbs[2][0] + hwA[2] * RAbs[0][0];
 	rB = hwB[1] * RAbs[1][2] + hwB[2] * RAbs[1][1];
 	if (!glm::abs(T[0] * R[2][0] - T[2] * R[0][0]) > (rA + rB))
 		return true;
 	printf("4");
 
-	// A1 x B1
+	// Ay X By
 	rA = hwA[0] * RAbs[2][1] + hwA[2] * RAbs[0][1];
 	rB = hwB[0] * RAbs[1][2] + hwB[2] * RAbs[1][0];
 	if (!glm::abs(T[0] * R[2][1] - T[2] * R[0][1]) > (rA + rB))
 		return true;
 	printf("5");
 
-	// A1 x B2
+	// Ay X Bz
 	rA = hwA[0] * RAbs[2][2] + hwA[2] * RAbs[0][2];
 	rB = hwB[0] * RAbs[1][1] + hwB[1] * RAbs[1][0];
 	if (!glm::abs(T[0] * R[2][2] - T[2] * R[0][2]) > (rA + rB))
 		return true;
 	printf("6");
 
-	// A2 x B0
+	// Az X Bx
 	rA = hwA[0] * RAbs[1][0] + hwA[1] * RAbs[0][0];
 	rB = hwB[1] * RAbs[2][2] + hwB[2] * RAbs[2][1];
 	if (!glm::abs(T[1] * R[0][0] - T[0] * R[1][0]) > (rA + rB))
 		return true;
 	printf("7");
 
-	// A2 x B1
+	// Az X Bx
 	rA = hwA[0] * RAbs[1][1] + hwA[1] * RAbs[0][1];
 	rB = hwB[0] * RAbs[2][2] + hwB[2] * RAbs[2][0];
 	if (!glm::abs(T[1] * R[0][1] - T[0] * R[1][1]) > (rA + rB))
 		return true;
 	printf("8");
 
-	// A2 x B2
+	// Az X Bz
 	rA = hwA[0] * RAbs[1][2] + hwA[1] * RAbs[0][2];
 	rB = hwB[0] * RAbs[2][1] + hwB[1] * RAbs[2][0];
 	if (!glm::abs(T[1] * R[0][2] - T[0] * R[1][2]) > (rA + rB))
@@ -455,7 +455,8 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 	printf("9");
 
 
-	//float rA, rB; //the projection of radii on axis
+	//Other attemps to slove the Spanning Axis Test..
+    /*//float rA, rB; //the projection of radii on axis
 	//Convert matrix B into matrix A coordinates (WtoA * BtoW)
 	matrix4 WtoA = glm::inverse(this->GetModelMatrix());
 	matrix4 WtoB = glm::inverse(a_pOther->GetModelMatrix());
@@ -511,31 +512,8 @@ bool MyBoundingObjectClass::IsColliding(MyBoundingObjectClass* const a_pOther)
 		else{
 			printf(" T>a+b =[Y]");
 		}
-	}
+	}*/
 
-
-
-
-
-
-	//Basic sudo code comments outline from OrangeBook
-	// -Compute rotation matrix expressing b in a’s coordinate frame
-	// -Compute translation vector t
-	// -Bring translation into a’s coordinate frame
-	// -Compute common subexpressions. Add in an epsilon term to
-	// counteract arithmetic errors when two edges are parallel and
-	// their cross product is (near) null (see text for details)
-	// -Test axes L = A0, L = A1, L = A2
-	// -Test axes L = B0, L = B1, L = B2
-	// -Test axis L = A0 x B0
-	// -Test axis L = A0 x B1
-	// -Test axis L = A0 x B2
-	// -Test axis L = A1 x B0
-	// -Test axis L = A1 x B1
-	// -Test axis L = A1 x B2
-	// -Test axis L = A2 x B0
-	// -Test axis L = A2 x B1
-	// -Test axis L = A2 x B2
 
 	//Otherwise they must be intersecting
 	return true;
