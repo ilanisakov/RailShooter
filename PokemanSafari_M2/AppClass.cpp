@@ -16,19 +16,19 @@ void AppClass::InitVariables(void)
 
 	//Get BO Manager Singleton
 	m_pBndObjMngr = BoundingObjectManager::GetInstance();
-
+	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
 	//Initialize positions
 	m_v3O1 = vector3(-2.5f, 0.0f, 0.0f);
-	m_v3O2 = vector3(2.5f, 0.0f, 0.0f);
+	m_v3O2 = vector3(0.0f, -20.0f, 0.0f);
 
 	//Load Models
 	//m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
 	//m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
-	//m_pMeshMngr->LoadModel("PokemanSafari\\testEnvironment.obj", "Environment");
+	m_pMeshMngr->LoadModel("PokemanSafari\\environment.obj", "Environment");
+	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
 
 	//m_pBndObjMngr->AddBox("Steve", m_pMeshMngr->GetVertexList("Steve"));
 	//m_pBndObjMngr->AddBox("Creeper", m_pMeshMngr->GetVertexList("Creeper"));
-	//m_pBndObjMngr->AddBox("Environment", m_pMeshMngr->GetVertexList("Environment"));
 
 }
 
@@ -36,9 +36,10 @@ void AppClass::Update(void)
 {
 	//Update the system's time
 	m_pSystem->UpdateTime();
-
 	//Update the mesh manager's time without updating for collision detection
 	m_pMeshMngr->Update(false);
+	m_pLightMngr->SetPosition(vector3(0.0f, 150.0f, 0.0f));
+	m_pLightMngr->SetIntensity(8000.0f);
 
 	//First person camera movement
 	if (m_bFPC == true)
@@ -50,14 +51,18 @@ void AppClass::Update(void)
 	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
 	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
 	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Environment");
+	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1), "Pokecube");
+
 
 
 	//m_pBndObjMngr->SetModelMatrix("Steve", m_pMeshMngr->GetModelMatrix("Steve"));
 	//m_pBndObjMngr->SetModelMatrix("Creeper", m_pMeshMngr->GetModelMatrix("Creeper"));
 	m_pBndObjMngr->SetModelMatrix("Environment", m_pMeshMngr->GetModelMatrix("Environment"));
+	m_pBndObjMngr->SetModelMatrix("Pokecube", m_pMeshMngr->GetModelMatrix("Pokecube"));
+
 
 	m_pBndObjMngr->CheckCollision();
-	m_pBndObjMngr->UpdateRenderList("Environment");
+	m_pBndObjMngr->UpdateRenderList("ALL");
 
 	//m_pCameraMngr->SetPositionTargetAndView(m_pCamera->m_v3Position,m_pCamera->m_v3Target,m_pCamera->)
 

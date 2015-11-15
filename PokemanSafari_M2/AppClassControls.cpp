@@ -2,7 +2,7 @@
 void AppClass::ProcessKeyboard(void)
 {
 	bool bModifier = false;
-	float fSpeed = 0.01f;
+	float fSpeed = 0.2f;
 
 #pragma region ON PRESS/RELEASE DEFINITION
 	static bool	bLastF1 = false, bLastF2 = false, bLastF3 = false, bLastF4 = false, bLastF5 = false,
