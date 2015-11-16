@@ -13,13 +13,13 @@
 #ifndef _PROJECTILE_H_
 #define _PROJECTILE_H_
 
-#include "MyBoundingObjectClass.h"
+#include "MyEntityClass.h"
 
 typedef enum {
 	PJ_POKECUBE, PJ_ROCK, PJ_NET
 } PROJECTILE_TYPE;
 
-class Projectile : public MyBoundingObjectClass
+class Projectile : public MyEntityClass
 {
 public:
 	PROJECTILE_TYPE projType;
@@ -27,7 +27,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// Constructor
 	/////////////////////////////////////////////////////////////////
-	Projectile(PROJECTILE_TYPE type, String name, std::vector<vector3> a_lVectorList);
+	Projectile(PROJECTILE_TYPE type, String name);
 
 	/////////////////////////////////////////////////////////////////
 	// Render()

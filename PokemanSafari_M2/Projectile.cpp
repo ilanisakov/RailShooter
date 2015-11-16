@@ -15,9 +15,7 @@
 /////////////////////////////////////////////////////////////////////
 // Constructor
 /////////////////////////////////////////////////////////////////////
-Projectile::Projectile(PROJECTILE_TYPE type, String name, 
-	                   std::vector<vector3> VectorList) : 
-					   MyBoundingObjectClass(VectorList, name)
+Projectile::Projectile(PROJECTILE_TYPE type, String name): MyEntityClass(name)
 {
 	this->projType = type;
 }

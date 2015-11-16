@@ -13,13 +13,13 @@
 #ifndef _CHARACTER_H_
 #define _CHARACTER_H_
 
-#include "MyBoundingObjectClass.h"
+#include "MyEntityClass.h"
 
 typedef enum {
 	CT_POKEMAN, CT_PLAYER, CT_SPACESHIP
 } CHARACTER_TYPE;
 
-class Character : public MyBoundingObjectClass
+class Character : public MyEntityClass
 {
 public:
 	CHARACTER_TYPE charType;
@@ -27,7 +27,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// Constructor
 	/////////////////////////////////////////////////////////////////
-	Character(CHARACTER_TYPE type, String name,std::vector<vector3> movementPath, std::vector<vector3> a_lVectorList);
+	Character(CHARACTER_TYPE type, String name,std::vector<vector3> movementPath);
 
 	/////////////////////////////////////////////////////////////////
 	// Render()

@@ -7,19 +7,22 @@ Date: 2015/09
 
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
-#include "MyBoundingObjectClass.h"
-#include "BoundingObjectManager.h"
+
+
+#include "Projectile.h"
+#include "Character.h"
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
 class AppClass : public ReEngAppClass
 {
 
-	BoundingObjectManager* m_pBndObjMngr;
-	
+	//BoundingObjectManager* m_pBndObjMngr;
+	Projectile* p_pokecube_01;
 
-	vector3 m_v3O1 = vector3(-2.5f, 0.0f, 0.0f);
-	vector3 m_v3O2 = vector3( 2.5f, 0.0f, 0.0f);
+
+	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
+	vector3 m_v3PosPokeCube = vector3( -2.5f, 0.0f, 0.0f);
 	Character* player;
 
 public:

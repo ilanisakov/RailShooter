@@ -16,9 +16,7 @@
 // Constructor
 /////////////////////////////////////////////////////////////////////
 Character::Character(CHARACTER_TYPE type, String name,
-	std::vector<vector3> VectorList,
-	std::vector<vector3> movementPath) :
-	MyBoundingObjectClass(VectorList, name)
+	std::vector<vector3> movementPath) : MyEntityClass(name)
 {
 	this->path = movementPath; // path for the character
 	this->charType = type;

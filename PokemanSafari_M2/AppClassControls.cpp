@@ -74,21 +74,23 @@ void AppClass::ProcessKeyboard(void)
 	if (bModifier)
 		fSpeed *= 10.0f;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		m_v3O1.x -= 0.1f;
+		m_v3PosPokeCube.x -= 0.1f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		m_v3O1.x += 0.1f;
+		m_v3PosPokeCube.x += 0.1f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		m_v3O1.y -= 0.1f;
+		m_v3PosPokeCube.y -= 0.1f;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		m_v3O1.y += 0.1f;
+		m_v3PosPokeCube.y += 0.1f;
 #pragma endregion
 
 #pragma region A10 actions
+	//disable for new BOManager... would have to reimplement acordingly
+	//....
 	//toggle bounding box visibility
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
 
 		//toggle off
 		if (m_pBndObjMngr->boVisible){
@@ -117,7 +119,7 @@ void AppClass::ProcessKeyboard(void)
 			m_pBndObjMngr->SetAABBVisible( true);
 			m_pBndObjMngr->SetAABBVisible( true);
 		}
-	}
+	}*/
 #pragma endregion
 
 #pragma region Other Actions

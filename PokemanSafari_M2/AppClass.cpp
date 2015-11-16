@@ -14,12 +14,12 @@ void AppClass::InitVariables(void)
 
 	m_pCameraMngr->SetFPS(true);
 
-	//Get BO Manager Singleton
-	m_pBndObjMngr = BoundingObjectManager::GetInstance();
+
 	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
+
 	//Initialize positions
-	m_v3O1 = vector3(-2.5f, 0.0f, 0.0f);
-	m_v3O2 = vector3(0.0f, -20.0f, 0.0f);
+	m_v3PosPokeCube = vector3(-2.5f, 0.0f, 0.0f);
+	m_v3PosEnv = vector3(0.0f, -20.0f, 0.0f);
 
 	//Load Models
 	//m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
@@ -27,9 +27,8 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("PokemanSafari\\environment.obj", "Environment");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
 
-	//m_pBndObjMngr->AddBox("Steve", m_pMeshMngr->GetVertexList("Steve"));
-	//m_pBndObjMngr->AddBox("Creeper", m_pMeshMngr->GetVertexList("Creeper"));
-
+	p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
+	p_pokecube_01->SetPosition(m_v3PosPokeCube);
 }
 
 void AppClass::Update(void)
@@ -50,21 +49,15 @@ void AppClass::Update(void)
 	//Set the model matrices for both objects and Bounding Spheres
 	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1) * ToMatrix4(m_qArcBall), "Steve");
 	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Creeper");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O2), "Environment");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3O1), "Pokecube");
 
 
+	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosEnv), "Environment");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
 
-	//m_pBndObjMngr->SetModelMatrix("Steve", m_pMeshMngr->GetModelMatrix("Steve"));
-	//m_pBndObjMngr->SetModelMatrix("Creeper", m_pMeshMngr->GetModelMatrix("Creeper"));
-	m_pBndObjMngr->SetModelMatrix("Environment", m_pMeshMngr->GetModelMatrix("Environment"));
-	m_pBndObjMngr->SetModelMatrix("Pokecube", m_pMeshMngr->GetModelMatrix("Pokecube"));
+	p_pokecube_01->SetPosition(m_v3PosPokeCube);
+	p_pokecube_01->Update();
 
-
-	m_pBndObjMngr->CheckCollision();
-	m_pBndObjMngr->UpdateRenderList("ALL");
-
-	//m_pCameraMngr->SetPositionTargetAndView(m_pCamera->m_v3Position,m_pCamera->m_v3Target,m_pCamera->)
+	
 
 	//Adds all loaded instance to the render list
 	m_pMeshMngr->AddInstanceToRenderList("ALL");
@@ -108,6 +101,4 @@ void AppClass::Release(void)
 {
 	super::Release(); //release the memory of the inherited fields
 	m_pCameraMngr->ReleaseInstance();
-	BoundingObjectManager::ReleaseInst();
-
 }

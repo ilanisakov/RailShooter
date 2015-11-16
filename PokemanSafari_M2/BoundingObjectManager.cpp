@@ -222,7 +222,7 @@ void BoundingObjectManager::CheckCollisions()
 			{
 				if (pIt1->second->projType == PJ_POKECUBE)
 				{
-					if (cIt1->second->IsColliding(pIt1->second))
+					//if (cIt1->second->IsColliding(pIt1->second))
 					{
 						//Update score manager?
 
@@ -242,7 +242,7 @@ void BoundingObjectManager::CheckCollisions()
 			{
 				if (pIt1->second->projType == PJ_ROCK)
 				{
-					if (cIt1->second->IsColliding(pIt1->second))
+					//if (cIt1->second->IsColliding(pIt1->second))
 					{
 						//Update score manager?
 
@@ -262,7 +262,7 @@ void BoundingObjectManager::CheckCollisions()
 			{
 				if (pIt1->second->projType == PJ_ROCK)
 				{
-					if (cIt1->second->IsColliding(pIt1->second))
+					//if (cIt1->second->IsColliding(pIt1->second))
 					{
 						//Update score manager?
 
