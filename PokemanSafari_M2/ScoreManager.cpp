@@ -19,7 +19,8 @@ ScoreManager* ScoreManager::inst = nullptr;
 /////////////////////////////////////////////////////////////////////
 ScoreManager::ScoreManager()
 {
-
+	scoreCount = 0;
+	m_pMeshMngr = MeshManagerSingleton::GetInstance();
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -59,7 +60,7 @@ ScoreManager::~ScoreManager()
 /////////////////////////////////////////////////////////////////////
 int ScoreManager::GetScore()
 {
-	return 0;
+	return scoreCount;
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -68,6 +69,13 @@ int ScoreManager::GetScore()
 void ScoreManager::GetReport()
 {
 	//render verbose stats of #of pokeman to screen/console
+}
+
+void ScoreManager::Update()
+{
+	char buff[10];
+	sprintf(buff, "Score: %d", scoreCount);
+	m_pMeshMngr->PrintLine(buff, REYELLOW);
 }
 
 /////////////////////////////////////////////////////////////////////

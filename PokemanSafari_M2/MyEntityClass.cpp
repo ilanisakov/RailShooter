@@ -63,6 +63,7 @@ MyEntityClass::MyEntityClass(MyEntityClass const& other)
 	m_sName = other.m_sName;
 	m_fMaxAcc = other.m_fMaxAcc;
 
+
 	m_pColliderManager = other.m_pColliderManager;
 	m_pMeshManager = other.m_pMeshManager;
 }
@@ -81,6 +82,8 @@ MyEntityClass& MyEntityClass::operator=(MyEntityClass const& other)
 
 void MyEntityClass::Update(void)
 {
+
+	m_v3Velocity += m_v3Acceleration;
 	m_v3Position = m_v3Position + (m_v3Velocity * m_fMass);
 
 	matrix4 m4Mod;
@@ -100,10 +103,18 @@ void MyEntityClass::SetPosition(vector3 vPos)
 {
 	m_v3Position = vPos;
 }
+vector3 MyEntityClass::GetPosition()
+{
+	return m_v3Position;
+}
 
 void MyEntityClass::SetVelocity(vector3 vVel)
 {
 	m_v3Velocity = vVel;
+}
+void MyEntityClass::SetAcceleration(vector3 vAcc)
+{
+	m_v3Acceleration = vAcc;
 }
 
 void MyEntityClass::ApplyForce(vector3 force)
@@ -114,6 +125,8 @@ void MyEntityClass::ApplyForce(vector3 force)
 
 	
 }
+
+
 
 void MyEntityClass::SetMass(float m)
 {

@@ -8,22 +8,27 @@ Date: 2015/09
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
 
-
 #include "Projectile.h"
 #include "Character.h"
+#include "ScoreManager.h"
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
 class AppClass : public ReEngAppClass
 {
 
-	//BoundingObjectManager* m_pBndObjMngr;
+	ScoreManager* m_pScoreMngr;
+	MyBOManager* m_pBOMngr;
+	
 	Projectile* p_pokecube_01;
 
+	Character* c_pokeman_01;
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
 	vector3 m_v3PosPokeCube = vector3( -2.5f, 0.0f, 0.0f);
-	Character* player;
+	
+	//RailCamera
+	Character* c_player;
 
 public:
 	typedef ReEngAppClass super;
@@ -86,6 +91,9 @@ public:
 	IF INHERITED AND OVERRIDEN MAKE SURE TO RELEASE BASE POINTERS (OR CALL BASED CLASS RELEASE)
 	*/
 	virtual void Release(void) final;
+
+
+	void ThrowPokecube();
 };
 
 #endif //__APPLICATION_H_

@@ -5,6 +5,7 @@
 
 class MyEntityClass
 {
+
 	bool m_bCreated = false;
 	vector3 m_v3Position = vector3();
 	quaternion m_qOrientation = quaternion();
@@ -48,10 +49,13 @@ public:
 	MyEntityClass& operator=(MyEntityClass const& other);
 
 
-	void Update(void);
+	virtual void Update(void);
 
 	void SetPosition(vector3 vPos);
 	void SetVelocity(vector3 vVel);
+	void SetAcceleration(vector3 vAcc);
+
+	vector3 GetPosition();
 
 	void ApplyForce(vector3 force);
 	void SetMass(float m);

@@ -11,9 +11,10 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
+	m_pScoreMngr = ScoreManager::GetInstance();
+	m_pBOMngr = MyBOManager::GetInstance();
 
 	m_pCameraMngr->SetFPS(true);
-
 
 	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
 
@@ -29,6 +30,31 @@ void AppClass::InitVariables(void)
 
 	p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
+	p_pokecube_01->SetVelocity(vector3(0.001f, 0.0f, 0.0f));
+    p_pokecube_01->SetAcceleration(vector3(0.0f, -0.002f, 0.0f));
+	p_pokecube_01->SetMass(1.2f);
+
+	//c_pokeman_01 = new Character(CT_POKEMAN, )
+}
+
+void AppClass::ThrowPokecube()
+{
+	//Check if already in the air
+	if (p_pokecube_01->IsAlive())
+		return;
+
+	p_pokecube_01->SetAlive(true);
+	matrix4 camView = glm::transpose(m_pCameraMngr->GetViewMatrix(-1));
+	vector3 pos = m_pCameraMngr->GetPosition(-1);
+	pos[1] -= 0.5f; //don't go 'through' the camera
+	p_pokecube_01->SetPosition(pos);
+	//Set the velocity in cam z direction
+	vector3 dir = -1.0f * vector3(camView[2][0], camView[2][1], camView[2][2]);
+	//TODO put this inside Projectile?
+	float velocityFactor = 0.5f;
+	p_pokecube_01->SetVelocity(vector3(dir[0] * velocityFactor,
+		                               dir[1] * velocityFactor, 
+									   dir[2] * velocityFactor));
 }
 
 void AppClass::Update(void)
@@ -54,20 +80,21 @@ void AppClass::Update(void)
 	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosEnv), "Environment");
 	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
 
-	p_pokecube_01->SetPosition(m_v3PosPokeCube);
+	m_pBOMngr->Update();
+
 	p_pokecube_01->Update();
 
-	
 
 	//Adds all loaded instance to the render list
-	m_pMeshMngr->AddInstanceToRenderList("ALL");
+	m_pMeshMngr->AddInstanceToRenderList("Environment");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
 	//print info into the console
 	printf("FPS: %d            \r", nFPS);//print the Frames per Second
 	//Print info on the screen
-	m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
+	m_pScoreMngr->Update();
+	//m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);
 }
