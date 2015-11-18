@@ -21,6 +21,9 @@ Character::Character(CHARACTER_TYPE type, String name,
 	this->path = movementPath; // path for the character
 	this->charType = type;
 	this->currentSeg = 0; //current line segment of the track 
+	this->m_v3Position = path[0];
+
+	it = path.begin();
 }
 
 /////////////////////////////////////////////////////////////////
@@ -34,7 +37,13 @@ void Character::UpdateRender()
 // UpdateLocation()
 /////////////////////////////////////////////////////////////////
 void Character::UpdateLocation(){
-
+	
+}
+/////////////////////////////////////////////////////////////////
+// GetLocation()
+/////////////////////////////////////////////////////////////////
+vector3 Character::GetLocation(void){
+	return m_v3Position;
 }
 
 

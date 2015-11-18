@@ -25,6 +25,9 @@ class AppClass : public ReEngAppClass
 	vector3 m_v3PosPokeCube = vector3( -2.5f, 0.0f, 0.0f);
 	Character* player;
 
+	//paths
+	std::vector<vector3> playerPath;
+
 public:
 	typedef ReEngAppClass super;
 
@@ -86,6 +89,12 @@ public:
 	IF INHERITED AND OVERRIDEN MAKE SURE TO RELEASE BASE POINTERS (OR CALL BASED CLASS RELEASE)
 	*/
 	virtual void Release(void) final;
+
+	/*
+	FillPaths
+	Fills the array's with their respective paths
+	*/
+	virtual void FillPath(void) final;
 };
 
 #endif //__APPLICATION_H_

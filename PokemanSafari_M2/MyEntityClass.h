@@ -5,6 +5,7 @@
 
 class MyEntityClass
 {
+protected:
 	bool m_bCreated = false;
 	vector3 m_v3Position = vector3();
 	quaternion m_qOrientation = quaternion();

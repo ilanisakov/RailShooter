@@ -17,6 +17,9 @@ void AppClass::InitVariables(void)
 
 	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
 
+	//Fill Paths
+	FillPath();
+
 	//Initialize positions
 	m_v3PosPokeCube = vector3(-2.5f, 0.0f, 0.0f);
 	m_v3PosEnv = vector3(0.0f, -20.0f, 0.0f);
@@ -29,6 +32,8 @@ void AppClass::InitVariables(void)
 
 	p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
+
+	player = new Character(CT_PLAYER, "player", playerPath);
 }
 
 void AppClass::Update(void)
@@ -57,7 +62,8 @@ void AppClass::Update(void)
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
 	p_pokecube_01->Update();
 
-	
+	//setting the camera's position to the players location
+	m_pCameraMngr->SetPosition(player->GetLocation());
 
 	//Adds all loaded instance to the render list
 	m_pMeshMngr->AddInstanceToRenderList("ALL");
@@ -101,4 +107,13 @@ void AppClass::Release(void)
 {
 	super::Release(); //release the memory of the inherited fields
 	m_pCameraMngr->ReleaseInstance();
+}
+
+void AppClass::FillPath(void)
+{
+	//Player's Path
+	playerPath.push_back(vector3(20, 0, 0));
+	playerPath.push_back(vector3(5, 0, 0));
+	playerPath.push_back(vector3(5, 5, 0));
+	playerPath.push_back(vector3(0, 5, 0));
 }
