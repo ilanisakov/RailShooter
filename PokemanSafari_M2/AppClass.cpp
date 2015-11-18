@@ -24,12 +24,12 @@ void AppClass::InitVariables(void)
 	//Initialize positions
 	m_v3PosPokeCube = vector3(-2.5f, 0.0f, 0.0f);
 	m_v3PosEnv = vector3(0.0f, -20.0f, 0.0f);
+	m_v3PosPika = vector3(-5.0f, -20.0f, -7.0f);
 
 	//Load Models
-	//m_pMeshMngr->LoadModel("Minecraft\\MC_Steve.obj", "Steve");
-	//m_pMeshMngr->LoadModel("Minecraft\\MC_Creeper.obj", "Creeper");
 	m_pMeshMngr->LoadModel("PokemanSafari\\environment.obj", "Environment");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
+	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu.obj", "Pikachu");
 
 	p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
@@ -68,6 +68,8 @@ void AppClass::Update(void)
 	m_pSystem->UpdateTime();
 	//Update the mesh manager's time without updating for collision detection
 	m_pMeshMngr->Update(false);
+
+	//lighting
 	m_pLightMngr->SetPosition(vector3(0.0f, 150.0f, 0.0f));
 	m_pLightMngr->SetIntensity(8000.0f);
 
@@ -83,7 +85,9 @@ void AppClass::Update(void)
 
 
 	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosEnv), "Environment");
-	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
+	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
+	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPika), "Pikachu");
+
 
 	m_pBOMngr->Update();
 
@@ -98,7 +102,7 @@ void AppClass::Update(void)
 	matrix4 temp;
 	temp = m_pCameraMngr->GetViewMatrix(-1);
 	//Adds all loaded instance to the render list
-	m_pMeshMngr->AddInstanceToRenderList("Environment");
+	m_pMeshMngr->AddInstanceToRenderList("ALL");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
