@@ -27,7 +27,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// Constructor
 	/////////////////////////////////////////////////////////////////
-	Character(CHARACTER_TYPE type, String name,std::vector<vector3> movementPath);
+	Character(CHARACTER_TYPE type, String name, float time, std::vector<vector3> movementPath);
 
 	/////////////////////////////////////////////////////////////////
 	// Render()
@@ -43,8 +43,16 @@ public:
 
 private:
 	std::vector<vector3> path;
+	std::vector<vector3> pathDirection;
 	std::vector<vector3>::iterator it;
+	std::vector<vector3>::iterator nextIt;
+	std::vector<vector3>::iterator dirIt;
+	
 	int currentSeg;
+	float lapTime;
+	float totalDistance;
+	float speed;
+	const float offset = 1.0f;
 };
 
 

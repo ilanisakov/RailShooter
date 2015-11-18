@@ -37,7 +37,7 @@ void AppClass::InitVariables(void)
     p_pokecube_01->SetAcceleration(vector3(0.0f, -0.002f, 0.0f));
 	p_pokecube_01->SetMass(1.2f);
 
-	c_player = new Character(CT_PLAYER, "player", playerPath);
+	c_player = new Character(CT_PLAYER, "player", 20, playerPath);
 
 	//c_pokeman_01 = new Character(CT_POKEMAN, )
 }
@@ -90,15 +90,22 @@ void AppClass::Update(void)
 	p_pokecube_01->Update();
 
 	//setting the camera's position to the players location
-	m_pCameraMngr->SetPosition(c_player->GetLocation());
+	c_player->UpdateLocation();
 
+	//lookDir = vector3(m_pCameraMngr->GetViewMatrix(-1)[0][0], m_pCameraMngr->GetViewMatrix(-1)[1][1], m_pCameraMngr->GetViewMatrix(-1)[2][2]);
+	//m_pCameraMngr->SetPosition(c_player->GetLocation());
+	m_pCameraMngr->SetPositionTargetAndView(c_player->GetLocation(), lookDir, REAXISY,-1);
+	matrix4 temp;
+	temp = m_pCameraMngr->GetViewMatrix(-1);
 	//Adds all loaded instance to the render list
 	m_pMeshMngr->AddInstanceToRenderList("Environment");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();
 	//print info into the console
-	printf("FPS: %d            \r", nFPS);//print the Frames per Second
+	//printf("x: %f            ", temp[0][0]);//print the Frames per Second
+	//printf("y: %f            ", temp[1][1]);//print the Frames per Second
+	//printf("z: %f            \r", temp[2][2]);//print the Frames per Second
 	//Print info on the screen
 	m_pScoreMngr->Update();
 	//m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
@@ -140,8 +147,8 @@ void AppClass::Release(void)
 void AppClass::FillPath(void)
 {
 	//Player's Path
-	playerPath.push_back(vector3(20, 0, 0));
-	playerPath.push_back(vector3(5, 0, 0));
-	playerPath.push_back(vector3(5, 5, 0));
-	playerPath.push_back(vector3(0, 5, 0));
+	playerPath.push_back(vector3(10, 0, 0));
+	playerPath.push_back(vector3(37, 0, 13));
+	playerPath.push_back(vector3(14, 0, 45));
+	playerPath.push_back(vector3(3, 0, 22));
 }

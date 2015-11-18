@@ -25,6 +25,7 @@ class AppClass : public ReEngAppClass
 	Character* c_pokeman_01;
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
+	vector3 lookDir = vector3(1.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPokeCube = vector3( -2.5f, 0.0f, 0.0f);
 	
 	//RailCamera

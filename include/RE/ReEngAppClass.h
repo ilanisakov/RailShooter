@@ -379,7 +379,7 @@ namespace ReEng
 			//Change the Yaw and the Pitch of the camera
 			m_pCameraMngr->ChangeYaw(fAngleY * 3.0f);
 			m_pCameraMngr->ChangePitch(-fAngleX * 3.0f);
-			SetCursorPos(CenterX, CenterY);//Position the mouse in the center
+			//SetCursorPos(CenterX, CenterY);//Position the mouse in the center
 		}
 		/*
 		Method: InitWindow
