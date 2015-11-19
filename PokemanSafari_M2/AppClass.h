@@ -2,12 +2,24 @@
 Programmer: Alberto Bobadilla (labigm@gmail.com)
 Date: 2015/09
 ----------------------------------------------*/
+/////////////////////////////////////////////////////////////////////
+// File: AppClass.h
+// DSA2 PokemanSafari_M2
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 #ifndef __APPLICATION_H_
 #define __APPLICATION_H_
 
 #include "RE\ReEngAppClass.h"
 #include <SFML\Graphics.hpp>
 
+#include "MyEntityManager.h"
 #include "Projectile.h"
 #include "Character.h"
 #include "ScoreManager.h"
@@ -19,18 +31,20 @@ class AppClass : public ReEngAppClass
 
 	ScoreManager* m_pScoreMngr;
 	MyBOManager* m_pBOMngr;
+	MyEntityManager* m_pEntityMngr;
 	
 	Projectile* p_pokecube_01;
-
-	Character* c_pokeman_01;
+	Character* c_pika_01;
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
 	vector3 lookDir = vector3(1.0f, 0.0f, 0.0f);
-	vector3 m_v3PosPokeCube = vector3( -2.5f, 0.0f, 0.0f);
+	vector3 m_v3PosPokeCube = vector3( 0.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPika;
-	
+
 	//RailCamera
 	Character* c_player;
+	bool camSelect = false;
+	int railCamIndex = 0;
 
 	//paths
 	std::vector<vector3> playerPath;
@@ -105,6 +119,9 @@ public:
 
 	void ThrowPokecube();
 
+	void ToggleCamera();
+
+	void UpdatePlayerCamera();
 };
 
 #endif //__APPLICATION_H_

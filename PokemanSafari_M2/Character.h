@@ -40,12 +40,13 @@ public:
 
 	//TODO
 	//Handle character path, stats updates here?...
-
+	
 private:
+	std::vector<vector3>::iterator nextIt;
 	std::vector<vector3> path;
 	std::vector<vector3> pathDirection;
 	std::vector<vector3>::iterator it;
-	std::vector<vector3>::iterator nextIt;
+	
 	std::vector<vector3>::iterator dirIt;
 	
 	int currentSeg;

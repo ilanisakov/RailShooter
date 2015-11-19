@@ -118,18 +118,18 @@ xcopy "$(SolutionDir)_Binary\Shaders" "$(SolutionDir)include\RE\Shaders" /y</Com
     <ClCompile Include="MyBOManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyEntityClass.cpp" />
+    <ClCompile Include="MyEntityManager.cpp" />
     <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\res\Resource.h" />
     <ClInclude Include="AppClass.h" />
-    <ClInclude Include="BoundingObjectManager.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="MyBOClass.h" />
     <ClInclude Include="MyBOManager.h" />
-    <ClInclude Include="MyBoundingObjectClass.h" />
     <ClInclude Include="MyEntityClass.h" />
+    <ClInclude Include="MyEntityManager.h" />
     <ClInclude Include="Projectile.h" />
     <ClInclude Include="ScoreManager.h" />
   </ItemGroup>

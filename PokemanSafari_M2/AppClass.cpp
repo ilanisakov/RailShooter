@@ -13,8 +13,14 @@ void AppClass::InitVariables(void)
 {
 	m_pScoreMngr = ScoreManager::GetInstance();
 	m_pBOMngr = MyBOManager::GetInstance();
+	m_pEntityMngr = MyEntityManager::GetInstance();
 
 	m_pCameraMngr->SetFPS(true);
+	//Create the rail camera
+	railCamIndex = m_pCameraMngr->AddCamera(vector3(0.0f, 0.0f, 5.0f),
+		                     vector3(0.0f, 0.0f, 0.0f),
+		                     vector3(0.0f, 1.0f, 0.0f));
+	
 
 	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
 
@@ -22,7 +28,7 @@ void AppClass::InitVariables(void)
 	FillPath();
 
 	//Initialize positions
-	m_v3PosPokeCube = vector3(-2.5f, 0.0f, 0.0f);
+	m_v3PosPokeCube = vector3(0.0f, 0.0f, 0.0f);
 	m_v3PosEnv = vector3(0.0f, -20.0f, 0.0f);
 	m_v3PosPika = vector3(-5.0f, -20.0f, -7.0f);
 
@@ -31,15 +37,23 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu.obj", "Pikachu");
 
-	p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
+	m_pEntityMngr->AddEntity("Pokecube", PJ_POKECUBE);
+	//p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
+	p_pokecube_01 = (Projectile*)m_pEntityMngr->GetEntity("Pokecube");
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
-	p_pokecube_01->SetVelocity(vector3(0.001f, 0.0f, 0.0f));
+	p_pokecube_01->SetVelocity(vector3(0.002f, 0.0f, 0.0f));
     p_pokecube_01->SetAcceleration(vector3(0.0f, -0.002f, 0.0f));
 	p_pokecube_01->SetMass(1.2f);
+	//ThrowPokecube();
+	
 
 	c_player = new Character(CT_PLAYER, "player", 20, playerPath);
 
-	//c_pokeman_01 = new Character(CT_POKEMAN, )
+	m_pEntityMngr->AddEntity("Pikachu", CT_POKEMAN, 20, playerPath);
+	//c_pika_01 = new Character(CT_POKEMAN, "Pikachu", 20, playerPath);
+	c_pika_01 = (Character*)m_pEntityMngr->GetEntity("Pikachu");
+	c_pika_01->SetPosition(m_v3PosPika);
+
 }
 
 void AppClass::ThrowPokecube()
@@ -62,6 +76,67 @@ void AppClass::ThrowPokecube()
 									   dir[2] * velocityFactor));
 }
 
+void AppClass::UpdatePlayerCamera()
+{
+	//setting the camera's position to the players location
+	c_player->UpdateLocation();
+
+	if (camSelect)
+	{
+		//Using Rail Camera
+
+
+		//lookDir = vector3(m_pCameraMngr->GetViewMatrix(-1)[0][0], m_pCameraMngr->GetViewMatrix(-1)[1][1], m_pCameraMngr->GetViewMatrix(-1)[2][2]);
+		//m_pCameraMngr->SetPosition(c_player->GetLocation());
+
+		matrix4 camView = glm::transpose(m_pCameraMngr->GetViewMatrix(-1));
+
+
+
+		vector3 playerLoc = c_player->GetLocation();
+		vector3 camZ = vector3(camView[2][0], camView[2][1], camView[2][2]);
+
+		vector3 dif = playerLoc - m_pCameraMngr->GetPosition();
+		vector3 playerTarget = camZ;
+		//vector3 playerTarget =dif + vector3(0.0f, 0.0f, -1.0f);
+		//if (flip)
+		//{
+		//	playerTarget *= -1.0f;
+		///}
+		//flip = !flip;
+		//m_pCameraMngr->SetPosition(playerLoc);
+		//m_pCameraMngr->SetTarget(playerTarget);
+
+		vector3 playerUp = vector3(camView[1][0], camView[1][1], camView[1][2]);
+		m_pCameraMngr->SetPositionTargetAndView(playerLoc, playerTarget, REAXISY, -1);
+		//m_pCameraMngr->CalculateView();
+		//m_pCameraMngr->CalculateProjection();
+		//matrix4 temp;
+		//temp = m_pCameraMngr->GetViewMatrix(-1);
+
+		return;
+	}
+	//Else free camera
+
+
+
+	
+}
+
+void AppClass::ToggleCamera()
+{
+	if (!camSelect)
+	{
+		m_pCameraMngr->SetActiveCamera(railCamIndex);
+		camSelect = true;
+	}
+	else
+	{
+		camSelect = false;
+		m_pCameraMngr->SetActiveCamera(0);
+	}
+}
+
 void AppClass::Update(void)
 {
 	//Update the system's time
@@ -72,6 +147,8 @@ void AppClass::Update(void)
 	//lighting
 	m_pLightMngr->SetPosition(vector3(0.0f, 150.0f, 0.0f));
 	m_pLightMngr->SetIntensity(8000.0f);
+
+	
 
 	//First person camera movement
 	if (m_bFPC == true)
@@ -85,24 +162,27 @@ void AppClass::Update(void)
 
 
 	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosEnv), "Environment");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
-	m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPika), "Pikachu");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPokeCube), "Pokecube");
+	//m_pMeshMngr->SetModelMatrix(glm::translate(m_v3PosPika), "Pikachu");
 
 
-	m_pBOMngr->Update();
+	//m_pBOMngr->Update();
 
 	p_pokecube_01->Update();
+	c_pika_01->Update();
 
-	//setting the camera's position to the players location
-	c_player->UpdateLocation();
+	m_pEntityMngr->UpdateCollisions();
+	m_pEntityMngr->processCollisions("Pokecube");
 
-	//lookDir = vector3(m_pCameraMngr->GetViewMatrix(-1)[0][0], m_pCameraMngr->GetViewMatrix(-1)[1][1], m_pCameraMngr->GetViewMatrix(-1)[2][2]);
-	//m_pCameraMngr->SetPosition(c_player->GetLocation());
-	m_pCameraMngr->SetPositionTargetAndView(c_player->GetLocation(), lookDir, REAXISY,-1);
-	matrix4 temp;
-	temp = m_pCameraMngr->GetViewMatrix(-1);
+	
+	
+	UpdatePlayerCamera();
+	
+
+
 	//Adds all loaded instance to the render list
-	m_pMeshMngr->AddInstanceToRenderList("ALL");
+	m_pMeshMngr->AddInstanceToRenderList("Environment");
+	//m_pMeshMngr->AddInstanceToRenderList("Pikachu");
 
 	//Indicate the FPS
 	int nFPS = m_pSystem->GetFPS();

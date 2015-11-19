@@ -23,6 +23,7 @@ class Projectile : public MyEntityClass
 {
 	bool m_bAlive = false;
 
+
 public:
 	PROJECTILE_TYPE projType;
 

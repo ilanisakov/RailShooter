@@ -29,6 +29,8 @@ void Projectile::Update()
 		return;
 	//Else alive
 
+	
+
 	//basic pokecube
 	//check killzone?
 	vector3 pos = GetPosition();
@@ -51,6 +53,7 @@ void Projectile::Update()
 void Projectile::SetAlive(bool b)
 {
 	m_bAlive = b;
+	m_bHitReg = false;
 }
 /////////////////////////////////////////////////////////////////////
 // IsAlive() - return wether projectile is alive

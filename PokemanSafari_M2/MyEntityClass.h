@@ -1,7 +1,19 @@
+/////////////////////////////////////////////////////////////////////
+// File: MyEntityClass.h
+// DSA2 PokemanSafari_M1
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 #ifndef __MYENTITY_H_
 #define __MYENTITY_H_
 
 #include "MyBOManager.h"
+#include "ScoreManager.h"
 
 class MyEntityClass
 {
@@ -9,6 +21,9 @@ class MyEntityClass
 protected:
 
 	bool m_bCreated = false;
+
+	bool m_bHitReg = true;
+
 	vector3 m_v3Position = vector3();
 	quaternion m_qOrientation = quaternion();
 	vector3 m_v3Scale = vector3();
@@ -22,6 +37,7 @@ protected:
 
 	MyBOManager* m_pColliderManager = nullptr;
 	MeshManagerSingleton* m_pMeshManager = nullptr;
+	ScoreManager* m_pScoreMngr = nullptr;
 
 	String m_sName;
 
@@ -52,6 +68,8 @@ public:
 
 
 	virtual void Update(void);
+
+	void ApplyCollision(MyEntityClass* other);
 
 	void SetPosition(vector3 vPos);
 	void SetVelocity(vector3 vVel);

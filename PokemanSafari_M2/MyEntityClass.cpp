@@ -14,6 +14,7 @@ void MyEntityClass::Init(void)
 
 	m_pColliderManager = MyBOManager::GetInstance();
 	m_pMeshManager = MeshManagerSingleton::GetInstance();
+	m_pScoreMngr = ScoreManager::GetInstance();
 }
 void MyEntityClass::Swap(MyEntityClass& other)
 {
@@ -31,6 +32,7 @@ void MyEntityClass::Swap(MyEntityClass& other)
 }
 void MyEntityClass::Release(void)
 {
+	//TODO
 }
 
 MyEntityClass::MyEntityClass(String n)
@@ -97,6 +99,16 @@ void MyEntityClass::Update(void)
 	m_pColliderManager->SetModelMatrix(m4Mod, m_sName);
 	m_pColliderManager->DisplayReAlligned(nIndex);
 
+}
+
+void MyEntityClass::ApplyCollision(MyEntityClass* other)
+{
+	//std::cout << m_sName << " do something about it\n";
+	if (!m_bHitReg)
+	{
+		m_pScoreMngr->Increment();
+		m_bHitReg = true;
+	}
 }
 
 void MyEntityClass::SetPosition(vector3 vPos)
