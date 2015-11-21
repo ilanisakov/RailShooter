@@ -11,7 +11,7 @@ namespace ReEng
 {
 	//Camera Class
 	class ReEngDLL CameraClass
-	{
+	{   
 		bool m_bFPS = true; //If set to false will behave like a flight simulator camera
 
 		CAMERAMODE m_nMode = CAMERAMODE::CAMPERSP; //Sets the mode the camera will display

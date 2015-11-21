@@ -1,25 +1,216 @@
-newmtl environment3D:palette
+newmtl Environment2:palette
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd environment3D.png
+map_Kd Environment2.png
 Ni 1.00
-newmtl phong3SG
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree:palette
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd pokecube.png
+map_Kd tree.png
 Ni 1.00
-Ks 0.71 0.71 0.71
-Ns 49.40
-newmtl pokecube1:phong3SG
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree1:palette
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd pokecube.png
+map_Kd tree.png
 Ni 1.00
-Ks 0.71 0.71 0.71
-Ns 49.40
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree2:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree3:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree4:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree5:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree6:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree7:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree8:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree9:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree10:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree11:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree12:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree13:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree14:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree15:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree16:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree17:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree18:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree19:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree20:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree21:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06
+newmtl tree22:palette
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd tree.png
+Ni 1.00
+Ks 0.00 0.00 0.00
+Ns 0.06

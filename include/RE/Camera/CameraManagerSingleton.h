@@ -117,6 +117,7 @@ namespace ReEng
 		Output:
 		*/
 		vector3 GetPosition(int a_nIndex = -1);
+        
 		/* Sets the camera specified by index at the specified position and target, if -1 it will use the active camera */
 		/*
 		Method: SetPositionAndTarget
