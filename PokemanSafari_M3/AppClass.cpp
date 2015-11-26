@@ -267,5 +267,17 @@ void AppClass::FillPath(void)
 	playerPath.push_back(vector3(-54, -12, 90));
 	playerPath.push_back(vector3(-54, -12, -50));
 	playerPath.push_back(vector3(-10, -12,-50));
-	playerPath.push_back(vector3(-10, -12, 90));
+	playerPath.push_back(vector3(-10, -12, 60));
+	playerPath.push_back(vector3(45, -12, 60));
+	playerPath.push_back(vector3(45, -12, -60));
+
+	//going backwards
+	playerPath.push_back(vector3(45, -12, 60));
+	playerPath.push_back(vector3(-10, -12, 60));
+	playerPath.push_back(vector3(-10, -12, -50));
+	playerPath.push_back(vector3(-54, -12, -50));
+	playerPath.push_back(vector3(-54, -12, 89));
+
+
+
 }
