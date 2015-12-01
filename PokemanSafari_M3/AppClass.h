@@ -29,6 +29,18 @@ using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 class AppClass : public ReEngAppClass
 {
 
+	//window
+	RECT desktop;
+	int width, widthW;
+	int height, heightW;
+	int halfWidth;
+	int halfHeight;
+	int windowOffsetX, windowOffsetY;
+
+	//camera Rotation stuff
+	float XRotation, YRotation;
+	float rotationSpeed = 10.0f;
+
 	ScoreManager* m_pScoreMngr;
 	MyBOManager* m_pBOMngr;
 	MyEntityManager* m_pEntityMngr;
@@ -37,7 +49,7 @@ class AppClass : public ReEngAppClass
 	Character* c_pika_01;
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
-	vector3 lookDir = vector3(1.0f, 0.0f, 0.0f);
+	vector3 lookDir = vector3(0.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPokeCube = vector3( 0.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPika;
 

@@ -139,6 +139,51 @@ void AppClass::ProcessMouse(void)
 {
 	m_bArcBall = false;
 	m_bFPC = false;
+	sf::Vector2i pos = sf::Mouse::getPosition();
+	vector3 playerLoc = c_player->GetLocation();
+	vector3 lookHelp;
+	float x = pos.x;
+	float y = pos.y;
+	
+	//putting X and Y into the window coordinate space
+	x = x - windowOffsetX;
+	y = y - windowOffsetY;
+
+	if (x < 0)	
+		x = 0;
+	else if (x > width)
+		x = width;
+	if (y < 0)
+		y = 0;
+	else if (y > height)
+		y = height;
+
+	//bring windowed coord system to -1 to 1 coord system
+	float Xpercent = MapValue(x, 0.0f, (float)width, -1.0f, 1.0f);
+	float Ypercent = MapValue(y, 0.0f, (float)height, 1.0f, -1.0f);
+	
+	//get how many degrees were gonna be rotating with
+	XRotation = XRotation + (Xpercent * 5);
+	YRotation = YRotation + (Ypercent * 5);
+
+	if (YRotation > 90)
+		YRotation = 90;
+	else if (YRotation < -90)
+		YRotation = -90;
+
+	lookHelp.x = cos(XRotation * (PI / 180.0f));
+	lookHelp.y = sin(YRotation * (PI / 180.0f));
+	lookHelp.z = sin(XRotation * (PI / 180.0f));
+
+	lookDir.y = playerLoc.y + lookHelp.y;
+	lookDir.z = playerLoc.z + lookHelp.z;
+	lookDir.x = playerLoc.x + lookHelp.x;
+
+	//std::cout << "PlayerLoc: " << playerLoc.x << "," << playerLoc.y << "," << playerLoc.z << std::endl;
+	//std::cout << "LookDir: " << lookDir.x << "," << lookDir.y << "," << lookDir.z << std::endl;
+	//std::cout << "LookHelp: " << lookHelp.x << "," << lookHelp.y << "," << lookHelp.z << std::endl;
+
+	m_pCameraMngr->SetPositionTargetAndView(playerLoc, lookDir, REAXISY, -1);
 	
 	if(sf::Mouse::isButtonPressed(sf::Mouse::Button::Middle))
 		m_bArcBall = true;

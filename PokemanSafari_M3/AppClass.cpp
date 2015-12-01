@@ -11,6 +11,18 @@ void AppClass::InitWindow(String a_sWindowName)
 
 void AppClass::InitVariables(void)
 {
+	//initializing window variables
+	height = ReEngAppClass::m_pWindow->GetHeight();//Window Height
+	width = ReEngAppClass::m_pWindow->GetWidth();//Window Width
+	halfHeight = height / 2;
+	halfWidth = width / 2;
+	const HWND hDesktop = GetDesktopWindow();
+	GetWindowRect(hDesktop, &desktop);
+	widthW = desktop.right; //Screen Width
+	heightW = desktop.bottom; //Screen Height
+	windowOffsetX = (widthW - width) / 2;
+	windowOffsetY = (heightW - height) / 2;
+	
 	m_pScoreMngr = ScoreManager::GetInstance();
 	m_pBOMngr = MyBOManager::GetInstance();
 	m_pEntityMngr = MyEntityManager::GetInstance();
@@ -20,7 +32,7 @@ void AppClass::InitVariables(void)
 	railCamIndex = m_pCameraMngr->AddCamera(vector3(0.0f, 0.0f, 5.0f),
 		                     vector3(0.0f, 0.0f, 0.0f),
 		                     vector3(0.0f, 1.0f, 0.0f));
-	
+
 
 	m_pLightMngr->AddLight(vector3(5.5f,10.0f,10.0f));
 
@@ -66,6 +78,11 @@ void AppClass::InitVariables(void)
 	c_pika_01 = (Character*)m_pEntityMngr->GetEntity("Pikachu");
 	c_pika_01->SetPosition(m_v3PosPika);
 
+	//Setting mouse to center of the screen
+	sf::Mouse::setPosition(sf::Vector2i(widthW / 2, heightW / 2));
+	XRotation = 0;
+	YRotation = 0;
+
 }
 
 void AppClass::ThrowPokecube()
@@ -104,10 +121,10 @@ void AppClass::UpdatePlayerCamera()
 
 		matrix4 camView = glm::transpose(m_pCameraMngr->GetViewMatrix(-1));
 		vector3 playerLoc = c_player->GetLocation();
-		vector3 camZ = vector3(camView[2][0], camView[2][1], camView[2][2]);
+		//vector3 camZ = vector3(camView[2][0], camView[2][1], camView[2][2]);
 
-		vector3 camLoc = m_pCameraMngr->GetPosition();
-		vector3 dif = playerLoc - camLoc;
+		//vector3 camLoc = m_pCameraMngr->GetPosition();
+		//vector3 dif = playerLoc - camLoc;
 		//printf("PlayerPos x[%f] y[%f] z[%f]\n",playerLoc[0],playerLoc[1],playerLoc[2]);
 		//printf("CameraPos x[%f] y[%f] z[%f]\n", camLoc[0], camLoc[1], camLoc[2]);
 		//printf("Diff x[%f] y[%f] z[%f]\n", dif[0], dif[1], dif[2]);
@@ -122,8 +139,12 @@ void AppClass::UpdatePlayerCamera()
 		//m_pCameraMngr->SetPosition(playerLoc);
 		//m_pCameraMngr->SetTarget(playerTarget);
 
+		////Ilans stuff///////////////////////////////////////////////
+		//int windowWidth = this->
+		//////////////////////////////////////////////////////////////
+
 		vector3 playerUp = vector3(camView[1][0], camView[1][1], camView[1][2]);
-		m_pCameraMngr->SetPositionTargetAndView(playerLoc, playerTarget, REAXISY, -1);
+		//m_pCameraMngr->SetPositionTargetAndView(playerLoc, playerTarget, REAXISY, -1);
 
 		//playerTarget = dif + (camZ);
 		//playerTarget[1] = [1];
@@ -228,6 +249,8 @@ void AppClass::Update(void)
 	//m_pMeshMngr->PrintLine(m_pSystem->GetAppName(), REYELLOW);
 	m_pMeshMngr->Print("FPS:");
 	m_pMeshMngr->Print(std::to_string(nFPS), RERED);
+	m_pMeshMngr->Print("YRotation:");
+	m_pMeshMngr->Print(std::to_string(YRotation), RERED);
 }
 
 void AppClass::Display(void)

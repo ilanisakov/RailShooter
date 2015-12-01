@@ -41,7 +41,7 @@ Character::Character(CHARACTER_TYPE type, String name, float time,
 	}
 
 	//getting constant track speed
-	this->speed = totalDistance / (lapTime * 60+1000);
+	this->speed = totalDistance / (lapTime * 60+2000);
 
 	it = path.begin();
 	dirIt = pathDirection.begin();

@@ -108,7 +108,7 @@ void AppClass::UpdatePlayerCamera()
 		//m_pCameraMngr->SetTarget(playerTarget);
 
 		vector3 playerUp = vector3(camView[1][0], camView[1][1], camView[1][2]);
-		m_pCameraMngr->SetPositionTargetAndView(playerLoc, playerTarget, REAXISY, -1);
+		//m_pCameraMngr->SetPositionTargetAndView(playerLoc, playerTarget, REAXISY, -1);
 		//m_pCameraMngr->CalculateView();
 		//m_pCameraMngr->CalculateProjection();
 		//matrix4 temp;
