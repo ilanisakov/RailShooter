@@ -73,7 +73,7 @@ void ScoreManager::GetReport()
 
 void ScoreManager::Update()
 {
-	char buff[10];
+	char buff[19];
 	sprintf(buff, "Score: %d", scoreCount);
 	m_pMeshMngr->PrintLine(buff, REYELLOW);
 }
@@ -84,6 +84,19 @@ void ScoreManager::Update()
 void ScoreManager::Increment()
 {
 	scoreCount++;
+}
+
+void ScoreManager::AddScore(int score)
+{
+	scoreCount += score;
+	scoreObjects.push_back(score);
+}
+
+void ScoreManager::DeductScore()
+{
+	int i = rand() % (scoreObjects.size() - 1);
+	scoreCount -= scoreObjects.at(i);
+	scoreObjects.erase(scoreObjects.begin()+i);
 }
 
 /////////////////////////////////////////////////////////////////////

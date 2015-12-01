@@ -104,11 +104,29 @@ void MyEntityClass::Update(void)
 void MyEntityClass::ApplyCollision(MyEntityClass* other)
 {
 	//std::cout << m_sName << " do something about it\n";
+	//if (!m_bHitReg)
+	//{
+	//	m_pScoreMngr->Increment();
+	//	m_bHitReg = true;
+	//}
+
 	if (!m_bHitReg)
 	{
-		m_pScoreMngr->Increment();
+		int score = 100;
+		float otherVel = glm::length(other->m_v3Velocity);
+		printf("Velocity [%f]", otherVel);
+		if (otherVel < 1.0f && otherVel >= 0.5f)
+			score += 30;
+		else if (otherVel < 0.5f && otherVel >= 0.25f)
+			score += 15;
+		else if (otherVel < 0.25f && otherVel > 0.0f)
+			score += 5;
+
+		m_pScoreMngr->AddScore(score);
+
 		m_bHitReg = true;
 	}
+
 }
 
 void MyEntityClass::SetPosition(vector3 vPos)

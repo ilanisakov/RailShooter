@@ -60,6 +60,7 @@ class AppClass : public ReEngAppClass
 
 	//paths
 	std::vector<vector3> playerPath;
+	std::vector<vector3> pikachuPath;
 
 public:
 	typedef ReEngAppClass super;

@@ -59,7 +59,7 @@ void AppClass::InitVariables(void)
 	//ThrowPokecube();
 	
 
-	c_player = new Character(CT_PLAYER, "player", 20, playerPath);
+	c_player = new Character(CT_PLAYER, "player", 80, playerPath);
 
 
 	//vector3 camP = m_pCameraMngr->GetPosition(railCamIndex);
@@ -73,10 +73,10 @@ void AppClass::InitVariables(void)
 	//m_pCameraMngr->SetTarget(playerP + vector3(0.0f, 0.0f, -5.0f), railCamIndex);
 	//m_pCameraMngr->CalculateView();
 
-	m_pEntityMngr->AddEntity("Pikachu", CT_POKEMAN, 20, playerPath);
+	m_pEntityMngr->AddEntity("Pikachu", CT_POKEMAN, 5, pikachuPath);
 	//c_pika_01 = new Character(CT_POKEMAN, "Pikachu", 20, playerPath);
 	c_pika_01 = (Character*)m_pEntityMngr->GetEntity("Pikachu");
-	c_pika_01->SetPosition(m_v3PosPika);
+	//c_pika_01->SetPosition(m_v3PosPika);
 
 	//Setting mouse to center of the screen
 	sf::Mouse::setPosition(sf::Vector2i(widthW / 2, heightW / 2));
@@ -223,7 +223,7 @@ void AppClass::Update(void)
 	//m_pBOMngr->Update();
 
 	p_pokecube_01->Update();
-	c_pika_01->Update();
+	c_pika_01->UpdateLocation();
 
 	m_pEntityMngr->UpdateCollisions();
 	m_pEntityMngr->processCollisions("Pokecube");
@@ -286,14 +286,16 @@ void AppClass::Release(void)
 
 void AppClass::FillPath(void)
 {
+	/////////////////////////////////////////////////////////////////
 	//Player's Path
+	/////////////////////////////////////////////////////////////////
+	//going forward
 	playerPath.push_back(vector3(-54, -12, 90));
 	playerPath.push_back(vector3(-54, -12, -50));
 	playerPath.push_back(vector3(-10, -12,-50));
 	playerPath.push_back(vector3(-10, -12, 60));
 	playerPath.push_back(vector3(45, -12, 60));
 	playerPath.push_back(vector3(45, -12, -60));
-
 	//going backwards
 	playerPath.push_back(vector3(45, -12, 60));
 	playerPath.push_back(vector3(-10, -12, 60));
@@ -301,6 +303,11 @@ void AppClass::FillPath(void)
 	playerPath.push_back(vector3(-54, -12, -50));
 	playerPath.push_back(vector3(-54, -12, 89));
 
-
-
+	/////////////////////////////////////////////////////////////////
+	// Basic Pikachu Path
+	/////////////////////////////////////////////////////////////////
+	pikachuPath.push_back(vector3(-20.0f, -14.0f, -7.0f));
+	pikachuPath.push_back(vector3(-20.0f, -14.0f, 10.0f));
+	pikachuPath.push_back(vector3(-35.0f, -14.0f, 10.0f));
+	pikachuPath.push_back(vector3(-35.0f, -14.0f, -7.0f));
 }
