@@ -76,6 +76,25 @@ void ScoreManager::Update()
 	char buff[19];
 	sprintf(buff, "Score: %d", scoreCount);
 	m_pMeshMngr->PrintLine(buff, REYELLOW);
+
+	for (std::vector<SCORE_MSG*>::iterator it = scoreQueue.begin();
+		it != scoreQueue.end(); it++)
+	{
+		SCORE_MSG* msg = (*it);
+		if (msg->TTL == 0)
+		{
+
+			delete (*it);
+			scoreQueue.erase(it);
+
+			break;
+		}
+		else
+		{
+			msg->TTL--;
+			m_pMeshMngr->PrintLine(msg->msg, REGREEN);
+		}
+	}
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -86,10 +105,26 @@ void ScoreManager::Increment()
 	scoreCount++;
 }
 
-void ScoreManager::AddScore(int score)
+void ScoreManager::AddScore(int score, String name)
 {
 	scoreCount += score;
 	scoreObjects.push_back(score);
+
+	SCORE_MSG* msg = new SCORE_MSG;
+	msg->TTL = 270;
+	char buff[50];
+//TODO - fix name in manager
+	//sprintf(buff, "+%d (%s)", score, name.c_str());
+	sprintf(buff, "+%d (%s)", score, "Pokeman");
+	msg->msg = buff;
+
+	if (scoreQueue.size() == 5)
+	{
+		delete *(scoreQueue.begin());
+		scoreQueue.erase(scoreQueue.begin());
+	}
+
+	scoreQueue.push_back(msg);
 }
 
 void ScoreManager::DeductScore()

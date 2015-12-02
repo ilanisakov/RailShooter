@@ -104,6 +104,7 @@ void MyEntityClass::Update(void)
 void MyEntityClass::ApplyCollision(MyEntityClass* other)
 {
 	//std::cout << m_sName << " do something about it\n";
+	//std::cout << other->m_sName << "hit!\n";
 	//if (!m_bHitReg)
 	//{
 	//	m_pScoreMngr->Increment();
@@ -122,7 +123,10 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 		else if (otherVel < 0.25f && otherVel > 0.0f)
 			score += 5;
 
-		m_pScoreMngr->AddScore(score);
+		printf("Name[%s] Other[%s]", m_sName.c_str(),
+			other->m_sName.c_str());
+
+		m_pScoreMngr->AddScore(score, other->m_sName);
 
 		m_bHitReg = true;
 	}

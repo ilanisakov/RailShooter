@@ -21,8 +21,15 @@ class ScoreManager
 private:
 	static ScoreManager* inst;
 
+	typedef struct{
+		int           TTL;
+		ReEng::String msg;
+	} SCORE_MSG;
+	std::vector<SCORE_MSG*> scoreQueue;
+
 	int scoreCount;
 	std::vector<int> scoreObjects;
+
 	MeshManagerSingleton* m_pMeshMngr;
 
 	/////////////////////////////////////////////////////////////////
@@ -59,7 +66,7 @@ public:
 	/////////////////////////////////////////////////////////////////
 	// AddScore() - add the given amount to the score total and list
 	/////////////////////////////////////////////////////////////////
-	void AddScore(int scr);
+	void AddScore(int scr, String name);
 
 	/////////////////////////////////////////////////////////////////
 	//
