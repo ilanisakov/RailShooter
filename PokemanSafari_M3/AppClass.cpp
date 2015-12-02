@@ -43,11 +43,15 @@ void AppClass::InitVariables(void)
 	m_v3PosPokeCube = vector3(0.0f, 0.0f, 0.0f);
 	m_v3PosEnv = vector3(0.0f, -20.0f, 0.0f);
 	m_v3PosPika = vector3(-20.0f, -14.0f, -7.0f);
+	m_v3PosDiglett = vector3(-10, -20, -30);
 
 	//Load Models
 	m_pMeshMngr->LoadModel("PokemanSafari\\environment.obj", "Environment");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu.obj", "Pikachu");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett.obj", "Diglett");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett2.obj", "Diglett2");
+
 
 	m_pEntityMngr->AddEntity("Pokecube", PJ_POKECUBE);
 	//p_pokecube_01 = new Projectile(PJ_POKECUBE, "Pokecube");
@@ -74,8 +78,13 @@ void AppClass::InitVariables(void)
 	//m_pCameraMngr->CalculateView();
 
 	m_pEntityMngr->AddEntity("Pikachu", CT_POKEMAN, 5, pikachuPath);
+	m_pEntityMngr->AddEntity("Diglett", CT_POKEMAN,2, diglettPath);
+	m_pEntityMngr->AddEntity("Diglett2", CT_POKEMAN, 1, diglettPath2);
+
 	//c_pika_01 = new Character(CT_POKEMAN, "Pikachu", 20, playerPath);
 	c_pika_01 = (Character*)m_pEntityMngr->GetEntity("Pikachu");
+	c_diglett_01 = (Character*)m_pEntityMngr->GetEntity("Diglett");
+	c_diglett_02 = (Character*)m_pEntityMngr->GetEntity("Diglett2");
 	//c_pika_01->SetPosition(m_v3PosPika);
 
 	//Setting mouse to center of the screen
@@ -224,6 +233,9 @@ void AppClass::Update(void)
 
 	p_pokecube_01->Update();
 	c_pika_01->UpdateLocation();
+	c_diglett_01->UpdateLocation();
+	c_diglett_02->UpdateLocation();
+
 
 	m_pEntityMngr->UpdateCollisions();
 	m_pEntityMngr->processCollisions("Pokecube");
@@ -291,16 +303,16 @@ void AppClass::FillPath(void)
 	/////////////////////////////////////////////////////////////////
 	//going forward
 	playerPath.push_back(vector3(-54, -12, 90));
-	playerPath.push_back(vector3(-54, -12, -50));
-	playerPath.push_back(vector3(-10, -12,-50));
+	playerPath.push_back(vector3(-54, -12, -49));
+	playerPath.push_back(vector3(-10, -12,-49));
 	playerPath.push_back(vector3(-10, -12, 60));
 	playerPath.push_back(vector3(45, -12, 60));
 	playerPath.push_back(vector3(45, -12, -60));
 	//going backwards
 	playerPath.push_back(vector3(45, -12, 60));
 	playerPath.push_back(vector3(-10, -12, 60));
-	playerPath.push_back(vector3(-10, -12, -50));
-	playerPath.push_back(vector3(-54, -12, -50));
+	playerPath.push_back(vector3(-10, -12, -49));
+	playerPath.push_back(vector3(-54, -12, -49));
 	playerPath.push_back(vector3(-54, -12, 89));
 
 	/////////////////////////////////////////////////////////////////
@@ -310,4 +322,13 @@ void AppClass::FillPath(void)
 	pikachuPath.push_back(vector3(-20.0f, -14.0f, 10.0f));
 	pikachuPath.push_back(vector3(-35.0f, -14.0f, 10.0f));
 	pikachuPath.push_back(vector3(-35.0f, -14.0f, -7.0f));
+
+	/////////////////////////////////////////////////////////////////
+	// Basic Diglett Paths
+	/////////////////////////////////////////////////////////////////
+	diglettPath.push_back(vector3(-52.0f, -16.0f, -40.0f));
+	diglettPath.push_back(vector3(-52.0f, -20.0f, -40.0f));
+
+	diglettPath2.push_back(vector3(-52.0f, -20.0f, 5));
+	diglettPath2.push_back(vector3(-52.0f, -16.0f, 5));
 }

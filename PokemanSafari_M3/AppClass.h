@@ -47,11 +47,14 @@ class AppClass : public ReEngAppClass
 	
 	Projectile* p_pokecube_01;
 	Character* c_pika_01;
+	Character* c_diglett_01;
+	Character* c_diglett_02;
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
 	vector3 lookDir = vector3(0.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPokeCube = vector3( 0.0f, 0.0f, 0.0f);
 	vector3 m_v3PosPika;
+	vector3 m_v3PosDiglett;
 
 	//RailCamera
 	Character* c_player;
@@ -61,6 +64,8 @@ class AppClass : public ReEngAppClass
 	//paths
 	std::vector<vector3> playerPath;
 	std::vector<vector3> pikachuPath;
+	std::vector<vector3> diglettPath;
+	std::vector<vector3> diglettPath2;
 
 public:
 	typedef ReEngAppClass super;

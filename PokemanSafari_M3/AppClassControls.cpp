@@ -163,8 +163,8 @@ void AppClass::ProcessMouse(void)
 	float Ypercent = MapValue(y, 0.0f, (float)height, 1.0f, -1.0f);
 	
 	//get how many degrees were gonna be rotating with
-	XRotation = XRotation + (Xpercent * 5);
-	YRotation = YRotation + (Ypercent * 5);
+	XRotation = XRotation + (Xpercent * 1.1);
+	YRotation = YRotation + (Ypercent * 1.1);
 
 	if (YRotation > 90)
 		YRotation = 90;
