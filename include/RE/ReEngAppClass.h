@@ -1,6 +1,6 @@
 /*----------------------------------------------
 Programmer: Alberto Bobadilla (labigm@gmail.com)
-Date: 2015/10
+Date: 2015/05 (Last Modified on 2015/11)
 ----------------------------------------------*/
 #ifndef __REENGAPPCLASS_H_
 #define __REENGAPPCLASS_H_
@@ -9,6 +9,10 @@ Date: 2015/10
 #include <locale>
 #include <codecvt>
 #include <string>
+
+#ifndef FBXSDK_SHARED
+#define FBXSDK_SHARED
+#endif
 
 /* Winapi callback for the window */
 ReEngDLL LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
@@ -46,28 +50,25 @@ namespace ReEng
 
 		static ReEngAppClass* m_pSelfPointer; //Used for callbacks
 		/*
-		Method: Constructor
-		Usage: Initializes the object
-		Arguments: ReEngAppClass
-			HINSTANCE hInstance -> Instance of the window
-			LPWSTR lpCmdLine -> Command line
-			int nCmdShow -> Number or arguments
-			bool a_bConsole = false -> create command window flag
-		Output: instance object
+		USAGE: Initializes the object
+		ARGUMENTS: ReEngAppClass
+		- HINSTANCE hInstance -> Instance of the window
+		- LPWSTR lpCmdLine -> Command line
+		- int nCmdShow -> Number or arguments
+		- bool a_bConsole = false -> create command window flag
+		OUTPUT: instance object
 		*/
 		ReEngAppClass(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow, bool a_bConsole = false) : m_hInstance(hInstance), m_lpCmdLine(lpCmdLine), m_nCmdShow(nCmdShow), m_bUsingConsole(a_bConsole){}
 		/*
-		Method: Destructor
-		Usage: Destroys instance
-		Arguments: ---
-		Output: ---
+		USAGE: Destroys instance
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		~ReEngAppClass(void){ Release(); };
 		/*
-		Method: Run
-		Usage: Runs the main loop of this class DO NOT OVERRIDE
-		Arguments: ---
-		Output: ---
+		USAGE: Runs the main loop of this class DO NOT OVERRIDE
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Run(void) final
 		{
@@ -113,14 +114,13 @@ namespace ReEng
 			}
 		}
 		/*
-		Method: ProcessMessages
-		Usage: This will process windows messages received from the Windows callback
-		Arguments:
-			HWND hwnd -> Window handle
-			UINT msg -> message
-			WPARAM wParam ->  wParam
-			LPARAM lParam -> lParam
-		Output:
+		USAGE: This will process windows messages received from the Windows callback
+		ARGUMENTS:
+		- HWND hwnd -> Window handle
+		- UINT msg -> message
+		- WPARAM wParam ->  wParam
+		- LPARAM lParam -> lParam
+		OUTPUT:
 		*/
 		virtual LRESULT ProcessMessages(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 		{
@@ -148,26 +148,23 @@ namespace ReEng
 
 	private:
 		/*
-		Method: Copy Constructor
-		Usage: Cant be defined
-		Arguments:
-			ReEngAppClass const& input -> object to instance
-		Output: instance
+		USAGE: Can't be defined
+		ARGUMENTS:
+		- ReEngAppClass const& input -> object to instance
+		OUTPUT: instance
 		*/
 		ReEngAppClass(ReEngAppClass const& input);
 		/*
-		Method: Copy Assignment Operator
-		Usage: Cant be defined
-		Arguments:
-			ReEngAppClass const& input -> object to copy
-		Output: ---
+		USAGE: Cant be defined
+		ARGUMENTS:
+		- ReEngAppClass const& input -> object to copy
+		OUTPUT: ---
 		*/
 		ReEngAppClass& operator=(ReEngAppClass const& input);
 		/*
-		Method: Reshape
-		Usage: Resizes the window DO NOT OVERRIDE
-		Arguments: ---
-		Output: ---
+		USAGE: Resizes the window DO NOT OVERRIDE
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Reshape(void) final
 		{
@@ -178,14 +175,13 @@ namespace ReEng
 			glViewport(0, 0, nWidth, nHeight);//resize the viewport
 		}
 		/*
-		Method: Init
-		Usage: Initializes the ReEng window and rendering context DO NOT OVERRIDE
-		Arguments:
-			HINSTANCE hInstance -> Window instance
-			LPWSTR lpCmdLine -> command arguments
-			int nCmdShow -> number or arguments
-			bool a_bUsingConsole -> console window creation flag
-		Output: ---
+		USAGE: Initializes the ReEng window and rendering context DO NOT OVERRIDE
+		ARGUMENTS:
+		- HINSTANCE hInstance -> Window instance
+		- LPWSTR lpCmdLine -> command arguments
+		- int nCmdShow -> number or arguments
+		- bool a_bUsingConsole -> console window creation flag
+		OUTPUT: ---
 		*/
 		virtual void Init(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow, bool a_bUsingConsole) final
 		{
@@ -275,12 +271,11 @@ namespace ReEng
 
 	protected:
 		/*
-		Method: ArcBall
-		Usage: Process the arcball of the scene, rotating an object in the center of it
-		a_fSensitivity is a factor of change DO NOT OVERRIDE
-		Arguments:
-			float a_fSensitivity = 0.1f -> indicates how fast the arcball is going to change
-		Output: ---
+		USAGE: Process the arcball of the scene, rotating an object in the center of it	a_fSensitivity is
+		a factor of change DO NOT OVERRIDE
+		ARGUMENTS:
+		- float a_fSensitivity = 0.1f -> indicates how fast the arcball is going to change
+		OUTPUT: ---
 		*/
 		virtual void ArcBall(float a_fSensitivity = 0.1f) final
 		{
@@ -330,11 +325,10 @@ namespace ReEng
 			//return qArcBall; // return the new quaternion orientation
 		}
 		/*
-		Method: CameraRotation
-		Usage: Manages the rotation of the camera a_fSpeed is a factor of change DO NOT OVERRIDE
-		Arguments:
-			float a_fSpeed = 0.005f
-		Output: ---
+		USAGE: Manages the rotation of the camera a_fSpeed is a factor of change DO NOT OVERRIDE
+		ARGUMENTS:
+		- float a_fSpeed = 0.005f
+		OUTPUT: ---
 		*/
 		virtual void CameraRotation(float a_fSpeed = 0.005f) final
 		{
@@ -379,14 +373,13 @@ namespace ReEng
 			//Change the Yaw and the Pitch of the camera
 			m_pCameraMngr->ChangeYaw(fAngleY * 3.0f);
 			m_pCameraMngr->ChangePitch(-fAngleX * 3.0f);
-			//SetCursorPos(CenterX, CenterY);//Position the mouse in the center
+			SetCursorPos(CenterX, CenterY);//Position the mouse in the center
 		}
 		/*
-		Method: InitWindow
-		Usage: Initialize ReEng variables necessary to create the window
-		Arguments:
-			String a_sWindowName = "ReEng" -> Window name
-		Output: ---
+		USAGE: Initialize ReEng variables necessary to create the window
+		ARGUMENTS:
+		- String a_sWindowName = "ReEng" -> Window name
+		OUTPUT: ---
 		*/
 		virtual void InitWindow(String a_sWindowName = "ReEng")
 		{
@@ -408,10 +401,9 @@ namespace ReEng
 			m_v4ClearColor = vector4(0.4f, 0.6f, 0.9f, 0.0f);
 		}
 		/*
-		Method: ReadConfig
-		Usage: Reads the configuration of the application to a file
-		Arguments: ---
-		Output: ---
+		USAGE: Reads the configuration of the application to a file
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void ReadConfig(void)
 		{
@@ -533,10 +525,9 @@ namespace ReEng
 			reader.CloseFile();
 		}
 		/*
-		Method: WriteConfig
-		Usage: Writes the configuration of the application to a file
-		Arguments: ---
-		Output: ---
+		USAGE: Writes the configuration of the application to a file
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void WriteConfig(void)
 		{
@@ -595,29 +586,24 @@ namespace ReEng
 			fclose(pFile);
 		}
 		/*
-		Method: InitVariables
-		Usage:	Initializes user specific variables, this is executed right after InitApplicationVariables,
-				the purpose of this member function is to initialize member variables specific for this lesson
-		Arguments: ---
-		Output: ---
+		USAGE: Initializes user specific variables, this is executed right after InitApplicationVariables,
+		the purpose of this member function is to initialize member variables specific for this lesson.
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void InitVariables(void){}
-
 		/*
-		Method: SetMaxFramerate
-		Usage:	Will initialize the maximum frame rate and the max delta frame 
-		Arguments: 
-			float a_fMaxFrameRate -> maximum frame rate the system can execute
-		Output: ---
+		USAGE:	Will initialize the maximum frame rate and the max delta frame 
+		ARGUMENTS: 
+		- float a_fMaxFrameRate -> maximum frame rate the system can execute
+		OUTPUT: ---
 		*/
 		virtual void SetMaxFramerate(float a_fFrameRateLimit) final { m_dMinDelta = 1.0f / a_fFrameRateLimit; }
-
 		/*
-		Method: Release
-		Usage: Releases the application
+		USAGE: Releases the application
 		IF INHERITED AND OVERRIDEN MAKE SURE TO RELEASE BASE POINTERS (OR CALL BASED CLASS RELEASE)
-		Arguments: ---
-		Output: ---
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Release(void)
 		{
@@ -626,10 +612,9 @@ namespace ReEng
 			ReleaseAllSingletons();
 		}
 		/*
-		Method: Update
-		Usage: Updates the scene
-		Arguments: ---
-		Output: ---
+		USAGE: Updates the scene
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Update(void)
 		{
@@ -657,10 +642,9 @@ namespace ReEng
 			m_pMeshMngr->Print(std::to_string(nFPS), RERED);
 		}
 		/*
-		Method: Display
-		Usage: Displays the scene
-		Arguments: ---
-		Output: ---
+		USAGE: Displays the scene
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Display(void)
 		{
@@ -688,31 +672,27 @@ namespace ReEng
 			m_pGLSystem->GLSwapBuffers(); //Swaps the OpenGL buffers
 		}
 		/*
-		Method: Idle
-		Usage: Runs faster than the update
-		Arguments: ---
-		Output: ---
+		USAGE: Runs faster than the update
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void Idle(void) {}
 		/*
-		Method: ProcessKeyboard
-		Usage: Manage the response of key presses
-		Arguments: ---
-		Output: ---
+		USAGE: Manage the response of key presses
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void ProcessKeyboard(void){}
 		/*
-		Method: ProcessMouse
-		Usage: Manage the response of key presses and mouse position
-		Arguments: ---
-		Output: ---
+		USAGE: Manage the response of key presses and mouse position
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void ProcessMouse(void){}
 		/*
-		Method: ProcessJoystick
-		Usage: Manage the response of gamepad controllers
-		Arguments: ---
-		Output: ---
+		USAGE: Manage the response of gamepad controllers
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		virtual void ProcessJoystick(void){}
 	};

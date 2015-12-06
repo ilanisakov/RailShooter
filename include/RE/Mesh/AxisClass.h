@@ -26,46 +26,46 @@ class ReEngDLL AxisClass
 	PrimitiveManagerSingleton* m_pPrimitiveMngr = nullptr;
 public:
 	/*
-	Method: AxisClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 AxisClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	AxisClass(void);
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	AxisClass(AxisClass const& other);
 	/* Copy Assignment Operator	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	AxisClass& operator=(AxisClass const& other);
 	/*	Destructor	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~AxisClass(void);
 
 	/* Gets the "ModelToWorld" matrix associated with the bounding box */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	matrix4 GetModelMatrix(void);
 	/* Sets the "ModelToWorld" matrix associated with the bounding box */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(matrix4 a_m4ToWorld);
 	/* "ModelToWorld"
@@ -76,9 +76,9 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisible(bool a_bVisible);
 	/* Property:
@@ -89,9 +89,9 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleOrigin(bool a_bVisible);
 	/* Property:
@@ -102,9 +102,9 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisiblePivot(bool a_bVisible);
 	/* Property:
@@ -115,9 +115,9 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleCentroid(bool a_bVisible);
 	/* Property:
@@ -125,21 +125,21 @@ public:
 	//__declspec(property(put = SetVisibleCentroid)) bool VisibleCentroid;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetCentroid(vector3 a_v3Centroid);
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPivot(vector3 a_v3Pivot);
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSize(float a_fSize);
 
@@ -148,18 +148,18 @@ public:
 			a_v3Color -> determinate the color of the box to be rendered, if REDEFAULT
 			it will render the shape in the constructed color (white) */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddToRenderList(bool bForceDraw = false);
 
 private:
 	/* Released Memory and objects allocated. */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 };

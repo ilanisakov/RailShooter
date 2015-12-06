@@ -25,110 +25,110 @@ class ReEngDLL ShaderManagerSingleton
 public:
 	/* Singleton accessor */
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static ShaderManagerSingleton* GetInstance();
 
 	/* Singleton Release */
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 	
 	/* Compiles a shader program and returns the OpenGL identifier */
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GLuint CompileShader(String a_sVertexShader, String a_sFragmentShader, String a_sName = "");
 
 	/* Asks the manager for the OpenGL identifier for the specified name*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GLuint GetShaderID(String a_sName);
 
 	/* Asks the manager for the OpenGL identifier for the specified index*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GLuint GetShaderID(int a_nIndex);
 
 	/* Ask for the Index in the vector of the specified shader name*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyShader(String a_sName);
 
 private:
 	/* Constructor */
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	ShaderManagerSingleton(void);
 
 	/* Copy Constructor */
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	ShaderManagerSingleton(ShaderManagerSingleton const& other);
 
 	/* Copy Assignment Operator */
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	ShaderManagerSingleton& operator=(ShaderManagerSingleton const& other);
 
 	/* Destructor */
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~ShaderManagerSingleton(void);
 
 	/* Release Memory */
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/* Initialize variables */
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

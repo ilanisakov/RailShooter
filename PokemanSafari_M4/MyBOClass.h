@@ -25,6 +25,9 @@ class MyBOClass
 
 	float m_fRadius = 0.0f; //Radius of the Bounding Object
 
+	String m_sName = "";
+	int m_nStoredIndex;
+
 public:
 	/*
 	Method: MyBOClass
@@ -32,7 +35,7 @@ public:
 	Arguments: ---
 	Output: class object
 	*/
-	MyBOClass(std::vector<vector3> a_lVectorList);
+	MyBOClass(std::vector<vector3> a_lVectorList, String name);
 	/*
 	Method: MyBOClass
 	Usage: Copy Constructor
@@ -120,6 +123,13 @@ public:
 	Output: vector3 -> HalfWidth Vector
 	*/
 	vector3 GetHalfWidthG(void);
+
+	vector3 GetMaxG();
+	vector3 GetMinG();
+
+	String GetName();
+	void SetStoredIndex(int idx);
+	int GetStoredIndex();
 
 	/*
 	Method: IsColliding

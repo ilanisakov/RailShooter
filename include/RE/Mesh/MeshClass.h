@@ -46,416 +46,309 @@ protected:
 	std::vector<vector3> m_lVertexNor;	//List of Normals
 	std::vector<vector3> m_lVertexTan;	//List of Tangents
 	std::vector<vector3> m_lVertexBin;	//List of Binormals
-	std::vector<vector3> m_lVertexUV;		//List of UVS
+	std::vector<vector3> m_lVertexUV;	//List of UVS
 	
 public:
 	/*
-	Method: MeshClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	MeshClass(void);
-	/* Copy Constructor */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	USAGE:Copy Constructor
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshClass(MeshClass const& other);
-	/* Copy Assignment Operator*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	USAGE: Copy Assignment Operator
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshClass& operator=(MeshClass const& other);
-	/* Destructor */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Destructor
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MeshClass(void);
-
-	/* Swaps the contents of the object with another object's content */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Swaps the contents of the object with another object's content
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Swap(MeshClass& other);
-
-	/* Compiles the Mesh for OpenGL 3.X use*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Compiles the Mesh for OpenGL 3.X use
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CompileOpenGL3X(void);
-
-	/* Asks the Mesh if it has been binded */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the Mesh if it has been binded
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetBinded(void);
-
-	/* Set the shader to the newly loaded shader */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Set the shader to the newly loaded shader
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sVertexShaderName, String a_sFragmentShaderName, String a_sShaderName, vector3 a_v3Tint = REDEFAULT);
-
-	/* Sets the shader of the Shape to a loaded shader */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Sets the shader of the Shape to a loaded shader
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sShaderName = "Original", vector3 a_v3Tint = REDEFAULT);
-	
-	/* Sets the material of the shape by name */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Sets the material of the shape by name
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetMaterial(String a_sMaterialName);
-
-	/* Returns the total number of vertices in this Mesh */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Returns the total number of vertices in this Mesh
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetVertexCount(void);
-
-	/* Sets the material index by index in the material manager */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Sets the material index by index in the material manager
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetMaterialIndex(int a_nIndex);
-	/* Gets the material used in the shape by index of the material manager */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Gets the material used in the shape by index of the material manager
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetMaterialIndex(void);
-	
-	/* Asks the mesh for the Shader program used */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the mesh for the Shader program used
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetShaderIndex(void);
-
-	/* Adds a new point to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new point to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexPosition(vector3 a_v3Input);
-
-	/* Adds a new color to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new color to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexColor(vector3 a_v3Input);
-
-	/* Adds a new normal to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new normal to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexNormal(vector3 a_v3Input);
-
-	/* Adds a new binormal to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new binormal to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexBinormal(vector3 a_v3Input);
-
-	/* Adds a new tangent to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new tangent to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexTangent(vector3 a_v3Input);
-
-	/* Adds a new uv to the vector of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Adds a new uv to the vector of vertices
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddVertexUV(vector3 a_v3Input);
-
-	/* Asks the shape for the list of vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of vertices
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetVertexList(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	void SetVertexList(std::vector<vector3> a_lVertex);
-
-	/* Asks the shape for the list of Color vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of Color vertices
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetColor(void);
-
-	/* Asks the shape for the list of UV vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of UV vertices
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetUVs(void);
-
-	/* Asks the shape for the list of Normal vertices */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of Normal vertices
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetNormals(void);
-
-	/* Asks the shape for the list of tangents */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of tangents
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetTangents(void);
-
-	/* Asks the shape for the list of bitangents */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the shape for the list of bitangents
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetBitangets(void);
-
-	/* Return the tint applied to the mesh */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Return the tint applied to the mesh
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetTint(void);
-
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVertexBuffer(GLuint a_nIndex);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetVertexBuffer(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetUVBuffer(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetColorBuffer(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetNormalBuffer(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetTangentBuffer(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint GetBinormalBuffer(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsWire(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	uint GetColorSize(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetFirstColor(void);
-
-	/* Asks the Mesh for its name */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	USAGE: Asks the Mesh for its name
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetName(void);
-	/* Sets the Mesh's name */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Sets the Mesh's name
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	virtual void SetName(String a_sName);
-
 	/*
-	Method: RenderMeshWire
-	Usage:
-	Arguments:
+	USAGE:
+	ARGUMENTS:
 		MeshClass* a_pMesh
 		matrix4 a_mViewProjection
 		matrix4 a_mToWorld
 		vector3 a_v3Color
-	Output: ---
+	OUTPUT: ---
 	*/
 	virtual void RenderWire(matrix4 a_mViewProjection, matrix4 a_mToWorld, vector3 a_v3Color);
 	/*
-	Method: RenderMeshSolid
-	Usage:
-	Arguments:
+	USAGE:
+	ARGUMENTS:
 		MeshClass* a_pMesh
 		matrix4 a_mViewProjection
 		matrix4 a_mToWorld
 		vector3 a_v3Color
-	Output: ---
+	OUTPUT: ---
 	*/
 	virtual void RenderSolid(matrix4 a_mViewProjection, matrix4 a_mToWorld, vector3 a_v3Color);
 
 protected:
-	/* Initialize the object's fields */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Initialize the object's fields
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
-	/* Releases the object from memory */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Releases the object from memory
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
-	/* Completes the information missing to create the mesh */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Completes the information missing to create the mesh
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CompleteMesh(void);
-	/* Disconnects OpenGL3.x from the Mesh without releasing the buffers*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Disconnects OpenGL3.x from the Mesh without releasing the buffers
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void DisconnectOpenGL3X(void);
 
 public:
-	/* Completes the triangle information */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	USAGE: Completes the triangle information
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void CompleteTriangleInfo(bool a_bAverageNormals = false);
 
-	/* Calculates the missing tangets */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	USAGE: Calculates the missing tangets
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CalculateTangents(void);
 };

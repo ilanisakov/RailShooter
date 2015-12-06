@@ -22,166 +22,166 @@ class ReEngDLL SequenceClass
 	
 public:
 	/*
-	Method: Sequenceclass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 Sequenceclass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	SequenceClass();	//Constructor
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	SequenceClass(String a_sName, int a_nID, int a_nFirstFrame, int a_nLastFrame, int a_nFrameRate);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	SequenceClass(const SequenceClass& other);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	SequenceClass& operator=(const SequenceClass& other);;
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	~SequenceClass();	//Destructor
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Init();		//Initialices variable values
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Release();		//Releases the memory and deallocate space.
 	
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetID(int a_nID);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int getID(void);
 	//__declspec(property(put = SetID, get = GetID)) int ID;
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetName(String a_sName);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetName(void);
 	//__declspec(property(put = SetName, get = GetName)) String Name;
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetFirstFrame(int a_nFirstFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFirstFrame(void);
 	//__declspec(property(put = SetFirstFrame, get = GetFirstFrame)) int FirstFrame;
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetLastFrame(int a_nLastFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetLastFrame(void);
 	//__declspec(property(put = SetLastFrame, get = GetLastFrame)) int LastFrame;
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetDirectAnimation(bool a_bDirectAnimation);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsDirectAnimation(void);
 	//__declspec(property(put = SetDirectAnimation, get = IsDirectAnimation)) bool DirectAnimation;
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void setFrameRate(int a_nFrameRate);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFrameRate(void);
 	//__declspec(property(put = SetFrameRate, get = GetFrameRate)) int FrameRate;
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFrameCount(void);
 
 private:
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Swap(SequenceClass& other);
 };

@@ -25,153 +25,153 @@ class ReEngDLL StateClass
 	String m_sName;
 public:
 	/*
-	Method: Stateclass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 Stateclass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	StateClass();	//Constructor
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	StateClass(String a_sName, int a_nSequence = 0, bool a_bBreakableState = false, bool a_bTransitionState = false, bool a_bRepeatSequence = false);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	StateClass(const StateClass& other);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	StateClass& operator=(const StateClass& other);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	~StateClass();	//Destructor
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Init();		//Initialices variable values
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Release();		//Releases the memory and deallocate space.
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetName(String a_sName);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetName(void);
 	//__declspec(property(put = SetName, get = GetName)) String Name;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetSequence(int a_nSequence);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetSequence(void);
 	//__declspec(property(put = SetSequence, get = GetSequence)) int Sequence;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetBreakable(bool a_bRepeatSequence);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetBreakable(void);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetRepeatSequence(bool a_bRepeatSequence);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetRepeatSequence(void);
 	//__declspec(property(put = SetRepeatSequence, get = GetRepeatSequence)) bool RepeatSequence;
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetNumberOfExits(void);
 	//__declspec(property(get = GetNumberOfExists)) int Exits;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int AddExit(StateClass* a_pState);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int GetExitIndex(StateClass* a_pState);
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsTransitionState(void);
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	StateClass* GetAutoExit(void);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	StateClass* GetExit(int a_nIndex);
 
 private:
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void Swap(StateClass& other);
 };

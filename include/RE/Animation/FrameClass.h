@@ -21,45 +21,45 @@ class ReEngDLL FrameClass
 public:
 	
 	/*
-	Method: FrameClass
-	Usage: constructor
-	Arguments: ---
-	Output:
+	 FrameClass
+	USAGE: constructor
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	FrameClass();
 	/*
-	Method: FrameClass
-	Usage: Copy Constructor
-	Arguments:
-	Output:
+	 FrameClass
+	USAGE: Copy Constructor
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	FrameClass(const FrameClass& other);
 	/*
-	Method: operator=
-	Usage: Copy Assignment Operator
-	Arguments:
-	Output:
+	 operator=
+	USAGE: Copy Assignment Operator
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	virtual FrameClass& operator=(const FrameClass& other);
 	/*
-	Method: ~FrameClass
-	Usage: Destructor
-	Arguments:  ---
-	Output: ---
+	 ~FrameClass
+	USAGE: Destructor
+	ARGUMENTS:  ---
+	OUTPUT: ---
 	*/
 	~FrameClass(void);
 	/*
-	Method: GetTransformation
-	Usage:
-	Arguments: ---
-	Output:
+	 GetTransformation
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	matrix4 GetTransformation(void);
 	/*
-	Method: ComputeTransformation
-	Usage:
-	Arguments:
-	Output:
+	 ComputeTransformation
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	matrix4 ComputeTransformation(	vector3 a_v3Translation,
 									vector3 a_v3Pivot,
@@ -69,192 +69,192 @@ public:
 									bool a_bKeyFrame,
 									matrix4 a_m4ToParent = matrix4(1.0f));
 	/*
-	Method: ComputeTransformation
-	Usage:
-	Arguments:
-	Output:
+	 ComputeTransformation
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	matrix4 ComputeTransformation(matrix4 a_m4ToParent);
 	/*
-	Method: ComputeTransformation
-	Usage:
-	Arguments:
-	Output:
+	 ComputeTransformation
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	matrix4 ComputeTransformation(vector3 a_v3Pivot);
 	/*
-	Method: IsKeyframe
-	Usage:
-	Arguments: ---
-	Output:
+	 IsKeyframe
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsKeyframe(void);
 	/*
-	Method: SetVisible
-	Usage:
-	Arguments: ---
-	Output:
+	 SetVisible
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	void SetVisible(bool a_bVisible);
 	/*
-	Method: IsVisible
-	Usage:
-	Arguments: ---
-	Output:
+	 IsVisible
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsVisible(void);
 	/*
-	Method: SetKeyframe
-	Usage:
-	Arguments: ---
-	Output:
+	 SetKeyframe
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	void SetKeyframe(bool a_bKeyframe);
 	/*
-	Method: SetPosX
-	Usage:
-	Arguments:
-	Output: ---
+	 SetPosX
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosX( float a_fValue );
 	/*
-	Method: SetPosY
-	Usage:
-	Arguments:
-	Output: ---
+	 SetPosY
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosY( float a_fValue );
 	/*
-	Method: SetPosZ
-	Usage:
-	Arguments:
-	Output: ---
+	 SetPosZ
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosZ( float a_fValue );
 	/*
-	Method: SetAngX
-	Usage:
-	Arguments:
-	Output: ---
+	 SetAngX
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngX( float a_fValue );
 	/*
-	Method: SetAngY
-	Usage:
-	Arguments:
-	Output: ---
+	 SetAngY
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngY( float a_fValue );
 	/*
-	Method: SetAngZ
-	Usage:
-	Arguments:
-	Output: ---
+	 SetAngZ
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngZ( float a_fValue );
 	/*
-	Method: SetSizeX
-	Usage:
-	Arguments:
-	Output: ---
+	 SetSizeX
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeX( float a_fValue );
 	/*
-	Method: SetSizeY
-	Usage:
-	Arguments:
-	Output: ---
+	 SetSizeY
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeY( float a_fValue );
 	/*
-	Method: SetSizeZ
-	Usage:
-	Arguments:
-	Output: ---
+	 SetSizeZ
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeZ( float a_fValue );
 	/*
-	Method: GetPos
-	Usage: Gets the Position
-	Arguments:
-	Output: ---
+	 GetPos
+	USAGE: Gets the Position
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	vector3 GetPos(void);
 	/*
-	Method: GetAng
-	Usage: Gets the Rotation
-	Arguments: ---
-	Output:
+	 GetAng
+	USAGE: Gets the Rotation
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetAng(void);
 	/*
-	Method: GetSize
-	Usage: Gets the Scale
-	Arguments: ---
-	Output:
+	 GetSize
+	USAGE: Gets the Scale
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetSize(void);
 	/*
-	Method: GetPosX
-	Usage:
-	Arguments: ---
-	Output:
+	 GetPosX
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetPosX( void );
 	/*
-	Method: GetPosY
-	Usage:
-	Arguments: ---
-	Output:
+	 GetPosY
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetPosY( void );
 	/*
-	Method: GetPosZ
-	Usage:
-	Arguments: ---
-	Output:
+	 GetPosZ
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetPosZ( void );
 	/*
-	Method: GetAngX
-	Usage:
-	Arguments: ---
-	Output:
+	 GetAngX
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetAngX( void );
 	/*
-	Method: GetAngY
-	Usage:
-	Arguments: ---
-	Output:
+	 GetAngY
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetAngY( void );
 	/*
-	Method: GetAngZ
-	Usage:
-	Arguments: ---
-	Output:
+	 GetAngZ
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetAngZ( void );
 	/*
-	Method: GetSizeX
-	Usage:
-	Arguments: ---
-	Output:
+	 GetSizeX
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetSizeX( void );
 	/*
-	Method: GetSizeY
-	Usage:
-	Arguments: ---
-	Output:
+	 GetSizeY
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetSizeY( void );
 	/*
-	Method: GetSizeZ
-	Usage:
-	Arguments: ---
-	Output:
+	 GetSizeZ
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetSizeZ( void );
 };

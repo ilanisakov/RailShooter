@@ -31,6 +31,7 @@ private:
 //TODO COMMENTS..............
 	MyBOManager* m_pBOMngr;
 
+	
 
 	MyEntityManager();
 
@@ -54,6 +55,9 @@ public:
 	int AddEntity(String name, ET_TYPE type);
 	int AddEntity(String name, ET_TYPE type,
 		float time, std::vector<vector3> movementPath);
+
+	int AddEntity(String name, ET_TYPE type, std::vector<vector3> verts);
+
 	int AddEntity(MyEntityClass* entity, String name);
 
 	MyEntityClass* GetEntity(String name);
@@ -62,13 +66,15 @@ public:
 
 	int GetEntityCount();
 
+	void SetRenderGeometry(bool display);
+
 	void processCollisions(String name);
 	void processCollisions(int idx);
 
 	void Update();
-
     void UpdateCollisions();
 
+	
 };
 
 

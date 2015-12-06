@@ -7,6 +7,8 @@ Date: 2015/06
 
 #include "MyBOClass.h"
 
+#include "MyOctTree.h"
+
 //System Class
 class MyBOManager
 {
@@ -16,6 +18,9 @@ class MyBOManager
 	MeshManagerSingleton* pMeshMngr;//Mesh Manager Singleton
 	std::vector<std::vector<int>> m_llCollidingIndices; //List of list of colliding indices.
 	std::map<String, uint> m_mapIndex;//Map relating the mesh and the index
+
+	MyOctTree* m_pOctTree = nullptr;
+
 public:
 	/*
 	Method: GetInstance
@@ -134,6 +139,11 @@ public:
 	*/
 	void Update(void);
 	
+	void UpdateTree(String name);
+
+	void InitOctTree(int depth);
+	void DisplayOctTree();
+
 private:
 	/*
 	Method: Constructor

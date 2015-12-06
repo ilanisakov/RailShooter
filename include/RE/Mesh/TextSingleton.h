@@ -48,104 +48,104 @@ namespace ReEng
 	public:
 		/* Gets/Constructs the singleton pointer */
 		/*
-		Method: Usage:
-		Arguments:
-		Output:
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT:
 		*/
 		static TextSingleton* GetInstance();
 		/* Destroys the singleton */
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		static void ReleaseInstance(void);
 		
 		/* Compiles the Mesh for OpenGL 3.X use*/
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		void CompileOpenGL3X(void);
 		
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		void Render(void);
 
 		/*
-		Method: Usage:
-		Arguments:
-		Output: ---
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT: ---
 		*/
 		void AddString(String a_sString, vector3 a_v3Color = REWHITE);
 
 		/*
-		Method: Usage:
-		Arguments:
-		Output: ---
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT: ---
 		*/
 		void SetFont(String a_sTextureName);
 
 	protected:
 		/* Constructor */
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output:
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT:
 		*/
 		TextSingleton(void);
 		/* Copy Constructor */
 		/*
-		Method: Usage:
-		Arguments:
-		Output:
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT:
 		*/
 		TextSingleton(TextSingleton const& other);
 		/* Copy Assignment Operator*/
 		/*
-		Method: Usage:
-		Arguments:
-		Output:
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT:
 		*/
 		TextSingleton& operator=(TextSingleton const& other);
 		/* Destructor */
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		~TextSingleton(void);
 
 		/* Initialize the object's fields */
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		void Init(void);
 		/* Releases the object from memory */
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		void Release(void);
 
 		/*
-		Method: Usage:
-		Arguments: ---
-		Output: ---
+		 USAGE:
+		ARGUMENTS: ---
+		OUTPUT: ---
 		*/
 		void Reset(void);
 
 		/*
-		Method: Usage:
-		Arguments:
-		Output: ---
+		 USAGE:
+		ARGUMENTS:
+		OUTPUT: ---
 		*/
 		void AddCharacter(char a_cInput, vector3 a_v3Color = REWHITE);
 	};

@@ -78,6 +78,20 @@ int MyEntityManager::AddEntity(String name, ET_TYPE type,
 	return 1;
 }
 
+int MyEntityManager::AddEntity(String name, ET_TYPE type, std::vector<vector3> verts)
+{
+	MyEntityClass* ent = new MyEntityClass(name, type, verts);
+	//MyEntityClass* ent = new MyEntityClass(name);
+	if (ent == nullptr)
+		return 0;
+
+	m_lEntity.push_back(ent);
+	entMap[name] = m_nEntityCount;
+	m_nEntityCount++;
+	return 1;
+}
+
+//TODO FIXME ---BAD
 int MyEntityManager::AddEntity(MyEntityClass* entity, String name)
 {
 	if (entity == nullptr)
@@ -150,15 +164,25 @@ int MyEntityManager::GetIndex(String name)
 	return var->second;//Get the index
 }
 
+void MyEntityManager::SetRenderGeometry(bool display)
+{
+	for (uint i = 0; i < m_nEntityCount; i++)
+	{
+		m_lEntity[i]->SetRenderGeometry(display);
+	}
+}
+
 void MyEntityManager::Update()
 {
-	//Update the BO collisions
-	m_pBOMngr->Update();
 	//UPdate each entity
 	for (uint i = 0; i < m_nEntityCount; i++)
 	{
 		m_lEntity[i]->Update();
 	}
+
+	//Update the BO collisions
+	m_pBOMngr->Update();
+	
 }
 
 void MyEntityManager::UpdateCollisions()

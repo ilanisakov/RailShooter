@@ -18,93 +18,93 @@ class ReEngDLL ExampleSingleton
 	std::vector<int> m_lData; //list of elements
 public:
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static ExampleSingleton* GetInstance();
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetData(void);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetData(int a_nData = 1);
 	/* Property GetData/SetData */
 	//__declspec(property(get = GetData, put = SetData)) int Data;
 
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetDataOnVector(int a_nData);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int& GetDataOnVector(int a_nIndex);
 
 private:
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	ExampleSingleton(void);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	ExampleSingleton(ExampleSingleton const& other);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	ExampleSingleton& operator=(ExampleSingleton const& other);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~ExampleSingleton(void);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

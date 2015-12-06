@@ -96,6 +96,16 @@ MyEntityClass::MyEntityClass(String name, ET_TYPE type, float time, std::vector<
 		nextIt = path.begin();
 }
 
+MyEntityClass::MyEntityClass(String name, ET_TYPE type, std::vector<vector3> verts)
+{
+	Init();
+	m_sName = name;
+	this->type = type;
+	
+	m_pColliderManager->AddObject(verts, m_sName);
+	m_bCreated = true;
+}
+
 void MyEntityClass::Init(void)
 {
 	m_v3Position = vector3();
@@ -202,6 +212,11 @@ void MyEntityClass::ApplyForce(vector3 force)
 	m_v3Acceleration[2] += force[2] / m_fMass;
 }
 
+void MyEntityClass::SetRenderGeometry(bool display)
+{
+	m_bRenderGeo = display;
+}
+
 /////////////////////////////////////////////////////////////////////
 // SetAlive() - set wether projectile is alive
 /////////////////////////////////////////////////////////////////////
@@ -220,9 +235,11 @@ bool MyEntityClass::IsAlive()
 
 void MyEntityClass::Update()
 {
-	if (type & ET_CHARACTER)
+	if (type & ET_ENVIRONMENT)
+		UpdateMaster();
+	else if (type & ET_CHARACTER)
 		UpdateCharacter();
-	else
+	else if (type & ET_PROJECTILE)
 	    UpdateProjectile();
 
 }
@@ -246,6 +263,7 @@ void MyEntityClass::UpdateProjectile()
 	{
 		//move
 		MyEntityClass::UpdateMaster();
+		m_pColliderManager->UpdateTree(m_sName);
 	}
 }
 
@@ -255,12 +273,13 @@ void MyEntityClass::UpdateCharacter()
 
 	//MyEntityClass's Update
 	UpdateMaster();
+	m_pColliderManager->UpdateTree(m_sName);
 
 	//checking if it's time to move onto the next path segment
 	if (m_v3Position.x >= nextIt->x - offset && m_v3Position.x <= nextIt->x + offset){
 		if (m_v3Position.y >= nextIt->y - offset && m_v3Position.y <= nextIt->y + offset){
 			if (m_v3Position.z >= nextIt->z - offset && m_v3Position.z <= nextIt->z + offset){
-				std::cout << "SWITCH" << std::endl;
+//				std::cout << "SWITCH" << std::endl;
 				it++;
 				if (it == path.end())
 					it = path.begin();
@@ -289,7 +308,11 @@ void MyEntityClass::UpdateMaster()
 
 	int nIndex = m_pColliderManager->GetIndex(m_sName);
 	m_pColliderManager->SetModelMatrix(m4Mod, m_sName);
-	m_pColliderManager->DisplayReAlligned(nIndex);
+
+	if (m_bRenderGeo)
+	{
+		m_pColliderManager->DisplayReAlligned(nIndex);
+	}
 }
 
 
@@ -301,22 +324,52 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 
 	if (!m_bHitReg)
 	{
-		int score = 100;
-		float otherVel = glm::length(other->m_v3Velocity) *10.0f;
-		printf("Velocity [%f]\n", otherVel);
-		if (otherVel < 1.0f && otherVel >= 0.5f)
-			score += 30;
-		else if (otherVel < 0.5f && otherVel >= 0.25f)
-			score += 15;
-		else if (otherVel < 0.25f && otherVel > 0.0f)
-			score += 5;
+		if (other->type & ET_CHAR_POKEMAN)
+		{
+			int score = 100;
+			float otherVel = glm::length(other->m_v3Velocity) *10.0f;
+//			printf("Velocity [%f]\n", otherVel);
+			if (otherVel < 1.0f && otherVel >= 0.5f)
+				score += 30;
+			else if (otherVel < 0.5f && otherVel >= 0.25f)
+				score += 15;
+			else if (otherVel < 0.25f && otherVel > 0.0f)
+				score += 5;
 
-		//printf("Name[%s] Other[%s]", m_sName.c_str(),
-		//	other->m_sName.c_str());
+			//printf("Name[%s] Other[%s]", m_sName.c_str(),
+			//	other->m_sName.c_str());
 
-		m_pScoreMngr->AddScore(score, other->m_sName);
+			m_pScoreMngr->AddScore(score, other->m_sName);
 
-		m_bHitReg = true;
+			m_bHitReg = true;
+		}
+		else if (other->type & ET_ENVI_WALL)
+		{
+			//float x = glm::abs(m_v3Velocity[0]);
+			//float z = glm::abs(m_v3Velocity[2]);
+			//if (x > z)
+			//{
+			//	m_v3Velocity[2] *= -1.0f;
+			//}
+			//else
+			//{
+			//	m_v3Velocity[0] *= -1.0f;
+			//}
+			//m_v3Velocity[1] *= 2.0f;
+
+			//vector3 dir = this->m_v3Position - other->m_v3Position;
+			//dir = glm::normalize(dir);
+
+			//float theta = glm::acos(glm::dot(dir, vector3(0.0f, 0.0f, 1.0f)));
+			//printf("THeta %f\n", theta);
+			//if (theta )
+			
+			m_v3Velocity[0] *= -1.0f;
+			m_v3Velocity[2] *= -1.0f;
+
+			if (m_v3Velocity[1] > 0.0f)
+				m_v3Velocity[1] *= -2.0f;
+		}
 	}
 
 }

@@ -49,69 +49,69 @@ class ReEngDLL InstanceClass
 
 public:
 	/*
-	Method: InstanceClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 InstanceClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	InstanceClass(void);
 	/* Copy Constructor */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	InstanceClass(const InstanceClass& other);
 	/* Copy Assignment Operator */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	InstanceClass& operator=(const InstanceClass& other);
 	/* Destructor */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~InstanceClass(void);
 
 	//Accessors
 	/* Sets the Shader program */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sVertexShaderName, String a_sFragmentShaderName, String a_sShaderName, vector3 a_v3Tint = REDEFAULT);
 	/* Sets the shader program to a program already compiled */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sShaderName = "Original", vector3 a_v3Tint = REDEFAULT);
 
 	/* Sets the Model to World matrix of the instance*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(const matrix4 a_m4ToWorld = matrix4(1.0f));
 	/* Gets the model to World matrix from the instance*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	matrix4& GetModelMatrix(void);
 	/* Property SetModelMatrix/GetModelMatrix*/
@@ -119,104 +119,104 @@ public:
 
 	/* Set the name of the instance */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetName(String a_sName);
 	/* Gets the name of the specified group*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	String GetName(int nGroup = -1);
 
 	/* Sets the Hit Points of the instance*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetHP(int a_nHP);
 	/* Gets the Hit Points of the instance*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetHP(void);
 
 	/* Sets the instance to be collidable */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetCollidable(bool a_bCollidable);
 	/* Asks the instance if its collidable*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetCollidable(void);
 
 	/* Sets the visibility flag */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisible(bool a_bVisible);
 	/* Gets the visibility flag */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetVisible(void);
 
 	/* Set the visibility frag for the Frame Bounding object of the instance and the groups per name*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleFrameBO(bool a_bVisibleBO, String sIncludeGroup = "ALL");
 	/* Set the visibility frag for the Frame Bounding object of the instance and the groups per index*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleFrameBO(bool a_bVisibleBO, int a_nIncludeGroup = -1); //a_nIncludeGroup = -1 for all -2 for none
 
 	/* Set the visibility frag for the Grand Bounding object of the instance */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleGrandBO(bool a_bVisibleBO);
 
 	/* Set the visibility frag for the Axis of the instance and the groups*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleAxis(bool a_bVisibleAxis, bool a_bGroups = false);
 
@@ -224,10 +224,10 @@ public:
 		Gets the current state of the instance
 	*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetCurrentState(void);
 
@@ -235,10 +235,10 @@ public:
 		Asks if the model is in the last frame for its current state;
 	*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsInLastFrame(void);
 
@@ -246,260 +246,260 @@ public:
 		Plays the specified animation sequence
 	*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void PlayAnimation(int a_nSequenceIndex = -1);
 
 	/* Sets the next state of the instance */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetNextState(uint a_nNext);
 	/* Sets the current state of the instance (it forces the switch) */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetCurrentSate(uint a_nState);
 
 	/* Change the shader program of a group finding it by name */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetGroupShaderByName(String a_sProgramName = "Original", String a_sGroupName = "ALL", vector3 a_v3Tint = REDEFAULT);
 	/* Change the shader program of a group finding it by index */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetGroupShaderByNumber(String a_sProgramName = "Original", int nGroup = -1, vector3 a_v3Tint = REDEFAULT);
 	/* Change the material of a group finding it by name, the material needs to be already compiled */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetGroupMaterial(String a_sMaterialName, String a_sGroupName = "ALL");
 
 	/* Asks the instance what is the last drawn frame */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetLastFrameDrawn(void);
 
 	/* Asks the instance what is its the number of groups*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetGroupCount(void);
 
 	/* Asks the instance what is its number of frames */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFrameCount(void);
 
 	/* Asks the instance for the vertices of the whole model */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector3> GetVertexList(void);
 
 	/* Asks the instance for the Model for which it was instanciated from */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	ModelClass* GetModelInstanced(void);
 
 	/* Asks the instance for its Grand Bounding Object*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	BoundingObjectClass* GetGrandBoundingObject(void);
 
 	/* Asks the instance for its Frame Bounding Object*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	BoundingObjectClass* GetFrameBoundingObject(void);
 
 	/* Asks the instance for the collision list of the groups colliding with the incoming instance's groups */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	std::vector<vector2> GetCollisionList(InstanceClass* a_pInstance);
 
 	/* Sets the list of octants this instance is located on*/
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetOctantList(std::vector<int> a_lList);
 	
 	/* Creates an Instance of a previously loaded model */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void InstanceModel(ModelClass& a_Model);
 
 	/* Updates all the internal structures of the instance*/
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Update(void);
 
 	/* Adds all groups of the instance to the render list */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void AddToRenderList(void);
 
 	/* Asks the instance if its already done instanciated */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsInstanced(void);
 
 	/* Identifies a group by name, the return will be -1 if the name is not found */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyGroup(String a_sName);
 
 	/* Swap the materials of the instance */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SwapMaterials(String a_sOldMaterialName, String a_sNewMaterialName);
 
 	/* Asks the instance if its colliding with another instance */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool IsColliding(InstanceClass* a_pInstance);
 
 	/* Asks the instance if its colliding with a ray */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IsColliding(vector3 a_v3RayStart, vector3 a_vRayDirection);
 
 	/* We need to disconect all the pointers that are shared amond the instances and the model */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void DisconectPointers(void);
 
 private:
 	/* Gets a group by name */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GroupClass* GetGroup(String a_sName);
 
 	/* Initializes the variables */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 
 	/* Release the fields in the class */
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/* Swaps Content with other Instance class */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Swap(InstanceClass& other);
 
 	/* Identifies a state by name */
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyState(StateClass* a_pState);
 };

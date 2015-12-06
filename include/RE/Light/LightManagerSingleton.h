@@ -25,119 +25,119 @@ public:
 	//Public Accessors
 	/* Gets/Constructs the singleton pointer */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static LightManagerSingleton* GetInstance();
 	/* Releases the singleton pointer */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 	/* Adds a light to the list of lights */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddLight(vector3 a_v4Position = vector3(1, 1, 1),
 					vector3 a_v3Color = vector3(1,1,1),
 					float a_vIntensity = 10.0f);
 	/* Gets a copy from a light in the list of lights */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	LightClass* GetLight(int a_nIndex = 1);
 	/* Sets the position of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosition(vector3 a_v4Position, int a_nLight = 1);
 	/* Gets the position of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	vector3 GetPosition(int a_nLight = 1);
 	/* Sets the color of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetColor(vector3 a_v3Color, int a_nLight = 1);
 	/* Gets the color of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	vector3 GetColor(int a_nLight = 1);
 	/* Sets the intensity of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetIntensity(float a_fIntensity, int a_nLight = 1);
 	/* Gets the intensity of a light in the list of lights*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	float GetIntensity(int a_nLight = 1);
 
 private:
 	/* Constructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	LightManagerSingleton(void);
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	LightManagerSingleton(LightManagerSingleton const& other);
 	/* Copy Assignment Operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	LightManagerSingleton& operator=(LightManagerSingleton const& other);
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~LightManagerSingleton(void);
 
 	/* Releases Memory */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 	/* Initialize variables */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

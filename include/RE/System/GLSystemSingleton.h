@@ -27,14 +27,14 @@ public:
 	/*
 	HRESULT InitGLDevice(HWND g_hWnd);
 		Initializes the OpenGL Device Context
-	Arguments:
+	ARGUMENTS:
 		HWND g_hWnd -> Window Handler
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	HRESULT InitGLDevice(HWND g_hWnd);
 
@@ -44,10 +44,10 @@ public:
 		failed to initialize 3.x+ in the system
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int DrawOldGLScene(GLvoid);
 	
@@ -56,10 +56,10 @@ public:
 		Singleton Accessor, returns the singleton of this class
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	static GLSystemSingleton* GetInstance(void);
 
@@ -69,10 +69,10 @@ public:
 		Releases the singleton of this class
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 	
@@ -81,10 +81,10 @@ public:
 		Returns the OpenGL rendering context device
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	HDC GetDeviceContext(GLvoid);
 
@@ -93,10 +93,10 @@ public:
 		Returns the OpenGL Version the program is running
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetGLVersion(void);
 
@@ -105,10 +105,10 @@ public:
 		Returns whether OpenGL3.x or newer is running
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsNewOpenGLRunning(void);
 
@@ -117,10 +117,10 @@ public:
 		Forces OpenGL 2.1 to be used for the rendering context
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void ForceOldOpenGL(bool a_bInput = true);
 
@@ -129,56 +129,56 @@ public:
 		SwapsvOpenGL buffer
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void GLSwapBuffers(void);
 
 private:
 	//--Methods
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLSystemSingleton(void); // Constructor
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GLSystemSingleton(GLSystemSingleton const& other); //Copy Constructor
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GLSystemSingleton& operator=(GLSystemSingleton const& other); // Copy Assignment Operator
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~GLSystemSingleton(void); // Destructor
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void); // Release Memory
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void); // Initialize variables
 	

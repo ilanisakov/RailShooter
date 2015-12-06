@@ -15,81 +15,81 @@ class ReEngDLL AnimationClass
 {
 public:
 	/*
-	Method: AnimationClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 AnimationClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	AnimationClass(void);
 	/*
-	Method: AnimationClass
-	Usage: Copy Constructor
-	Arguments: other instance
-	Output: class object
+	 AnimationClass
+	USAGE: Copy Constructor
+	ARGUMENTS: other instance
+	OUTPUT: class object
 	*/
 	AnimationClass(const AnimationClass& other);
 	/*
-	Method: operator=
-	Usage: copy assignment operator
-	Arguments: other instance
-	Output: ---
+	 operator=
+	USAGE: copy assignment operator
+	ARGUMENTS: other instance
+	OUTPUT: ---
 	*/
 	AnimationClass& operator=(const AnimationClass& other);
 	/*
-	Method: ~AnimationClass
-	Usage: destructor
-	Arguments: ---
-	Output: ---
+	 ~AnimationClass
+	USAGE: destructor
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~AnimationClass(void);
 	/*
-	Method: Init
-	Usage: Initializes the variable members
-	Arguments: ---
-	Output: ---
+	 Init
+	USAGE: Initializes the variable members
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 	/*
-	Method: Release
-	Usage: Deinitializes the variable members
-	Arguments: ---
-	Output: ---
+	 Release
+	USAGE: Deinitializes the variable members
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 	/*
-	Method: Swap
-	Usage: swaps the values of the member fields of incoming object for self's
-	Arguments: other instance
-	Output: ---
+	 Swap
+	USAGE: swaps the values of the member fields of incoming object for self's
+	ARGUMENTS: other instance
+	OUTPUT: ---
 	*/
 	void Swap(AnimationClass& other);
 	/*
-	Method: AnimationClass
-	Usage: constructor, will create a number of frames
-	Arguments:
+	 AnimationClass
+	USAGE: constructor, will create a number of frames
+	ARGUMENTS:
 		FrameClass *a_pFrame -> pointer to a frame class object 
 		int a_nFrames -> number of frames to create
-	Output: class object
+	OUTPUT: class object
 	*/
 	AnimationClass(FrameClass *a_pFrame, int a_nFrames);
 	/*
-	Method: CheckInterpolation const;
-	Usage: Checks the interpolation of the frames
-	Arguments:
+	 CheckInterpolation const;
+	USAGE: Checks the interpolation of the frames
+	ARGUMENTS:
 		FrameClass *a_pFrame -> pointer to frame object
 		int a_nFrames
-	Output: ---
+	OUTPUT: ---
 	*/
 	void CheckInterpolation(FrameClass *a_pFrame, int a_nFrames) const;
 private:
 	/*
-	Method: Interpolation const;
-	Usage: Interpolates the frames from the first to the last frame
-	Arguments:
+	 Interpolation const;
+	USAGE: Interpolates the frames from the first to the last frame
+	ARGUMENTS:
 		FrameClass *a_pFrame -> frame pointer
 		int a_nFirstKeyFrame -> First frame to interpolate
 		int a_nLastKeyFrame -> Last frame to interpolate
-	Output: ---
+	OUTPUT: ---
 	*/
 	void Interpolation(FrameClass *a_pFrame, int a_nFirstKeyFrame, int a_nLastKeyFrame) const;
 };

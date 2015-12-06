@@ -16,82 +16,82 @@ class ReEngDLL PrimitiveClass : public MeshClass
 
 public:
 	/*
-	Method: PrimitiveClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 PrimitiveClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	PrimitiveClass();
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	PrimitiveClass(const PrimitiveClass& other);
 	/* Copy Assignment Operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	virtual PrimitiveClass& operator=(const PrimitiveClass& other);
 
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~PrimitiveClass(void);
 
 	/* Generates a cube shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateCube(float a_fSize, vector3 a_v3Color);
 	/* Generates a cone shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateCone(float a_fRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color);
 	/* Generates a cylinder shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateCylinder(float a_fRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color);
 	/* Generates a tube shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateTube(float a_fOuterRadius, float a_fInnerRadius, float a_fHeight, int a_nSubdivisions, vector3 a_v3Color);
 	/* Generates a torus shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateTorus(float a_fOuterRadius, float a_fInnerRadius, int a_nSubdivisionHeigh, int a_nSubdivisionAxis, vector3 a_v3Color);
 	/* Generates a Sphere shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateSphere(float a_fRadius, int a_nSubdivisions, vector3 a_v3Color);
 	/* Generates a plane shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GeneratePlane(float a_fSize, vector3 a_v3Color);
 	
@@ -105,16 +105,16 @@ public:
 private:
 	/* Compiles the object with an specific color and name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void CompileObject(vector3 a_v3Color, String a_sName);
 	/* Adds a quad to the list points in the buffer to be compiled*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddQuad(vector3 a_vBottomLeft, vector3 a_vBottomRight, vector3 a_vTopLeft, vector3 a_vTopRight);
 };

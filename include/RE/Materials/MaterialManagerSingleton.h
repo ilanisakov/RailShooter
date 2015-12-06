@@ -25,121 +25,121 @@ class ReEngDLL MaterialManagerSingleton
 
 public:
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	std::vector<MaterialClass*> m_lMaterial; //Materials Vector
 	
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static MaterialManagerSingleton* GetInstance(); // Singleton Accessor
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);	//Singleton Destructor
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyMaterial(String a_sName); //Identifies the material, if found return its index -1 otherwise
 
 	//returns the index number of the material if it created a new one, otherwise it returns the index
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int AddMaterial(String a_sName);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int AddMaterial(MaterialClass a_InputMaterial);
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetMaterialCount(void); //Return the number of materials in the vector
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void ReloadMaps(void); //Tries to load all the textures for all of the materials
 
 	/* Gets a copy of the material specified by name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialClass GetMaterialCopy(String a_sName);
 
 	/* Returns the memory location containing the material specified by the name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialClass* GetMaterial(String a_sName);
 
 	/* Returns the memory location containing the material specified by the index */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialClass* GetMaterial(uint a_nIndex);
 
 private:
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	MaterialManagerSingleton(void); // Constructor
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialManagerSingleton(MaterialManagerSingleton const& other); //Copy Constructor
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialManagerSingleton& operator=(MaterialManagerSingleton const& other); // Copy Assignment Operator
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MaterialManagerSingleton(void); // Destructor
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void); // Release Memory
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void); // Initialize variables
 };

@@ -22,8 +22,6 @@ Date: 2015/09
 #include "MyEntityManager.h"
 #include "ScoreManager.h"
 
-//#include "Projectile.h"
-//#include "Character.h"
 
 
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
@@ -62,6 +60,11 @@ class AppClass : public ReEngAppClass
 	MyEntityClass* c_player;
 	bool camSelect = false;
 	int railCamIndex = 0;
+
+	//Geometry
+	bool displayGeometry = false;
+	bool displayTracking = false;
+	MyEntityClass* envPosEntity;
 
 	//Entity Character Paths
 	std::vector<vector3> playerPath;
@@ -141,7 +144,13 @@ public:
 
 	void ToggleCamera();
 
+	void ToggleGeometry();
+
+	void ToggleEnvTrack();
+
 	void UpdatePlayerCamera();
+
+	void BuildEnv();
 };
 
 #endif //__APPLICATION_H_

@@ -26,35 +26,41 @@ public:
 
 	/* Gets/Constructs the singleton pointer */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static MeshManagerSingleton* GetInstance();
 
 	/* Destroys the singleton */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 
 	/* Saves the specified model file, needs to specify the file extension (ATO or BTO) */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 SaveModel
+	USAGE: Will translate a model in the list to the specified format
+	ARGUMENTS:
+		String a_sFileName -> Name of the file
+		FORMAT a_Format -> Extension of the file FORMAT::ATO or FORMAT::BTO
+		String a_sInstanceName -> Name of the instance to save
+		bool a_bAbsoluteRoute = false -> whether the filename specifies an absolute route or not
+	OUTPUT: REERRORS -> ERROR_FREE if everything went right, reason for failure otherwise
 	*/
 	REERRORS SaveModel(String a_sFileName,
+						FORMAT a_Format,
 						String a_sInstanceName,
 						bool a_bAbsoluteRoute = false);
 
 	/* Loads the specified model file */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	REERRORS LoadModel(String a_sFileName,
 							String a_sInstanceName,
@@ -66,392 +72,397 @@ public:
 
 	/* Loads the specified level file */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void LoadLevel(String a_sFileName);
 
 	/* Loads an add-on file for the specified instance*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	REERRORS LoadAddOn(String a_sInstanceName, String a_sFileName);
 
 	/* Sets the model matrix of an specific instance finding it by name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(matrix4 a_m4ToWorld, String a_sInstance = "ALL", bool a_bUpdateOctree = false);
 
 	/* Sets the model matrix of an specific instance finding it by index */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(matrix4 a_m4ToWorld, int a_nIndex, bool a_bUpdateOctree = false);
 
 	/* Asks the manager for an specific instance's model to world matrix */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	matrix4 GetModelMatrix(String a_sInstance);
 
 	/* Updates the model manager */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Update(bool a_bCheckCollisions = true);
 
 	/* Renders a line on with the specified vectors and color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddLineToRenderList(vector3 a_v3Origin, vector3 a_v3Ending, vector3 a_v3StartColor = REDEFAULT, vector3 a_v3EndColor = REDEFAULT);
 
 	/* Renders a mesh on the specified space */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddMeshToRenderList(MeshClass* a_pMesh, matrix4& a_m4ToWorld);
 
 	/* Renders a mesh on the specified space */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddMeshToRenderList(int a_nIndex, matrix4& a_m4ToWorld);
 
 	/* Render the axis on the specified position */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddAxisToQueue(matrix4 a_m4ToWorld);
 
 	/* Renders the cube on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddPlaneToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT);
 
 	/* Renders the cube on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddCubeToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the cone on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddConeToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the cylinder on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddCylinderToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the tube on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddTubeToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the torus on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddTorusToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the sphere on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddSphereToQueue(matrix4 a_m4ToWorld, vector3 a_v3Color = REDEFAULT, int a_RenderOption = RERENDER::SOLID | RERENDER::WIRE);
 
 	/* Renders the sphere on the specified position*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddGridToQueue(float a_fSize = 1.0f, int a_Axis = REAXIS::XY, vector3 a_v3Color = REDEFAULT);
 
 	/* Renders a String in the specified color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Print(String a_sInput, vector3 a_v3Color = REWHITE);
 	/* Renders a String Line in the specified color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void PrintLine(String a_sInput, vector3 a_v3Color = REWHITE);
 
 	/* Renders a char array in the specified color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddTextToQueue(vector3 a_v3Color, const char * _Format, ...);
 	/* Renders a char array in the specified color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddTextLineToQueue(vector3 a_v3Color, const char * _Format, ...);
 
 	/* Renders the a Camera Mesh on the specified camera's position, -1 for active camera*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddCameraToQueue(int a_nID = -1, vector3 a_v3Color = REWHITE);
-
+	/*
+	USAGE: Adds an instance to the render list specified by index
+	ARGUMENTS:
+	OUTPUT: ---
+	*/
+	void AddInstanceToRenderList(uint a_nInstance);
 	/* Renders the specified instance */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddInstanceToRenderList(String a_sInstance = "ALL");
 
 	/* Renders the list of meshes */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Render(void);
 
 	/* Asks the Manager for the number of models */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetModelCount(void);
 
 	/* Asks the Manager for the number of instances */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetInstanceCount(void);
 
 	/* Asks the name of the specified instance by its index returns empty if not found */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	String GetNameOfInstanceByIndex(int a_nIndex);
 
 	/* Gets the Instance by an index number */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	InstanceClass* GetInstanceByIndex(int a_nIndex);
 
 	/* Gets the Instance by a name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	InstanceClass* GetInstanceByName(String a_sInstanceName);
 
 	/* Asks for the Bounding Object of the specified instance by index*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass* GetBoundingObject(int a_nIndex);
 
 	/* Asks for the Bounding Object of the specified instance by name*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass* GetBoundingObject(String a_sInstanceName);
 
 	/* Asks the manager for the list of vertices of an specified instance */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	std::vector<vector3> GetVertexList(String a_sInstanceName);
 
 	/* Asks the manager if an instance with this name has been created */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool IsInstanceCreated(String a_sInstanceName);
 
 	/* Sets the visibility flag of the Bounding Object */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleBoundingObject(bool a_bVisible, String a_sInstanceName = "ALL");
 
 	/* Sets the visibility flag of the Bounding Object */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleBoundingObject(bool a_bVisible, int a_nInstanceIndex);
 
 	/* Returns a vector4 with the indices of the Instances and groups colliding */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<vector4> GetCollisionList(void);
 
 	/* Returns the index of the specified instance name, -1 if not found */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyInstance(String a_sInstanceName);
 
 	/* Sets the shader program of an specific instance by name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgramByName(String a_sInstanceName = "ALL", String a_sShaderName = "Original", vector3 a_v3Tint = REDEFAULT);
 
 	/* Sets the shader program of an specific instance by index */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgramByNumber(int a_nInstance = -1, int a_nGroup = -1, String a_sShaderName = "Original", vector3 a_v3Tint = REDEFAULT);
 
 	/* Sets the visibility of the axis of the instance */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleAxis(bool a_bVisible, String a_sInstanceName = "ALL", bool a_bAllGroups = false);
 
 	/* Sets the visibility of the hierarchical Bounding Object */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleBoundingObjectHierarchy(bool a_bVisible, String a_sInstanceName = "ALL");
 
 	/* Sets the texture for the font */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetFont(String a_sTextureName);
 
 private:
 	/* Constructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	MeshManagerSingleton(void);
 
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshManagerSingleton(MeshManagerSingleton const& other);
 
 	/* Copy Assignment Operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshManagerSingleton& operator=(MeshManagerSingleton const& other);
 
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MeshManagerSingleton(void);
 
 	/* Initializes the objects fields */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 
 	/* Releases the objects memory */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 };

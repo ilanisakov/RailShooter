@@ -48,516 +48,516 @@ class ReEngDLL GroupClass
 
 public:
 	/*
-	Method: GroupClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 GroupClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	GroupClass(void);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GroupClass(const GroupClass& other);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	GroupClass& operator=(const GroupClass& other);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	~GroupClass(void);
 	
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Swap(GroupClass& other);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetShapeCount(void); //Returns the number of shapes in the vector of shapes
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetName(void); //Return the name of the group
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetName(String a_sName);
 	//__declspec(property(get = GetName, put = SetName)) String Name; //Name Property
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshClass* GetMesh(uint a_nIndex);//Returns the shape in the given index
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void RemoveEmptyMeshes(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
-	void AddShape(String a_sName);
+	void AddMesh(String a_sName);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CompileOpenGL3X(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyShapeByMaterial(String a_sName);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool CloneFromGroup(const GroupClass& other);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void ReleaseOpenGL(); //DeleteOpenGL
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void CompleteMissingShapeInfo(bool a_bAverageNormals = false);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SwapMaterial(String a_sOldMaterialName, String a_sNewMaterialName);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sVertexShaderName, String a_sFragmentShaderName, String a_sShaderName, vector3 a_v3Tint = REDEFAULT);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetShaderProgram(String a_sShaderName = "Original", vector3 a_v3Tint = REDEFAULT);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetMaterial(String a_sMaterialName);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetPivot(void);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPivot(vector3 a_v3Pivot);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetParent(GroupClass* a_pParent);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetHP(int a_nHP);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetHP(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetCollidable(bool a_bCollidable);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetCollidable(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisible(bool a_bVisible);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetVisible(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetParentName(void);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetParentName(String a_sParent);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	FrameClass GetFrame(uint nFrame);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetGlobalized(bool a_bGlobalized);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFrameCount(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void GenerateFrames(int a_nFrames);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void ReleaseFrames(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetFrame(int a_nFrame, vector3 a_v3Translation, vector3 a_v3Rotation, vector3 a_v3Scale, bool a_bVisible, bool a_bKeyframe);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosX(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosY(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetPosZ(float a_fValue, int a_nFrame);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngX(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngY(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetAngZ(float a_fValue, int a_nFrame);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeX(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeY(float a_fValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSizeZ(float a_fValue, int a_nFrame);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisible(bool a_bValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetKeyframe(bool a_bValue, int a_nFrame);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleBO(bool a_bVisibleBO);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleAxis(bool a_bVisible);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void ComputeMatrix(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Interpolate(int a_nFrames);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	matrix4& GetModelMatrix(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	matrix4 TraverseHierarchy(GroupClass* a_Group, int a_nFrame = 0);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	std::vector<vector3> GetVertexList(int a_nShape = -1);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Update(uint a_nFrame, matrix4 a_mToWorld);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output:
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	BoundingObjectClass* GetBoundingObject(void);
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CompileBoundingObject(void);
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetBoundingObject(BoundingObjectClass* a_pBO);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output:
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool IsColliding(vector3 a_v3RayOrigin, vector3 a_v3RayDirection, float& a_fDistance);
 
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void DisconectAnimationFrames(void);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(matrix4 a_nMatrix);
 
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddToRenderList(uint a_nFrame = 0);//Add all shapes to the render list
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddBOToRenderList(bool a_bForce = false);//Render all debug
 	/*
-	Method: 
-	Usage:
-	Arguments:
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddAxisToRenderList(bool a_bForce = false);//Render all debug
 
 private:
 	/*
-	Method: 
-	Usage:
-	Arguments: ---
-	Output: ---
+	 
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

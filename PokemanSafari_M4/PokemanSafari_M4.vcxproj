@@ -113,11 +113,13 @@ xcopy "$(SolutionDir)_Binary\Shaders" "$(SolutionDir)include\RE\Shaders" /y</Com
   <ItemGroup>
     <ClCompile Include="AppClass.cpp" />
     <ClCompile Include="AppClassControls.cpp" />
+    <ClCompile Include="AppClassStartUp.cpp" />
     <ClCompile Include="MyBOClass.cpp" />
     <ClCompile Include="MyBOManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MyEntityClass.cpp" />
     <ClCompile Include="MyEntityManager.cpp" />
+    <ClCompile Include="MyOctTree.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +129,7 @@ xcopy "$(SolutionDir)_Binary\Shaders" "$(SolutionDir)include\RE\Shaders" /y</Com
     <ClInclude Include="MyBOManager.h" />
     <ClInclude Include="MyEntityClass.h" />
     <ClInclude Include="MyEntityManager.h" />
+    <ClInclude Include="MyOctTree.h" />
     <ClInclude Include="ScoreManager.h" />
   </ItemGroup>
   <ItemGroup>

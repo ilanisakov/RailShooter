@@ -12,10 +12,10 @@ Date: 2015/06
 #include "RE\system\REDefinitions.h" //ReEng basic Definitions
 
 /*
-Method:
-Usage:
-Arguments:
-Output:
+
+USAGE:
+ARGUMENTS:
+OUTPUT:
 */
 ReEngDLL GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path);
 

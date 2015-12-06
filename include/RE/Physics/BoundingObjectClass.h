@@ -38,45 +38,45 @@ class ReEngDLL BoundingObjectClass
 public:
 	/* Constructor 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass(std::vector<vector3> a_lVertex, matrix4 a_m4ToWorld, String a_sInstanceName);
 	/* Constructor 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass(vector3 a_v3Center, float a_fSize);
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass(BoundingObjectClass const& other);
 	/* Copy Assignment Operator	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	BoundingObjectClass& operator=(BoundingObjectClass const& other);
 	/*	Destructor	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~BoundingObjectClass(void);
 
 	/* Gets the name of the model associated with this bounding box from model manager */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetInstanceName(void);
 	/* Property:
@@ -85,16 +85,16 @@ public:
 
 	/* Gets the "ModelToWorld" matrix associated with the bounding box */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	matrix4 GetModelMatrix(void);
 	/* Sets the "ModelToWorld" matrix associated with the bounding box */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetModelMatrix(matrix4 a_m4ToWorld);
 	/* "ModelToWorld"
@@ -105,9 +105,9 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisible(bool a_bVisible);
 	/* Property:
@@ -118,18 +118,18 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleOBB(bool a_bVisible);
 	/*Gets the visibility of the OBB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetVisibleOBB(void);
 	/* Property: GetVisibleBS/SetVisibleOBB()*/
@@ -139,18 +139,18 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleAABB(bool a_bVisible);
 	/*Gets the visibility of the AABB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetVisibleAABB(void);
 	/* Property: GetVisibleAABB/SetVisibleAABB()*/
@@ -160,18 +160,18 @@ public:
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetVisibleBS(bool a_bVisible);
 	/*Gets the visibility of the OBB
 	Args:
 		bool a_bVisible -> true for draw false for not draw*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetVisibleBS(void);
 	/* Property: GetVisibleBS/SetVisibleBS() */
@@ -179,16 +179,16 @@ public:
 
 	/* Gets the color vector of the AABB */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetColorAABB(void);
 	/* Sets the color vector of the AABB */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetColorAABB(vector3 a_v3Color);
 	/* Property:
@@ -197,16 +197,16 @@ public:
 
 	/* Gets the color vector of the OBB */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetColorOBB(void);
 	/* Sets the color vector of the OBB */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetColorOBB(vector3 a_v3Color);
 	/* Property:
@@ -215,16 +215,16 @@ public:
 
 	/* Gets the color vector of the BS */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetColorBS(void);
 	/* Sets the color vector of the BS */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetColorBS(vector3 a_v3Color);
 	/* Property:
@@ -233,9 +233,9 @@ public:
 
 	/* Gets the centroid of the Bounding object in Local coordinates */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetCentroidLocal(void);
 	/* Property:
@@ -243,9 +243,9 @@ public:
 	//__declspec(property(get = GetCentroidLocal)) vector3 CentroidLocal;
 	/* Gets the  centroid of the Bounding object in Global coordinates*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetCentroidGlobal(void);
 	/* Property:
@@ -253,9 +253,9 @@ public:
 	//__declspec(property(get = GetCentroidGlobal)) vector3 CentroidGlobal;
 	/* Gets the HalfWidth vector of the object (half the size of each side)*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetHalfWidth(void);
 	/* Property:
@@ -264,9 +264,9 @@ public:
 
 	/* Gets the Radius size of the Bounding Sphere*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetRadius(void);
 	/* Property:
@@ -278,17 +278,17 @@ public:
 		a_vBO a List of the sub bounding objects
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Reinitialize(std::vector<BoundingObjectClass*> a_vBO);
 
 	/* Reinitialize the Bounding Object using the incomming BO with the specidied matrix)*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Reinitialize(BoundingObjectClass& a_pBO, matrix4 a_m4ToWorld);
 
@@ -296,9 +296,9 @@ public:
 		Args:
 			other -> incoming object to test */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool IsColliding(BoundingObjectClass& other, bool a_bCheckOctants = true);
 	/* Test agains a ray
@@ -308,9 +308,9 @@ public:
 			a_fDistance -> the distance in which the collision is happening from the origin
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool IsColliding(vector3 a_v3RayOrigin, vector3 a_v3RayDirection, float& a_fDistance);
 
@@ -318,18 +318,18 @@ public:
 	SetsThe name of the Bounding Object
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetName(String a_sName);
 	/*
 	Gets the name of the Bounding Object
 	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetName(void);
 
@@ -337,27 +337,27 @@ public:
 		Sets the current object to know its in the specified octant
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetInOctantList(int a_nOctant);
 	/*
 		Sets the current object to know its in the specified octant list
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetOctantList(std::vector<int> a_vOctantList);
 	/*
 		Gets the octant list this object is into
 	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	std::vector<int> GetOctantList(void);
 
@@ -365,9 +365,9 @@ public:
 		Clears the Octant List in this Bounding Object
 	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void ClearOctantList(void);
 
@@ -375,9 +375,9 @@ public:
 		Asks if the incomming Bounding Object is in at least one of the same octants
 	*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool InTheSameOctant(BoundingObjectClass& other);
 	
@@ -386,9 +386,9 @@ public:
 			a_v3Color -> determinate the color of the box to be rendered, if REDEFAULT
 			it will render the shape in the constructed color (white) */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddToRenderList(bool bForceDraw = false);
 
@@ -396,9 +396,9 @@ public:
 		Gets the Max vector of the AABB in global space
 	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetAABBMax(void);
 
@@ -406,35 +406,35 @@ public:
 		Gets the Min vector of the AABB in global space
 	*/
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3 GetAABBMin(void);
 
 private:
 	/* Released Memory and objects allocated. */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 	/* Calculates the Oriented Bounding Box, Axis Alligned Bounding Box and the Bounding Sphere from the instance
 	Args:
 		a_lVertex: The vertices for which we want to create the BO from */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Initializate(std::vector<vector3> a_lVertex);
 
 	/* Calculates the Axis Aligned Bounding Box from the instance from the OBB*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void CalculateAABB();
 };

@@ -19,45 +19,51 @@ struct ReEngDLL MeshHandler
 	std::vector<matrix4> m_lToWorld;	//List that holds the matrix per object
 
 	/*
-	Method: MeshHandler
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 MeshHandler
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	MeshHandler(void);
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshHandler(MeshHandler& other);
 	/* Copy Assignment operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshHandler& operator=(MeshHandler& other);
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MeshHandler(void);
-	/* Converts the list of matrix into an array of floats */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	USAGE: Converts the list of matrix into an array of floats
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void GetMatrixArray(float* a_fArray);
+	/*
+	USAGE: Get the total count of instances for this model
+	ARGUMENTS: ---
+	OUTPUT: Total number if instances
+	*/
+	int GetInstanceCount(void);
 };
 
 //System Class
 class ReEngDLL MeshDrawerSingleton
 {
+	int m_nInstanceCapacity = 250; //Number of instances to hold
 	int m_nMeshes; //number of elements in the list
 	static MeshDrawerSingleton* m_pInstance; // Singleton pointer
 	std::vector<MeshClass*> m_lMesh; //list of meshes
@@ -72,170 +78,184 @@ public:
 
 	/* Gets/Constructs the singleton pointer */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static MeshDrawerSingleton* GetInstance();
 
 	/* Destroys the singleton */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void);
 
 	/* Adds a mesh to the mesh list*/
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int AddMesh(MeshClass* a_pMesh);
 
+	/*
+	USAGE: Gets the total number of instances currently able to hold
+	ARGUMENTS: ---
+	OUTPUT: number of instances currently holding
+	*/
+	int GetInstanceCapacity(void);
+
+	/*
+	USAGE: Sets the total number of instances able to hold
+	ARGUMENTS: number of instances to hold
+	OUTPUT: ---
+	*/
+	void SetInstanceCapacity(int a_Input);
+
 	/* Gets the mesh pointer from the vector specified by name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshClass* GetMesh(String a_sName);
 
 	/* Gets the mesh pointer from the vector specified by index */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshClass* GetMesh(int a_nIndex);
 
 	/* Gets the mesh index from the vector specified by name */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int GetMeshIndex(String a_sName);
 
 	/* Renders a mesh on the specified space */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddMeshToRenderList(MeshClass* a_pMesh, matrix4& a_m4ToWorld);
 
 	/* Renders a mesh on the specified space */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void AddMeshToRenderList(int  a_nIndex, matrix4& a_m4ToWorld);
 
 	/* Renders the list of meshes */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Render(void);
 
 	/* Renders the shape asking for its position in the world */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	virtual void RenderMesh(MeshClass* a_pMesh, matrix4 a_mToWorld);
 	
 	/* Renders the shape */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	virtual void RenderMesh(MeshClass* a_pMesh, float* a_fMatrixArray, int a_nInstances);
 
 	/* Renders the shape asking for its position in the world and a color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	virtual void RenderMeshWire(MeshClass* a_pMesh, matrix4 a_mToWorld, vector3 a_v3Color);
 
 	/* Renders the shape asking for its position in the world and a color */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	virtual void RenderMeshSolid(MeshClass* a_pMesh, matrix4 a_mToWorld, vector3 a_v3Color);
 
 private:
 	/* Constructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	MeshDrawerSingleton(void);
 
 	/* Copy Constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshDrawerSingleton(MeshDrawerSingleton const& other);
 
 	/* Copy Assignment Operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MeshDrawerSingleton& operator=(MeshDrawerSingleton const& other);
 
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MeshDrawerSingleton(void);
 
 	/* Returns the index of the mesh in the list of meshes */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int IdentifyMesh(MeshClass* a_pMesh);
 
 	/* Initializates the objects fields */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 
 	/* Releases the objects memory */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/* Resets the render list */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void ResetList(void);
 };

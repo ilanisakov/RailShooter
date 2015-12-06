@@ -39,145 +39,145 @@ class ReEngDLL SystemSingleton
 	
 public:
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	static SystemSingleton* GetInstance(); // Singleton accessor
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	static void ReleaseInstance(void); //Singleton Release
 
 	// Application Name Property
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetAppName(void);
 	//__declspec(property(get = GetAppName)) String ApplicationName;
 
 	// Window Borderless Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowBorderless(bool a_bBorderless = true);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsWindowBorderless(void);
 	//__declspec(property(get = IsWindowBorderless, put = SetWindowBorderless)) bool WindowBorderless;
 
 	// Window Fullscreen Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowFullscreen(bool a_bFullscreen = true);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool IsWindowFullscreen(void);
 	//__declspec(property(get = IsWindowFullscreen, put = SetWindowFullscreen)) bool WindowFullscreen;
 	
 	// Window Width Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowWidth(int a_nWidth);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetWindowWidth(void);
 	//__declspec(property(get = GetWindowWidth, put = SetWindowWidth)) int WindowWidth;
 
 	// Window Height Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowHeight(int a_nHeight);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetWindowHeight(void);
 	//__declspec(property(get = GetWindowHeight, put = SetWindowHeight)) int WindowHeight;
 
 	// WindowX Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowX(int a_nX);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetWindowX(void);
 	//__declspec(property(get = GetWindowX, put = SetWindowX)) int WindowX;
 
 	// WindowY Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowY(int a_nY);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetWindowY(void);
 	//__declspec(property(get = GetWindowY, put = SetWindowY)) int WindowY;
 	
 	// Window Name Property
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	void SetWindowName(String a_sWindowName);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String GetWindowName(void);
 	//__declspec(property(get = GetWindowName, put = SetWindowName)) String WindowName;
@@ -185,18 +185,18 @@ public:
 	// Window Name Property
 	/* Sets the system to be multi-threaded <<<EXPERIMENTAL>>>*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetThreaded(bool a_bMultithreaded);
 	/* Asks the system if its multi-threaded*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetThreaded(void);
 	//__declspec(property(get = GetThreaded, put = SetThreaded)) bool Multithreaded;
@@ -204,19 +204,19 @@ public:
 
 	// Asks for the value of m_bConsole
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	bool GetUsingConsole(void);
 
 	// Asks for the value of m_bConsole
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetUsingConsole(bool a_bUsing);
 
@@ -226,60 +226,60 @@ public:
 		from left to right the value is the output of this function.
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	float GetWindowRatio(void);
 
 	// WindowX Property
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetFPS(void);
 	//__declspec(property(get = GetFPS)) int FPS;
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void UpdateTime(void);//Updates the current time
 	//float LapClock(void);//Checks the time difference between startclock and current call
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void StartClock(unsigned int a_nClock = 0);//Starts a time count for the specified clock
 	/*
-	Method: LapClock
-	Usage: Gets the time difference between the last time this method was called for this particular clock
-	Arguments:
-	Output:
+	 LapClock
+	USAGE: Gets the time difference between the last time this method was called for this particular clock
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	double LapClock(unsigned int a_nClock = 0);
 
 	/*
-	Method: AddClock
-	Usage: Adds a clock to the list and return said clock's index
-	Arguments: ---
-	Output: uint -> index of the new clock;
+	 AddClock
+	USAGE: Adds a clock to the list and return said clock's index
+	ARGUMENTS: ---
+	OUTPUT: uint -> index of the new clock;
 	*/
 	uint AddClock(void);
 
 
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	bool CountDown(float a_fTime, bool a_bRepeat = false);//counts down on the specified clock, returns true when the count is up
 
@@ -288,46 +288,46 @@ public:
 
 private:
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	SystemSingleton(void); // Constructor
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	SystemSingleton(SystemSingleton const& other); //Copy Constructor
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	SystemSingleton& operator=(SystemSingleton const& other); // Copy Assignment Operator
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~SystemSingleton(void); // Destructor
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void); // Release Memory
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void); // Initialize variables
 };

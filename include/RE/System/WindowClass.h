@@ -37,20 +37,20 @@ public:
 	Constructor
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	WindowClass(void);
 	/*
 	Constructor
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	WindowClass(HINSTANCE a_hInstance, int a_nCmdShow, WNDPROC a_WndProc);
 
@@ -59,10 +59,10 @@ public:
 	Gets the window size.
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CalculateWindowSize(void);
 
@@ -71,10 +71,10 @@ public:
 		Sets the window Instance
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowInstance(HINSTANCE a_hInstance);
 
@@ -83,10 +83,10 @@ public:
 		Sets the window callback
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetWindowCallback(WNDPROC a_WndProc);
 
@@ -95,41 +95,41 @@ public:
 		Sets the number of incoming arguments
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetIncomingArguments(int a_nCmdShow);
 
 	/*
 	CreateMEWindow
 		Creates window with the provided arguments
-	Arguments:
+	ARGUMENTS:
 		LPCWSTR windowName = L"Window" -> Name of the window
 		int width = 1280 -> width of the window
 		int height = 720 -> height of the window
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int CreateMEWindow(LPCWSTR a_windowName = L"Window", int a_nWidth = 1280, int a_nHeight = 720);
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetWidth(void);
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetHeight(void);
 
@@ -138,10 +138,10 @@ public:
 		Returns the window handler
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	HWND GetHandler(void);
 
@@ -150,10 +150,10 @@ public:
 		Sets whether or not the program will run in fullscreen
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetFullscreen(bool a_bInput = true);
 
@@ -162,10 +162,10 @@ public:
 		Sets whether or not the window will be borderless
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetBorderless(bool a_bInput = true);
 
@@ -174,10 +174,10 @@ public:
 		Allocates a console window for output
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CreateConsoleWindow(void);
 
@@ -186,10 +186,10 @@ private:
 	Copy Constructor
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	WindowClass(const WindowClass& other);
 
@@ -197,10 +197,10 @@ private:
 	Copy Assignment Operator
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	WindowClass& operator=(const WindowClass& other);
 
@@ -209,10 +209,10 @@ private:
 		Initializes the member variables
 	*/
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

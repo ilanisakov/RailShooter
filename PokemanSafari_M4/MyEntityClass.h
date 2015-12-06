@@ -19,17 +19,20 @@
 /////////////////////////////////////////////////////////////////////
 // Entity Type:
 // XXXXXXXX
-// ^        - (1 = character, 0 = projectile)
-// 1XXXXXXX
-//  ^^^     - character types (pokeman, player, reserved)?
-// 11XXXXXX
-//     ^^^^ - pokeman type? 
+// ^^^      - main type (character, projectile, environment)
+// 100XXXXX
+//      ^^^ - character types (pokeman, player, reserved)?
 /////////////////////////////////////////////////////////////////////
 #define ET_CHARACTER       ((unsigned char) 0x80)
+#define ET_ENVIRONMENT     ((unsigned char) 0x40)
+#define ET_PROJECTILE      ((unsigned char) 0x20)
 
 #define ET_CHAR_POKEMAN    (((unsigned char) 0x01) | ET_CHARACTER)
 #define ET_CHAR_PLAYER     (((unsigned char) 0x02) | ET_CHARACTER)
-#define ET_PROJ_POKECUBE   (((unsigned char) 0x01) )
+#define ET_PROJ_POKECUBE   (((unsigned char) 0x01) | ET_PROJECTILE)
+#define ET_ENVI_GROUND     (((unsigned char) 0x01) | ET_ENVIRONMENT)
+#define ET_ENVI_WALL       (((unsigned char) 0x02) | ET_ENVIRONMENT)
+
 
 typedef unsigned char ET_TYPE;
 
@@ -47,6 +50,7 @@ private:
 	bool m_bAlive = false;       //whether alive/active in the scene
 	bool m_bCreated = false;     //whether created
 	bool m_bHitReg = true;       //whether collision has begun response
+	bool m_bRenderGeo = false;
 
 	quaternion m_qOrientation = quaternion();
 	vector3 m_v3Scale = vector3();
@@ -96,6 +100,16 @@ public:
 	MyEntityClass(String name, ET_TYPE type, float time, std::vector<vector3> movementPath);
 
 	/////////////////////////////////////////////////////////////////
+	// Constructor
+	//
+	// @param
+	//    name - entity name
+	//    type - entity type
+	//    verts - list of entity verts
+	/////////////////////////////////////////////////////////////////
+	MyEntityClass(String name, ET_TYPE type, std::vector<vector3> verts);
+
+	/////////////////////////////////////////////////////////////////
 	//Method: MyEntityClass
 	//Usage: Constructor
 	//Arguments: class object
@@ -123,6 +137,8 @@ public:
 
 	void ApplyForce(vector3 force);
 	
+	void SetRenderGeometry(bool display);
+
 	/////////////////////////////////////////////////////////////////
 	// SetAlive() - set wether entity is alive
 	/////////////////////////////////////////////////////////////////

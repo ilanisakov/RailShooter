@@ -36,31 +36,31 @@ public:
 	
 // Methods
 	/*
-	Method: OctantClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 OctantClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	OctantClass(void);
 	/* Copy constructor */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	OctantClass(OctantClass const& other);
 	/* Copy Assignment Operator */
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	OctantClass& operator=(OctantClass const& other);
 	/* Destructor */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~OctantClass(void);
 
@@ -83,42 +83,42 @@ public:
 	
 	/* Renders the AABB of the octant if its not empty */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Render(void);
 	
 	/* Calculates the collider of the octant based on the center and its size */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void CalculateCollider(void);
 	
 private:
 	/* Releases the object from memory */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/* Initialize the object's fields */
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 
 	/* Swaps the content of one octant with another */
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void Swap(OctantClass& other);
 };

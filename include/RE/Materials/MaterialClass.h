@@ -29,164 +29,164 @@ class ReEngDLL MaterialClass
 	
 public:
 	/*
-	Method: MaterialClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 MaterialClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	MaterialClass(String a_sName);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialClass(const MaterialClass& other);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	MaterialClass& operator=(const MaterialClass& other);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~MaterialClass(void);
 	
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetName(String a_sName);
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	String	GetName(void);
 	//__declspec(property(put = SetName, get = GetName)) String Name;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetDiffuseMapName(String a_sFileName);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String	GetDiffuseMapName(void);
 	//__declspec(property(put = SetDiffuseMapName, get = GetDiffuseMapName)) String DiffuseMapName;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetNormalMapName(String a_sFileName);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String	GetNormalMapName(void);
 	//__declspec(property(put = SetNormalMapName, get = GetNormalMapName)) String NormalMapName;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetSpecularMapName(String a_sFileName);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	String	GetSpecularMapName(void);
 	//__declspec(property(put = SetSpecularMapName, get = GetSpecularMapName)) String SpecularMapName;
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint	GetDiffuseMap(void);
 	//__declspec(property(get = GetDiffuseMap)) GLuint DiffuseMap;
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint	GetNormalMap(void);
 	//__declspec(property(get = GetNormalMap)) GLuint NormalMap;
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	GLuint	GetSpecularMap(void);
 	//__declspec(property(get = GetSpecularMap)) GLuint SpecularMap;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output: ---
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetDiffuse(vector3 a_Kd);
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	vector3	GetDiffuse(void);
 	//__declspec(property(put = SetDiffuse, get = GetDiffuse)) vector3 Kd;
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	REERRORS LoadDiffuse(String a_sFileName);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	REERRORS LoadNormal(String a_sFileName);
 
 	/*
-	Method: Usage:
-	Arguments:
-	Output:
+	 USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	REERRORS LoadSpecular(String a_sFilename);
 
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output:
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	REERRORS LoadMaps(void);
 private:
 	/*
-	Method: Usage:
-	Arguments: ---
-	Output: ---
+	 USAGE:
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

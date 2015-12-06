@@ -18,88 +18,88 @@ class ReEngDLL ExampleClass
 
 public:
 	/*
-	Method: ExampleClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
+	 ExampleClass
+	USAGE: Constructor
+	ARGUMENTS: ---
+	OUTPUT: class object
 	*/
 	ExampleClass(void);
 	/*
-	Method: ExampleClass
-	Usage: Copy Constructor
-	Arguments: class object to copy
-	Output: class object instance
+	 ExampleClass
+	USAGE: Copy Constructor
+	ARGUMENTS: class object to copy
+	OUTPUT: class object instance
 	*/
 	ExampleClass(ExampleClass const& other);
 	/*
-	Method: operator=
-	Usage: Copy Assignment Operator
-	Arguments: class object to copy
-	Output: ---
+	 operator=
+	USAGE: Copy Assignment Operator
+	ARGUMENTS: class object to copy
+	OUTPUT: ---
 	*/
 	ExampleClass& operator=(ExampleClass const& other);
 	/*
-	Method: ~ExampleClass
-	Usage: Destructor
-	Arguments: ---
-	Output: ---
+	 ~ExampleClass
+	USAGE: Destructor
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	~ExampleClass(void);
 
 	/*
-	Method: Swap
-	Usage: Changes object contents for other object's
-	Arguments:
+	 Swap
+	USAGE: Changes object contents for other object's
+	ARGUMENTS:
 	other -> object to swap content from
-	Output: ---
+	OUTPUT: ---
 	*/
 	void Swap(ExampleClass& other);
 
 	/*
-	Method:
-	Usage:
-	Arguments: ---
-	Output:
+	
+	USAGE:
+	ARGUMENTS: ---
+	OUTPUT:
 	*/
 	int GetData(void);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetData(int a_nData = 1);
 	/* Property */
 	//__declspec(property(get = GetData, put = SetData)) int Data;
 
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output: ---
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT: ---
 	*/
 	void SetDataOnVector(int a_nData);
 	/*
-	Method:
-	Usage:
-	Arguments:
-	Output:
+	
+	USAGE:
+	ARGUMENTS:
+	OUTPUT:
 	*/
 	int& GetDataOnVector(int a_nIndex);
 
 private:
 	/*
-	Method: Release
-	Usage: Deallocates member fields
-	Arguments: ---
-	Output: ---
+	 Release
+	USAGE: Deallocates member fields
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Release(void);
 	/*
-	Method: Init
-	Usage: Allocates member fields
-	Arguments: ---
-	Output: ---
+	 Init
+	USAGE: Allocates member fields
+	ARGUMENTS: ---
+	OUTPUT: ---
 	*/
 	void Init(void);
 };

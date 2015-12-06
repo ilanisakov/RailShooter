@@ -16,6 +16,8 @@ void MyBOClass::Init(void)
 	m_v3HalfWidthG = vector3(0.0f);
 
 	m_fRadius = 0.0f;
+
+	m_nStoredIndex = 0;
 }
 void MyBOClass::Swap(MyBOClass& other)
 {
@@ -39,11 +41,11 @@ void MyBOClass::Release(void)
 
 }
 //The big 3
-MyBOClass::MyBOClass(std::vector<vector3> a_lVectorList)
+MyBOClass::MyBOClass(std::vector<vector3> a_lVectorList, String name)
 {
 	//Init the default values
 	Init();
-
+	m_sName = name;
 	//Count the points of the incoming list
 	uint nVertexCount = a_lVectorList.size();
 
@@ -182,6 +184,31 @@ vector3 MyBOClass::GetCenterLocal(void){ return m_v3Center; }
 vector3 MyBOClass::GetCenterGlobal(void){ return m_v3CenterG; }
 vector3 MyBOClass::GetHalfWidth(void){ return m_v3HalfWidth; }
 vector3 MyBOClass::GetHalfWidthG(void){ return m_v3HalfWidthG; }
+
+vector3 MyBOClass::GetMaxG()
+{
+	return m_v3MaxG;
+}
+vector3 MyBOClass::GetMinG()
+{
+	return m_v3MinG;
+}
+
+String MyBOClass::GetName()
+{
+	return m_sName;
+}
+
+void MyBOClass::SetStoredIndex(int idx)
+{
+	if (idx > -1)
+	    m_nStoredIndex = idx;
+}
+int MyBOClass::GetStoredIndex()
+{
+	return m_nStoredIndex;
+}
+
 //--- Non Standard Singleton Methods
 bool MyBOClass::IsColliding(MyBOClass* const a_pOther)
 {

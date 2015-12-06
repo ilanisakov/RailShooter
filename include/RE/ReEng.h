@@ -38,15 +38,15 @@ Date: 2015/06
 #include "RE\Camera\CameraManagerSingleton.h" //Creates and manages the camera object for the world
 
 /*
-Method: MapValue
-Usage: Will map a value from an original scale to a new scale
-Arguments:
+ MapValue
+USAGE: Will map a value from an original scale to a new scale
+ARGUMENTS:
 	T valueToMap -> input value
 	T originalScale_min ->  Start of the original scale
 	T originalScale_max -> End of the original scale
 	T mappedScale_min -> Start of the new scale
 	T mappedScale_max -> end of the new scale
-Output: returns the mapped value
+OUTPUT: returns the mapped value
 */
 template <class T>
 static float MapValue(T valueToMap, T originalScale_min, T originalScale_max, T mappedScale_min, T mappedScale_max)
@@ -54,15 +54,15 @@ static float MapValue(T valueToMap, T originalScale_min, T originalScale_max, T 
 	return (valueToMap - originalScale_min) * (mappedScale_max - mappedScale_min) / (originalScale_max - originalScale_min) + mappedScale_min;
 }
 /*
-Method: MapVector
-Usage: Will return a vector mapped in the mappedScale range from a value vectorToMap in the OriginalScale range
-Arguments:
+ MapVector
+USAGE: Will return a vector mapped in the mappedScale range from a value vectorToMap in the OriginalScale range
+ARGUMENTS:
 	vector3 vectorToMap -> input vector
 	vector3 originalScaleVectorMin -> Start of the original vector
 	vector3 originalScaleVectorMax -> End of the original vector
 	vector3 mappedScaleVectorMin -> Start of the new vector
 	vector3 mappedScaleVectorMax -> End of the new vector
-Output: returns the mapped vector
+OUTPUT: returns the mapped vector
 */
 static vector3 MapVector(vector3 vectorToMap, vector3 originalScaleVectorMin, vector3 originalScaleVectorMax,
 	vector3 mappedScaleVectorMin, vector3 mappedScaleVectorMax)
@@ -74,11 +74,11 @@ static vector3 MapVector(vector3 vectorToMap, vector3 originalScaleVectorMin, ve
 	return v3Output;
 }
 /*
-Method: ToMatrix4
-Usage: Will take a glm::quat and return a glm::mat4 wrapping glm::mat4_cast
-Arguments: 
+ ToMatrix4
+USAGE: Will take a glm::quat and return a glm::mat4 wrapping glm::mat4_cast
+ARGUMENTS: 
 	quaternion a_qInput -> quaternion to translate from
-Output: matrix4 conversion of a_qInput
+OUTPUT: matrix4 conversion of a_qInput
 */
 static matrix4 ToMatrix4(quaternion a_qInput)
 {
@@ -86,10 +86,10 @@ static matrix4 ToMatrix4(quaternion a_qInput)
 }
 
 /*
-Method: ReleaseAllSingletons
-Usage: Releases all ReEngine Singletons
-Arguments: ---
-Output: ---
+ ReleaseAllSingletons
+USAGE: Releases all ReEngine Singletons
+ARGUMENTS: ---
+OUTPUT: ---
 */
 static void ReleaseAllSingletons(void)
 {

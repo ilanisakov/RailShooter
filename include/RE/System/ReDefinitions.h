@@ -133,6 +133,11 @@ enum CAMERAMODE
 	CAMROTHOY = 2,
 	CAMROTHOZ = 3,
 };
+enum FORMAT
+{
+	ATO = 0,
+	BTO = 1,
+};
 
 
 }

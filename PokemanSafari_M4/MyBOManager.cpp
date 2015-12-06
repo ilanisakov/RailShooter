@@ -1,11 +1,45 @@
 #include "MyBOManager.h"
 //  MyBOManager
 MyBOManager* MyBOManager::m_pInstance = nullptr;
+
 void MyBOManager::Init(void)
 {
 	m_nObjectCount = 0;
 	pMeshMngr = MeshManagerSingleton::GetInstance();
 }
+
+void MyBOManager::InitOctTree(int depth)
+{
+	if (m_pOctTree != nullptr)
+		return; 
+
+
+	m_pOctTree = new MyOctTree(vector3(-2.0f,12.0f,0.0f),depth,150.0f);
+
+	for (uint nObject = 0; nObject < m_nObjectCount; nObject++)
+	{
+		printf("%s 's Octant> ", m_lObject[nObject]->GetName().c_str());
+		m_pOctTree->AddObject(m_pOctTree, m_lObject[nObject]);
+	}
+}
+
+void MyBOManager::UpdateTree(String name)
+{
+	int idx = GetIndex(name);
+	if (idx >= 0)
+	{
+		MyBOClass* obj = GetObject(idx);
+		if (obj != nullptr)
+			m_pOctTree->UpdateObject(m_pOctTree, obj);
+	}
+
+}
+
+void MyBOManager::DisplayOctTree()
+{
+	m_pOctTree->DisplayBox();
+}
+
 void MyBOManager::Release(void)
 {
 	for (uint nObject = 0; nObject < m_nObjectCount; nObject++)
@@ -52,7 +86,7 @@ MyBOClass* MyBOManager::GetObject(uint a_nIndex)
 //--- Non Standard Singleton Methods
 void MyBOManager::AddObject(std::vector<vector3> a_lVertex, String a_sName)
 {
-	MyBOClass* pObject = new MyBOClass(a_lVertex);
+	MyBOClass* pObject = new MyBOClass(a_lVertex, a_sName);
 	if (pObject != nullptr)
 	{
 		m_lObject.push_back(pObject);//Add the Object
@@ -61,6 +95,8 @@ void MyBOManager::AddObject(std::vector<vector3> a_lVertex, String a_sName)
 	m_nObjectCount = m_lObject.size();
 	std::vector<int> lVector;
 	m_llCollidingIndices.push_back(lVector);
+
+	pObject->SetStoredIndex(GetIndex(a_sName));
 }
 void MyBOManager::SetModelMatrix(matrix4 a_mModelMatrix, String a_sIndex)
 {
@@ -273,7 +309,7 @@ void MyBOManager::Update(void)
 }
 void MyBOManager::CheckCollisions(void)
 {
-	for (uint nObjectA = 0; nObjectA < m_nObjectCount -1; nObjectA++)
+/*	for (uint nObjectA = 0; nObjectA < m_nObjectCount -1; nObjectA++)
 	{
 		for (uint nObjectB = nObjectA + 1; nObjectB < m_nObjectCount; nObjectB++)
 		{
@@ -283,7 +319,10 @@ void MyBOManager::CheckCollisions(void)
 				m_llCollidingIndices[nObjectB].push_back(nObjectA);
 			}
 		}
-	}
+	}*/
+
+	m_pOctTree->CollisionTraverse( &m_llCollidingIndices );
+
 }
 std::vector<int> MyBOManager::GetCollidingVector(String a_sIndex)
 {
