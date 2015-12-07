@@ -7,6 +7,7 @@ Date: 2015/10
 
 #include "RE\ReEng.h"
 
+//#define SHOWPLANES
 
 //System Class
 class MyBOClass
@@ -139,6 +140,13 @@ public:
 	Output: bool -> check of the collision
 	*/
 	bool IsColliding(MyBOClass* const a_pOther);
+	/*
+    USAGE: Determines the collision with an incoming object using the SAT
+    ARGUMENTS :
+	- MyBOClass* const a_pOther->Other object to check collision with
+	OUTPUT : result of the collision
+	*/
+	bool SAT(MyBOClass* const a_pOther);
 
 private:
 	/*

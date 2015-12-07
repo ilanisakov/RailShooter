@@ -240,7 +240,41 @@ void MyEntityClass::Update()
 	else if (type & ET_CHARACTER)
 		UpdateCharacter();
 	else if (type & ET_PROJECTILE)
-	    UpdateProjectile();
+	{
+		if (m_bHitGround)
+		{
+			if (stillCount == 0)
+			{
+				m_v3Velocity[0] = 0.0f;
+				m_v3Velocity[2] = 0.0f;
+				if (m_v3Velocity[1] > 0.0f)
+					m_v3Velocity[1] *= -2.0f;
+				else
+					m_v3Velocity[1] *= 2.0f;
+
+				m_bHitGround = false;
+				UpdateProjectile();
+				return;
+			}
+			stillCount--;
+			matrix4 m4Mod;
+			m4Mod = glm::translate(m_v3Position);
+			m_pMeshManager->SetModelMatrix(m4Mod, m_sName);
+			m_pMeshManager->AddInstanceToRenderList(m_sName);
+
+			int nIndex = m_pColliderManager->GetIndex(m_sName);
+			m_pColliderManager->SetModelMatrix(m4Mod, m_sName);
+
+			if (m_bRenderGeo)
+			{
+				m_pColliderManager->DisplayReAlligned(nIndex);
+			}
+			return;
+		}
+
+		UpdateProjectile();
+	}
+	    
 
 }
 
@@ -342,6 +376,10 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 			m_pScoreMngr->AddScore(score, other->m_sName);
 
 			m_bHitReg = true;
+
+			//Move to kill zone
+			m_v3Velocity[1] = -35.0f;
+
 		}
 		else if (other->type & ET_ENVI_WALL)
 		{
@@ -369,6 +407,12 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 
 			if (m_v3Velocity[1] > 0.0f)
 				m_v3Velocity[1] *= -2.0f;
+		}
+		else if (other->type & ET_ENVI_GROUND)
+		{
+			m_bHitReg = true;
+			m_bHitGround = true;
+			stillCount = PC_STILLCOUNT;
 		}
 	}
 

@@ -351,10 +351,10 @@ void AppClass::BuildEnv()
 	/////////////////////////////////////////////////////////////////
 	// WATER
 	/////////////////////////////////////////////////////////////////
-	eBOX.push_back(vector3(2.4f, -15.5f, -51.7f));
-	eBOX.push_back(vector3(29.7f, -17.3f, -20.9f));
-	m_pEntityMngr->AddEntity("WATR_000", ET_ENVI_WALL, eBOX);
-	eBOX.clear();
+	//eBOX.push_back(vector3(2.4f, -15.5f, -51.7f));
+	//eBOX.push_back(vector3(29.7f, -17.3f, -20.9f));
+	//m_pEntityMngr->AddEntity("WATR_000", ET_ENVI_WALL, eBOX);
+	//eBOX.clear();
 
 	/////////////////////////////////////////////////////////////////
 	// CAVE
@@ -407,5 +407,148 @@ void AppClass::BuildEnv()
 	eBOX.push_back(vector3(-2.8f, 0.2f, 69.6f));
 	eBOX.push_back(vector3(-16.3f, -16.5f, 68.3f));
 	m_pEntityMngr->AddEntity("CAVE_010", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-5.5f, -14.6f, 13.6f));
+	eBOX.push_back(vector3(-2.8f, 0.1f, 37.0f));
+	m_pEntityMngr->AddEntity("CAVE_011", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-6.3f, 0.1f, 38.2f));
+	eBOX.push_back(vector3(-13.7f, -3.6f, 67.7f));
+	m_pEntityMngr->AddEntity("CAVE_012", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(39.2f, -1.3f, 43.5f));
+	eBOX.push_back(vector3(49.4f, 1.0f, 68.0f));
+	m_pEntityMngr->AddEntity("CAVE_013", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(68.1f, 2.2f, 43.9f));
+	eBOX.push_back(vector3(52.3f,-1.0f, 67.7f));
+	m_pEntityMngr->AddEntity("CAVE_014", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(50.0f, -3.9f, 42.3f));
+	eBOX.push_back(vector3(38.9f, -0.9f, 38.9f));
+	m_pEntityMngr->AddEntity("CAVE_015", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(35.4f, -1.1f, 68.2f));
+	eBOX.push_back(vector3(-1.0f, 1.0f, 38.0f));
+	m_pEntityMngr->AddEntity("CAVE_016", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-1.3f, 1.0f, 17.7f));
+	eBOX.push_back(vector3(33.6f, -1.1f, 36.9f));
+	m_pEntityMngr->AddEntity("CAVE_017", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-1.2f, -8.0f, 36.7f));
+	eBOX.push_back(vector3(2.4f, -3.1f, 25.4f));
+	m_pEntityMngr->AddEntity("CAVE_018", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(3.8f, -3.0f, 24.4f));
+	eBOX.push_back(vector3(12.0f, -8.0f, 17.6f));
+	m_pEntityMngr->AddEntity("CAVE_019", ET_ENVI_WALL, eBOX);
+	eBOX.clear();
+
+	/////////////////////////////////////////////////////////////////
+	// GROUND
+	/////////////////////////////////////////////////////////////////
+	eBOX.push_back(vector3(70.3f, -17.6f, -70.8f));
+	eBOX.push_back(vector3(35.86f, -16.0f, -37.99f));
+	m_pEntityMngr->AddEntity("GRND_001", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(35.9f, -14.3f, -0.2f));
+	eBOX.push_back(vector3(70.8f, -17.5f, -37.0f));
+	m_pEntityMngr->AddEntity("GRND_002", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(35.6f, -14.6f, 1.9f));
+	eBOX.push_back(vector3(70.3f, -16.1f, 36.9f));
+	m_pEntityMngr->AddEntity("GRND_003", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(70.2f, -16.7f, 69.6f));
+	eBOX.push_back(vector3(34.9f, -14.5f, 38.8f));
+	m_pEntityMngr->AddEntity("GRND_004", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(35.2f, -16.0f, -37.8f));
+	eBOX.push_back(vector3(-1.1f, -18.9f,-71.2f));
+	m_pEntityMngr->AddEntity("GRND_005", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(35.2f, -15.7f, -37.1f));
+	eBOX.push_back(vector3(-0.5f, -15.3f, -1.1f));
+	m_pEntityMngr->AddEntity("GRND_006", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(16.7f, -14.7f, -16.0f));
+	eBOX.push_back(vector3(-1.4f, -13.3f, -0.6f));
+	m_pEntityMngr->AddEntity("GRND_006.1", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-1.6f, -15.0f, 0.3f));
+	eBOX.push_back(vector3(34.8f, -15.2f, 12.6f));
+	m_pEntityMngr->AddEntity("GRND_007.1", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-1.7f, -10.97f, 37.0f));
+	eBOX.push_back(vector3(34.0f, -11.0f, 19.9f));
+	m_pEntityMngr->AddEntity("GRND_007.2", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-0.96f, -14.7f, 67.6f));
+	eBOX.push_back(vector3(33.5f, -15.6f, 43.5f));
+	m_pEntityMngr->AddEntity("GRND_008.1", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-3.0f, -16.0f, -72.2f));
+	eBOX.push_back(vector3(-38.7f, -19.4f, -38.6f));
+	m_pEntityMngr->AddEntity("GRND_009", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-2.6f, -15.0f, -37.1f));
+	eBOX.push_back(vector3(-36.6f, -17.1f, -1.5f));
+	m_pEntityMngr->AddEntity("GRND_010", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-2.8f, -15.1f, 0.5f));
+	eBOX.push_back(vector3(-39.0f, -15.4f, 37.1f));
+	m_pEntityMngr->AddEntity("GRND_011", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-39.2f, -15.0f, 37.9f));
+	eBOX.push_back(vector3(-2.9f, -18.1f, 70.0f));
+	m_pEntityMngr->AddEntity("GRND_012", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(10.7f, -12.1f, 55.7f));
+	eBOX.push_back(vector3(-1.1f, -13.4f, 40.3f));
+	m_pEntityMngr->AddEntity("GRND_012.1", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-39.9f, -16.0f, -73.7f));
+	eBOX.push_back(vector3(-70.4f, -19.0f, -38.7f));
+	m_pEntityMngr->AddEntity("GRND_013", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-70.4f, -18.5f, -36.5f));
+	eBOX.push_back(vector3(-40.4f, -15.1f, -1.2f));
+	m_pEntityMngr->AddEntity("GRND_014", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-39.8f, -15.0f, 37.0f));
+	eBOX.push_back(vector3(-70.7f, -18.9f, 0.8f));
+	m_pEntityMngr->AddEntity("GRND_015", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-39.7f, -16.0f, 37.6f));
+	eBOX.push_back(vector3(-70.3f, -18.9f, 69.6f));
+	m_pEntityMngr->AddEntity("GRND_016", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 }

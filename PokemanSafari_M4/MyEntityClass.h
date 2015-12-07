@@ -23,16 +23,17 @@
 // 100XXXXX
 //      ^^^ - character types (pokeman, player, reserved)?
 /////////////////////////////////////////////////////////////////////
-#define ET_CHARACTER       ((unsigned char) 0x80)
-#define ET_ENVIRONMENT     ((unsigned char) 0x40)
-#define ET_PROJECTILE      ((unsigned char) 0x20)
+#define ET_CHAR_POKEMAN    (((unsigned char) 0x10) )
+#define ET_CHAR_PLAYER     (((unsigned char) 0x20) )
+#define ET_PROJ_POKECUBE   (((unsigned char) 0x80) )
+#define ET_ENVI_GROUND     (((unsigned char) 0x01) )
+#define ET_ENVI_WALL       (((unsigned char) 0x02) )
 
-#define ET_CHAR_POKEMAN    (((unsigned char) 0x01) | ET_CHARACTER)
-#define ET_CHAR_PLAYER     (((unsigned char) 0x02) | ET_CHARACTER)
-#define ET_PROJ_POKECUBE   (((unsigned char) 0x01) | ET_PROJECTILE)
-#define ET_ENVI_GROUND     (((unsigned char) 0x01) | ET_ENVIRONMENT)
-#define ET_ENVI_WALL       (((unsigned char) 0x02) | ET_ENVIRONMENT)
+#define ET_CHARACTER       (ET_CHAR_POKEMAN | ET_CHAR_PLAYER)
+#define ET_ENVIRONMENT     (ET_ENVI_GROUND | ET_ENVI_WALL)
+#define ET_PROJECTILE      (ET_PROJ_POKECUBE)
 
+#define PC_STILLCOUNT      30
 
 typedef unsigned char ET_TYPE;
 
@@ -51,6 +52,9 @@ private:
 	bool m_bCreated = false;     //whether created
 	bool m_bHitReg = true;       //whether collision has begun response
 	bool m_bRenderGeo = false;
+
+	bool m_bHitGround = false;
+	int stillCount = 0;
 
 	quaternion m_qOrientation = quaternion();
 	vector3 m_v3Scale = vector3();
