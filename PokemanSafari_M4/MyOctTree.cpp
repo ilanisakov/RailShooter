@@ -12,6 +12,13 @@
 
 #include "MyOctTree.h"
 
+/////////////////////////////////////////////////////////////////////
+// Constructor
+// @param
+//    center - center of the oct tree
+//    depth  - depth of tree from this oct
+//    width - width of the oct
+/////////////////////////////////////////////////////////////////////
 MyOctTree::MyOctTree(vector3 center, int depth, float width)
 {
 	m_center = center;
@@ -25,18 +32,70 @@ MyOctTree::MyOctTree(vector3 center, int depth, float width)
 	Subdivide();
 }
 
+/////////////////////////////////////////////////////////////////////
+// Copy Constructor
+/////////////////////////////////////////////////////////////////////
 MyOctTree::MyOctTree(MyOctTree const& other)
 {
-	//TODO
+	m_pMeshMngr = other.m_pMeshMngr;
+	m_parent = other.m_parent;
+	for (int i = 0; i < OCT_SIZE; i++)
+	{
+		m_child[i] = other.m_child[i];
+	}
+	m_subdivisions = other.m_subdivisions;
+	m_radius = other.m_radius;
+	m_center = other.m_center;
+	m_octMap = other.m_octMap;
+	for (int i = 0; i < (OCT_MAX_DEPTH + 1); i++)
+	{
+		m_ancestorList[i] = other.m_ancestorList[i];
+	}
+	m_ancesterDepth = other.m_ancesterDepth;
+	m_IdxList = other.m_IdxList;
 }
 
+/////////////////////////////////////////////////////////////////////
+// Swap() - swaps class data members
+/////////////////////////////////////////////////////////////////////
+void MyOctTree::Swap(MyOctTree& other)
+{
+	std::swap(m_pMeshMngr, other.m_pMeshMngr);
+	std::swap(m_parent, other.m_parent);
+	for (int i = 0; i < OCT_SIZE; i++)
+	{
+		std::swap(m_child[i], other.m_child[i]);
+	}
+	std::swap(m_subdivisions, other.m_subdivisions);
+	std::swap(m_radius, other.m_radius);
+	std::swap(m_center, other.m_center);
+	std::swap(m_octMap, other.m_octMap);
+	for (int i = 0; i < (OCT_MAX_DEPTH + 1); i++)
+	{
+		std::swap(m_ancestorList[i], other.m_ancestorList[i]);
+	}
+	std::swap(m_ancesterDepth, other.m_ancesterDepth);
+	std::swap(m_IdxList, other.m_IdxList);
+}
+
+/////////////////////////////////////////////////////////////////////
+// Copy Assignment Operator
+/////////////////////////////////////////////////////////////////////
 MyOctTree& MyOctTree::operator=(MyOctTree const& other)
 {
-	//TODO
+	if (this != &other)
+	{
+		Release(this);
+		Init();
+		MyOctTree temp(other);
+		Swap(temp);
+	}
 	return *this;
-
 }
 
+/////////////////////////////////////////////////////////////////////
+// Init() - initialize class data members
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::Init()
 {
 	m_pMeshMngr = MeshManagerSingleton::GetInstance();
@@ -47,13 +106,16 @@ void MyOctTree::Init()
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// Subdivide() - subdivide the octtree until at tree base
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::Subdivide()
 {
 	//Check for base oct cell
 	if (m_subdivisions == 0)
 		return;
 
-	//Else divide
+	//Else divide further
 	for (int i = 0; i < OCT_SIZE; i++)
 	{
 		m_child[i] = new MyOctTree(CalcChildCenter(i),
@@ -63,6 +125,11 @@ void MyOctTree::Subdivide()
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// CalcChildCenter() - calculate the center of a child oct
+//
+// @param - which child it is (0 - 7)
+/////////////////////////////////////////////////////////////////////
 vector3 MyOctTree::CalcChildCenter(int idx)
 {
 	float radius = m_radius / 2.0f;
@@ -105,6 +172,9 @@ vector3 MyOctTree::CalcChildCenter(int idx)
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// DisplayBox() - display box of octant and suboctants
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::DisplayBox()
 {
 	if (m_subdivisions != 0)
@@ -123,16 +193,20 @@ void MyOctTree::DisplayBox()
 		glm::scale(vector3(m_radius)*2.0f),
 		REYELLOW,
 		WIRE); 
-	
 }
 
+/////////////////////////////////////////////////////////////////////
+// AddObject() - adds an object into the octtree
+//
+// @param
+//    obj - object reference to add
+//    tree - current tree in traversal
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::AddObject(MyOctTree* tree, MyBOClass* obj)
 {
-	//printf("%d", tree->m_subdivisions);
 	//If no more childern enter it here
 	if (tree->m_subdivisions == 0)
 	{
-//		printf("\n");
 		tree->m_octMap[obj->GetName()] = obj;
 		return;
 	}
@@ -144,19 +218,25 @@ void MyOctTree::AddObject(MyOctTree* tree, MyBOClass* obj)
 	if ( maxQ != minQ )
 	{
 		//Object is in more than one Oct enter into this node 
-//		printf("\n");
 		tree->m_octMap[obj->GetName()] = obj;
 		return;
 	}
 	else
 	{
 		//Contained in 1 child node, pass to child
-//		printf("%d,", maxQ);
 		AddObject(tree->m_child[maxQ], obj);
 		return;
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// RemoveObject() - removes a BO from the tree
+//
+// @param
+//    node - current oct to search in
+//    obj - object reference to remove
+// @return - whether successful
+/////////////////////////////////////////////////////////////////////
 bool MyOctTree::RemoveObject(MyOctTree* node, MyBOClass* obj)
 {
 	//BAD... brute force...
@@ -164,7 +244,7 @@ bool MyOctTree::RemoveObject(MyOctTree* node, MyBOClass* obj)
 	t_octMapIt it = node->m_octMap.find(obj->GetName());
 	if (it != node->m_octMap.end())
 	{
-//		printf(" %s\n", obj->GetName().c_str());
+		//printf(" %s\n", obj->GetName().c_str());
 		node->m_octMap.erase(it);
 		return true;
 	}
@@ -179,25 +259,34 @@ bool MyOctTree::RemoveObject(MyOctTree* node, MyBOClass* obj)
 	return false; //Never found it
 }
 
+/////////////////////////////////////////////////////////////////////
+// UpdateObject() - removes and readds an obj from the octtree
+//
+// @param
+//    root - base of tree to update in
+//    obj - object reference to update
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::UpdateObject(MyOctTree* root, MyBOClass* obj)
 {
 	//Find where the obj is and destroy it.
-//	printf("Removing");
 	RemoveObject(root, obj);
 
 	//re-add it
-//	printf("ReAdding %s ", obj->GetName().c_str());
+	//printf("ReAdding %s ", obj->GetName().c_str());
 	AddObject(root, obj);
 }
 
+/////////////////////////////////////////////////////////////////////
+// TraverseAux() - recursive travsal collision method
+//
+// @param - current oct node
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::TraverseAux(MyOctTree* node)
 {
 	//Put current level into the list of ancestor objs
 	m_ancesterDepth++;
 	m_ancestorList[m_ancesterDepth] = node;
 
-	MyBOClass* pBOanc; //ancestor
-	MyBOClass* pBOcur; //current level
 	//Check CurrentLvL with all Ancestors (itself is now included)
 	for (int d = 0; d <= m_ancesterDepth; d++)
 	{
@@ -213,16 +302,13 @@ void MyOctTree::TraverseAux(MyOctTree* node)
 				{
 					break; //dont do double checks!
 				}
-//				printf("Traversed: %s vs %s\n", itA->first.c_str(), it->first.c_str());
+				//printf("Traversed: %s vs %s\n", itA->first.c_str(), it->first.c_str());
 				//Check the collision
 				if (itA->second->IsColliding(it->second))
 				{
 					//Record in Index Listing
 					(*m_IdxList)[itA->second->GetStoredIndex()].push_back(it->second->GetStoredIndex());
 					(*m_IdxList)[it->second->GetStoredIndex()].push_back(itA->second->GetStoredIndex());
-
-					//m_llCollidingIndices[nObjectA].push_back(nObjectB);
-					//m_llCollidingIndices[nObjectB].push_back(nObjectA);
 				}
 			}
 			
@@ -241,14 +327,21 @@ void MyOctTree::TraverseAux(MyOctTree* node)
 	m_ancesterDepth--;
 }
 
+/////////////////////////////////////////////////////////////////////
+// CollisionTraverse() - check collisions of all BOs in octtree
+//
+// @param - ref to coliding report lost
+/////////////////////////////////////////////////////////////////////
 void MyOctTree::CollisionTraverse(std::vector<std::vector<int>>* idxList)
 {
 	m_ancesterDepth = -1;
 	m_IdxList = idxList;
-//	printf("Begin Traversal...\n");
 	TraverseAux(this);
 }
 
+/////////////////////////////////////////////////////////////////////
+// DetermineOctant() - dtermines what octant a point is in
+/////////////////////////////////////////////////////////////////////
 int MyOctTree::DetermineOctant(vector3 point)
 {
 	vector3 diff = point - m_center;
@@ -285,22 +378,44 @@ int MyOctTree::DetermineOctant(vector3 point)
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// GetCenter() - returns the center of the octant cell
+/////////////////////////////////////////////////////////////////////
 vector3 MyOctTree::GetCenter()
 {
 	return m_center;
 }
 
+/////////////////////////////////////////////////////////////////////
+// GetSize() - returns the size of the octant cell
+/////////////////////////////////////////////////////////////////////
 float MyOctTree::GetSize()
 {
 	return m_radius;
 }
 
-void MyOctTree::Release()
+/////////////////////////////////////////////////////////////////////
+// Release() - deallocate any memory recursively
+/////////////////////////////////////////////////////////////////////
+void Release(MyOctTree* node);
+void MyOctTree::Release(MyOctTree* node)
 {
-	//TODO
+	if (node == nullptr)
+		return;
+	if (node->m_subdivisions == 0)
+		return;
+
+	for (int i = 0; i < OCT_SIZE; i++)
+	{
+		Release(node->m_child[i]);
+		delete m_child[i];
+	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// Destructor()
+/////////////////////////////////////////////////////////////////////
 MyOctTree::~MyOctTree()
 {
-	Release();
+	Release(this);
 }

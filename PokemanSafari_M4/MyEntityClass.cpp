@@ -12,12 +12,12 @@
 
 #include "MyEntityClass.h"
 
-/////////////////////////////////////////////////////////////////
-//Method: MyEntityClass
+/////////////////////////////////////////////////////////////////////
+//Method: MyEntityClass - Projectile
 //Usage: Constructor
 //Arguments: ---
 //Output: class object
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 MyEntityClass::MyEntityClass(String name, ET_TYPE type)
 {
 	Init();
@@ -37,7 +37,7 @@ MyEntityClass::MyEntityClass(String name, ET_TYPE type)
 	}
 }
 
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 // Constructor - for path following entity
 //
 // @param
@@ -45,7 +45,7 @@ MyEntityClass::MyEntityClass(String name, ET_TYPE type)
 //    type - entity type
 //    time - entity path lap time
 //    movementPath - predetermined entity path
-/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////
 MyEntityClass::MyEntityClass(String name, ET_TYPE type, float time, std::vector<vector3> movementPath)
 {
 	Init();
@@ -96,6 +96,14 @@ MyEntityClass::MyEntityClass(String name, ET_TYPE type, float time, std::vector<
 		nextIt = path.begin();
 }
 
+/////////////////////////////////////////////////////////////////////
+// Constructor - environmental obj
+//
+// @param
+//    name - entity name
+//    type - entity type
+//    verts - list of entity verts
+/////////////////////////////////////////////////////////////////////
 MyEntityClass::MyEntityClass(String name, ET_TYPE type, std::vector<vector3> verts)
 {
 	Init();
@@ -106,6 +114,12 @@ MyEntityClass::MyEntityClass(String name, ET_TYPE type, std::vector<vector3> ver
 	m_bCreated = true;
 }
 
+/////////////////////////////////////////////////////////////////////
+//Method: MyBOClass
+//Usage: Constructor
+//Arguments: ---
+//Output: class object
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::Init(void)
 {
 	m_v3Position = vector3();
@@ -124,7 +138,12 @@ void MyEntityClass::Init(void)
 	m_pScoreMngr = ScoreManager::GetInstance();
 }
 
-//TODO FIXME
+/////////////////////////////////////////////////////////////////////
+//Method: Swap
+//Usage: Exchanges member information with object
+//Arguments:  class object
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::Swap(MyEntityClass& other)
 {
 	std::swap(m_v3Position, other.m_v3Position);
@@ -138,9 +157,36 @@ void MyEntityClass::Swap(MyEntityClass& other)
 	std::swap(m_sName, other.m_sName);
 	std::swap(m_pColliderManager, other.m_pColliderManager);
 	std::swap(m_pMeshManager, other.m_pMeshManager);
+	std::swap(m_pScoreMngr, other.m_pScoreMngr);
+
+	std::swap(type, other.type);
+	std::swap(m_bAlive, other.m_bAlive);
+	std::swap(m_bCreated, other.m_bCreated);
+	std::swap(m_bHitReg, other.m_bHitReg);
+	std::swap(m_bRenderGeo, other.m_bRenderGeo);
+	std::swap(m_bHitGround, other.m_bHitGround);
+	std::swap(stillCount, other.stillCount);
+
+	std::swap(m_fMass, other.m_fMass);
+
+	std::swap(nextIt, other.nextIt);
+	std::swap(path, other.path);
+	std::swap(pathDirection, other.pathDirection);
+	std::swap(it, other.it);
+	std::swap(dirIt, other.dirIt);
+
+	std::swap(currentSeg, other.currentSeg);
+	std::swap(lapTime, other.lapTime);
+	std::swap(totalDistance, other.totalDistance);
+	std::swap(speed, other.speed);
 }
 
-//TODO FIXME
+/////////////////////////////////////////////////////////////////////
+//Method: MyEntityClass
+//Usage: Constructor
+//Arguments: class object
+//Output: class object
+/////////////////////////////////////////////////////////////////////
 MyEntityClass::MyEntityClass(MyEntityClass const& other)
 {
 	m_v3Position = other.m_v3Position;
@@ -151,13 +197,38 @@ MyEntityClass::MyEntityClass(MyEntityClass const& other)
 	m_v3Acceleration = other.m_v3Acceleration;
 
 	m_sName = other.m_sName;
+	type = other.type;
 	m_fMaxAcc = other.m_fMaxAcc;
-
+	m_fMass = other.m_fMass;
 
 	m_pColliderManager = other.m_pColliderManager;
 	m_pMeshManager = other.m_pMeshManager;
+	m_pScoreMngr = other.m_pScoreMngr;
+
+	m_bAlive = other.m_bAlive;
+	m_bCreated = other.m_bCreated;
+	m_bHitReg = other.m_bHitReg;
+	m_bRenderGeo = other.m_bRenderGeo;
+	m_bHitGround = other.m_bHitGround;
+	stillCount = other.stillCount;
+
+	nextIt = other.nextIt;
+	path = other.path;
+	pathDirection = other.pathDirection;
+	it = other.it;
+	dirIt = other.dirIt;
+	currentSeg = other.currentSeg;
+	lapTime = other.lapTime;
+	totalDistance = other.totalDistance;
+	speed = other.speed;
 }
 
+/////////////////////////////////////////////////////////////////////
+//Method: operator=
+//Usage: Copy Assigment operator
+//Arguments: ---
+//Output: class object
+/////////////////////////////////////////////////////////////////////
 MyEntityClass& MyEntityClass::operator=(MyEntityClass const& other)
 {
 	if (this != &other)
@@ -170,41 +241,75 @@ MyEntityClass& MyEntityClass::operator=(MyEntityClass const& other)
 	return *this;
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetPosition() - set the psotion of the entity
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::SetPosition(vector3 vPos)
 {
 	m_v3Position = vPos;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GetPosition() -  return the position of the entity
+/////////////////////////////////////////////////////////////////////
 vector3 MyEntityClass::GetPosition()
 {
 	return m_v3Position;
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetVelocity() - set the velocity of the entity
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::SetVelocity(vector3 vVel)
 {
 	m_v3Velocity = vVel;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GetVelocity() - return the velocity of the entity
+/////////////////////////////////////////////////////////////////////
 vector3 MyEntityClass::GetVelocity()
 {
 	return m_v3Velocity;
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetAcceleration - set acceleration of the entity
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::SetAcceleration(vector3 vAcc)
 {
 	m_v3Acceleration = vAcc;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GetAcceleration() - return the accleration of the entity
+/////////////////////////////////////////////////////////////////////
 vector3 MyEntityClass::GetAcceleration()
 {
 	return m_v3Acceleration;
 }
+
+/////////////////////////////////////////////////////////////////////
+// SetMass() - sets the mass of the entity
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::SetMass(float m)
 {
 	m_fMass = m;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GEtMass() - returns the mass of the entity
+/////////////////////////////////////////////////////////////////////
 float MyEntityClass::GetMass()
 {
 	return m_fMass;
 }
 
+/////////////////////////////////////////////////////////////////////
+// ApplyForce() - apply force to entity
+//
+// @param - force to apply
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::ApplyForce(vector3 force)
 {
 	m_v3Acceleration[0] += force[0] / m_fMass;
@@ -212,6 +317,11 @@ void MyEntityClass::ApplyForce(vector3 force)
 	m_v3Acceleration[2] += force[2] / m_fMass;
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetRenderGeomettry() - sets whether display BO box
+//
+// @param - whether to display collision box
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::SetRenderGeometry(bool display)
 {
 	m_bRenderGeo = display;
@@ -233,6 +343,9 @@ bool MyEntityClass::IsAlive()
 	return m_bAlive;
 }
 
+/////////////////////////////////////////////////////////////////////
+// Update() - updates entity in the scene
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::Update()
 {
 	if (type & ET_ENVIRONMENT)
@@ -241,6 +354,7 @@ void MyEntityClass::Update()
 		UpdateCharacter();
 	else if (type & ET_PROJECTILE)
 	{
+		//Special behavior (sitting on ground)
 		if (m_bHitGround)
 		{
 			if (stillCount == 0)
@@ -275,15 +389,16 @@ void MyEntityClass::Update()
 		UpdateProjectile();
 	}
 	    
-
 }
 
+/////////////////////////////////////////////////////////////////////
+// UpdateProjectile() - aux update method for projectile types
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::UpdateProjectile()
 {
 	if (!m_bAlive)
 		return;
 	//Else alive
-
 
 	//basic pokecube
 	//check killzone?
@@ -297,23 +412,28 @@ void MyEntityClass::UpdateProjectile()
 	{
 		//move
 		MyEntityClass::UpdateMaster();
+		//Update region in octtree
 		m_pColliderManager->UpdateTree(m_sName);
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// UpdateCharacter() - aux update method for character types
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::UpdateCharacter()
 {
 	m_v3Velocity = vector3(dirIt->x * speed, dirIt->y * speed, dirIt->z * speed);
 
 	//MyEntityClass's Update
 	UpdateMaster();
+	//UPdate region in octtree
 	m_pColliderManager->UpdateTree(m_sName);
 
 	//checking if it's time to move onto the next path segment
 	if (m_v3Position.x >= nextIt->x - offset && m_v3Position.x <= nextIt->x + offset){
 		if (m_v3Position.y >= nextIt->y - offset && m_v3Position.y <= nextIt->y + offset){
 			if (m_v3Position.z >= nextIt->z - offset && m_v3Position.z <= nextIt->z + offset){
-//				std::cout << "SWITCH" << std::endl;
+				//std::cout << "SWITCH" << std::endl;
 				it++;
 				if (it == path.end())
 					it = path.begin();
@@ -328,6 +448,9 @@ void MyEntityClass::UpdateCharacter()
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// UpdateMaster() - aux update method for common phys updates
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::UpdateMaster()
 {
 	m_v3Velocity += m_v3Acceleration;
@@ -349,29 +472,29 @@ void MyEntityClass::UpdateMaster()
 	}
 }
 
-
-
+/////////////////////////////////////////////////////////////////////
+// ApplyCollision() - collision reaction
+//
+// @param - entity in which colliding with
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::ApplyCollision(MyEntityClass* other)
 {
 	//std::cout << m_sName << " do something about it\n";
-	std::cout << other->m_sName << " hit! ";
+	//std::cout << other->m_sName << " hit! ";
 
 	if (!m_bHitReg)
 	{
+		//Hit Pokeman, register score
 		if (other->type & ET_CHAR_POKEMAN)
 		{
 			int score = 100;
 			float otherVel = glm::length(other->m_v3Velocity) *10.0f;
-//			printf("Velocity [%f]\n", otherVel);
 			if (otherVel < 1.0f && otherVel >= 0.5f)
 				score += 30;
 			else if (otherVel < 0.5f && otherVel >= 0.25f)
 				score += 15;
 			else if (otherVel < 0.25f && otherVel > 0.0f)
 				score += 5;
-
-			//printf("Name[%s] Other[%s]", m_sName.c_str(),
-			//	other->m_sName.c_str());
 
 			m_pScoreMngr->AddScore(score, other->m_sName);
 
@@ -381,26 +504,9 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 			m_v3Velocity[1] = -35.0f;
 
 		}
+		//Hit wall, bounce
 		else if (other->type & ET_ENVI_WALL)
 		{
-			//float x = glm::abs(m_v3Velocity[0]);
-			//float z = glm::abs(m_v3Velocity[2]);
-			//if (x > z)
-			//{
-			//	m_v3Velocity[2] *= -1.0f;
-			//}
-			//else
-			//{
-			//	m_v3Velocity[0] *= -1.0f;
-			//}
-			//m_v3Velocity[1] *= 2.0f;
-
-			//vector3 dir = this->m_v3Position - other->m_v3Position;
-			//dir = glm::normalize(dir);
-
-			//float theta = glm::acos(glm::dot(dir, vector3(0.0f, 0.0f, 1.0f)));
-			//printf("THeta %f\n", theta);
-			//if (theta )
 			
 			m_v3Velocity[0] *= -1.0f;
 			m_v3Velocity[2] *= -1.0f;
@@ -408,6 +514,7 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 			if (m_v3Velocity[1] > 0.0f)
 				m_v3Velocity[1] *= -2.0f;
 		}
+		//Hit ground, stick then disappear
 		else if (other->type & ET_ENVI_GROUND)
 		{
 			m_bHitReg = true;
@@ -418,11 +525,23 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 
 }
 
+/////////////////////////////////////////////////////////////////////
+//Method: Release
+//Usage: Releases the allocated memory
+//Arguments: ---
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyEntityClass::Release(void)
 {
 	//Nothing todo
 }
 
+/////////////////////////////////////////////////////////////////////
+//Method: MyBOClass
+//Usage: Constructor
+//Arguments: ---
+//Output: class object
+/////////////////////////////////////////////////////////////////////
 MyEntityClass::~MyEntityClass()
 {
 	Release();

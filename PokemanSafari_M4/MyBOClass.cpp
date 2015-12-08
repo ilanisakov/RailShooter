@@ -1,5 +1,22 @@
+/////////////////////////////////////////////////////////////////////
+// File: MyBOClass.cpp
+// DSA2 PokemanSafari_M4
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 #include "MyBOClass.h"
-//  MyBOClass
+
+/////////////////////////////////////////////////////////////////////
+//Method: Init
+//Usage: Allocates member fields
+//Arguments: ---
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyBOClass::Init(void)
 {
 	m_m4ToWorld = IDENTITY_M4;
@@ -19,6 +36,14 @@ void MyBOClass::Init(void)
 
 	m_nStoredIndex = 0;
 }
+
+/////////////////////////////////////////////////////////////////////
+//Method: Swap
+//Usage: Changes object contents for other object's
+//Arguments:
+//other -> object to swap content from
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyBOClass::Swap(MyBOClass& other)
 {
 	std::swap(m_m4ToWorld, other.m_m4ToWorld);
@@ -35,12 +60,29 @@ void MyBOClass::Swap(MyBOClass& other)
 	std::swap(m_v3HalfWidthG, other.m_v3HalfWidthG);
 
 	std::swap(m_fRadius, other.m_fRadius);
+	std::swap(m_sName, other.m_sName);
+	std::swap(m_nStoredIndex, other.m_nStoredIndex);
 }
+
+/////////////////////////////////////////////////////////////////////
+//Method: Release
+//Usage: Deallocates member fields
+//Arguments: ---
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyBOClass::Release(void)
 {
-
+	//Nothing todo...
 }
-//The big 3
+
+/////////////////////////////////////////////////////////////////////
+//Method: MyBOClass
+//Usage: Constructor
+//Arguments: 
+//   a_lVectorList - list object verts
+//   name - object name
+//Output: class object
+/////////////////////////////////////////////////////////////////////
 MyBOClass::MyBOClass(std::vector<vector3> a_lVectorList, String name)
 {
 	//Init the default values
@@ -97,6 +139,13 @@ MyBOClass::MyBOClass(std::vector<vector3> a_lVectorList, String name)
 	m_v3CenterG = m_v3Center;
 	m_v3HalfWidthG = m_v3HalfWidth;
 }
+
+/////////////////////////////////////////////////////////////////////
+//Method: MyBOClass
+//Usage: Copy Constructor
+//Arguments: class object to copy
+//Output: class object instance
+/////////////////////////////////////////////////////////////////////
 MyBOClass::MyBOClass(MyBOClass const& other)
 {
 	m_m4ToWorld = other.m_m4ToWorld;
@@ -113,7 +162,16 @@ MyBOClass::MyBOClass(MyBOClass const& other)
 	m_v3HalfWidthG = other.m_v3HalfWidthG;
 
 	m_fRadius = other.m_fRadius;
+	m_sName = other.m_sName;
+	m_nStoredIndex = other.m_nStoredIndex;
 }
+
+/////////////////////////////////////////////////////////////////////
+//Method: operator=
+//Usage: Copy Assignment Operator
+//Arguments: class object to copy
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 MyBOClass& MyBOClass::operator=(MyBOClass const& other)
 {
 	if (this != &other)
@@ -125,8 +183,25 @@ MyBOClass& MyBOClass::operator=(MyBOClass const& other)
 	}
 	return *this;
 }
-MyBOClass::~MyBOClass(){ Release(); };
-//Accessors
+
+/////////////////////////////////////////////////////////////////////
+//Method: ~MyBOClass
+//Usage: Destructor
+//Arguments: ---
+//Output: ---
+/////////////////////////////////////////////////////////////////////
+MyBOClass::~MyBOClass()
+{
+	Release(); 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: SetToWorldMatrix
+//Usage: Sets the Bounding Object into world coordinates
+//Arguments:
+//matrix4 a_m4ToWorld -> Model to World matrix
+//Output: ---
+/////////////////////////////////////////////////////////////////////
 void MyBOClass::SetModelMatrix(matrix4 a_m4ToWorld)
 {
 	//If there are no changes in the Model Matrix there is no need
@@ -178,38 +253,131 @@ void MyBOClass::SetModelMatrix(matrix4 a_m4ToWorld)
 
 	m_fRadius = glm::distance(m_v3CenterG, m_v3MaxG);
 }
-float MyBOClass::GetRadius(void){ return m_fRadius; }
-matrix4 MyBOClass::GetModelMatrix(void){ return m_m4ToWorld; }
-vector3 MyBOClass::GetCenterLocal(void){ return m_v3Center; }
-vector3 MyBOClass::GetCenterGlobal(void){ return m_v3CenterG; }
-vector3 MyBOClass::GetHalfWidth(void){ return m_v3HalfWidth; }
-vector3 MyBOClass::GetHalfWidthG(void){ return m_v3HalfWidthG; }
 
+/////////////////////////////////////////////////////////////////////
+//Method: GetRadius
+//Usage: Gets the Bounding Object's radius
+//Arguments: ---
+//Output: float -> Radous of the BO
+/////////////////////////////////////////////////////////////////////
+float MyBOClass::GetRadius(void)
+{ 
+	return m_fRadius; 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: GetToWorldMatrix
+//Usage: Gets the Bounding Object into world coordinates
+//Arguments:---
+//Output: matrix4 -> Model to World matrix
+/////////////////////////////////////////////////////////////////////
+matrix4 MyBOClass::GetModelMatrix(void)
+{ 
+	return m_m4ToWorld; 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: GetCenter
+//Usage: Gets the Bounding Object's center in local coordinates
+//Arguments: ---
+//Output: vector3 -> Center's of the Object in local coordinates
+/////////////////////////////////////////////////////////////////////
+vector3 MyBOClass::GetCenterLocal(void)
+{ 
+	return m_v3Center; 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: GetCenterGlobal
+//Usage: Gets the Bounding Object's center in global coordinates
+//Arguments: ---
+//Output: vector3 -> Center's of the Object in global coordinates
+/////////////////////////////////////////////////////////////////////
+vector3 MyBOClass::GetCenterGlobal(void)
+{ 
+	return m_v3CenterG; 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: GetHalfWidth
+//Usage: Gets the Bounding Object sizes for all sides (divided in half)
+//Arguments: ---
+//Output: vector3 -> HalfWidth Vector
+/////////////////////////////////////////////////////////////////////
+vector3 MyBOClass::GetHalfWidth(void)
+{ 
+	return m_v3HalfWidth; 
+}
+
+/////////////////////////////////////////////////////////////////////
+//Method: GetHalfWidthG
+//Usage: Gets the Bounding Object sizes for all sides (divided in half) reoriented
+//Arguments: ---
+//Output: vector3 -> HalfWidth Vector
+/////////////////////////////////////////////////////////////////////
+vector3 MyBOClass::GetHalfWidthG(void)
+{ 
+	return m_v3HalfWidthG; 
+}
+
+/////////////////////////////////////////////////////////////////////
+// GetMaxG() - returns max corner point of BO
+//
+// @return - max point of BO
+/////////////////////////////////////////////////////////////////////
 vector3 MyBOClass::GetMaxG()
 {
 	return m_v3MaxG;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GetMinG() - returns min corner point of BO
+//
+// @return - min point of BO
+/////////////////////////////////////////////////////////////////////
 vector3 MyBOClass::GetMinG()
 {
 	return m_v3MinG;
 }
 
+/////////////////////////////////////////////////////////////////////
+// GetName() - returns BO's name
+//
+// @return - BO's unique name
+/////////////////////////////////////////////////////////////////////
 String MyBOClass::GetName()
 {
 	return m_sName;
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetStoredIndex() - saves the index BO is stored in in manager
+//
+// @param - (idx) the stored index of the BO in the manager
+/////////////////////////////////////////////////////////////////////
 void MyBOClass::SetStoredIndex(int idx)
 {
 	if (idx > -1)
 	    m_nStoredIndex = idx;
 }
+
+/////////////////////////////////////////////////////////////////////
+// GetStoredIndex() - returns index of BO stored in manager
+//
+// @return - idx in manager list
+/////////////////////////////////////////////////////////////////////
 int MyBOClass::GetStoredIndex()
 {
 	return m_nStoredIndex;
 }
 
-//--- Non Standard Singleton Methods
+/////////////////////////////////////////////////////////////////////
+//Method: IsColliding
+//Usage: Asks if there is a collision with another Bounding Object Object
+//Arguments:
+//MyBOClass* const a_pOther -> Other object to check collision with
+//Output: bool -> check of the collision
+/////////////////////////////////////////////////////////////////////
 bool MyBOClass::IsColliding(MyBOClass* const a_pOther)
 {
 	//Get all vectors in global space
@@ -256,6 +424,12 @@ bool MyBOClass::IsColliding(MyBOClass* const a_pOther)
 	return SAT(a_pOther);
 }
 
+/////////////////////////////////////////////////////////////////////
+//USAGE: Determines the collision with an incoming object using the SAT
+// ARGUMENTS :
+//- MyBOClass* const a_pOther->Other object to check collision with
+//OUTPUT : result of the collision
+/////////////////////////////////////////////////////////////////////
 bool MyBOClass::SAT(MyBOClass* const a_pOther)
 {
 	// Get the information of this object

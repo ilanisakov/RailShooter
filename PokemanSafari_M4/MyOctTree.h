@@ -13,7 +13,6 @@
 #ifndef __MYOCTTREE_H__
 #define __MYOCTTREE_H__
 
-//TODO change?
 #include "MyBOClass.h"
 
 #define OCT_SIZE      8
@@ -34,9 +33,9 @@ private:
 	std::map<String, MyBOClass*> m_octMap; //oct cell occupants
 	typedef std::map<String, MyBOClass*>::iterator t_octMapIt;
 
-	MyOctTree* m_ancestorList[OCT_MAX_DEPTH+1];
-	int m_ancesterDepth;
-	std::vector<std::vector<int>>* m_IdxList;
+	MyOctTree* m_ancestorList[OCT_MAX_DEPTH+1];  //ancestor list (collision traversal)
+	int m_ancesterDepth;                         // depth of traversal
+	std::vector<std::vector<int>>* m_IdxList;    // ref to report collisions
 
 	/////////////////////////////////////////////////////////////////
 	// Init() - initialize class data members
@@ -44,12 +43,19 @@ private:
 	void Init();
 
 	/////////////////////////////////////////////////////////////////
-	// Subdivide() - 
+	// Swap() - swaps class data members
+	/////////////////////////////////////////////////////////////////
+	void Swap(MyOctTree& other);
+
+	/////////////////////////////////////////////////////////////////
+	// Subdivide() - subdivide the octtree until at tree base
 	/////////////////////////////////////////////////////////////////
 	void Subdivide();
 
 	/////////////////////////////////////////////////////////////////
-	// CalcChildCenter()
+	// CalcChildCenter() - calculate the center of a child oct
+	//
+	// @param - which child it is (0 - 7)
 	/////////////////////////////////////////////////////////////////
 	vector3 CalcChildCenter(int idx);
 
@@ -59,12 +65,19 @@ private:
 	int DetermineOctant(vector3 point);
 
 	/////////////////////////////////////////////////////////////////
-	// RemoveObject()
+	// RemoveObject() - removes a BO from the tree
+	//
+	// @param
+	//    node - current oct to search in
+	//    obj - object reference to remove
+	// @return - whether successful
 	/////////////////////////////////////////////////////////////////
 	bool RemoveObject(MyOctTree* node, MyBOClass* obj);
 
 	/////////////////////////////////////////////////////////////////
-	// TraverseAux()
+	// TraverseAux() - recursive travsal collision method
+	//
+	// @param - current oct node
 	/////////////////////////////////////////////////////////////////
 	void TraverseAux(MyOctTree* node);
 
@@ -72,6 +85,10 @@ public:
 
 	/////////////////////////////////////////////////////////////////
 	// Constructor
+	// @param
+	//    center - center of the oct tree
+	//    depth  - depth of tree from this oct
+	//    width - width of the oct
 	/////////////////////////////////////////////////////////////////
 	MyOctTree( vector3 center, int depth, float width);
 
@@ -91,17 +108,27 @@ public:
 	void DisplayBox();
 
 	/////////////////////////////////////////////////////////////////
-	// AddObject()
+	// AddObject() - adds an object into the octtree
+	//
+	// @param
+	//    obj - object reference to add
+	//    tree - current tree in traversal
 	/////////////////////////////////////////////////////////////////
 	void AddObject(MyOctTree* tree, MyBOClass* obj);
 
 	/////////////////////////////////////////////////////////////////
-	// UpdateObject()
+	// UpdateObject() - removes and readds an obj from the octtree
+	//
+	// @param
+	//    root - base of tree to update in
+	//    obj - object reference to update
 	/////////////////////////////////////////////////////////////////
 	void UpdateObject(MyOctTree* root, MyBOClass* obj);
 
 	/////////////////////////////////////////////////////////////////
-	// CollisionTraverse()
+	// CollisionTraverse() - check collisions of all BOs in octtree
+	//
+	// @param - ref to coliding report lost
 	/////////////////////////////////////////////////////////////////
 	void CollisionTraverse(std::vector<std::vector<int>>* idxList);
 
@@ -116,9 +143,9 @@ public:
 	float GetSize();
 
 	/////////////////////////////////////////////////////////////////
-	// Release() - deallocate any memory
+	// Release() - deallocate any memory recursively
 	/////////////////////////////////////////////////////////////////
-	void Release();
+	void Release(MyOctTree* node);
 
 	/////////////////////////////////////////////////////////////////
 	// Destructor()

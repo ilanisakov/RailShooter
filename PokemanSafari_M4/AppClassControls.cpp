@@ -1,4 +1,19 @@
+/////////////////////////////////////////////////////////////////////
+// File: AppClassControls.cpp
+// DSA2 PokemanSafari_M4
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 #include "AppClass.h"
+
+/////////////////////////////////////////////////////////////////////
+//ProcessKeyboard() - Manage the response of key presses
+/////////////////////////////////////////////////////////////////////
 void AppClass::ProcessKeyboard(void)
 {
 	bool bModifier = false;
@@ -71,57 +86,6 @@ void AppClass::ProcessKeyboard(void)
 	}
 #pragma endregion
 
-#pragma region Creeper Control
-	if (bModifier)
-		fSpeed *= 10.0f;
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-		m_v3PosPokeCube.x -= 0.1f;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-		m_v3PosPokeCube.x += 0.1f;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-		m_v3PosPokeCube.y -= 0.1f;
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-		m_v3PosPokeCube.y += 0.1f;
-#pragma endregion
-
-#pragma region A10 actions
-	//disable for new BOManager... would have to reimplement acordingly
-	//....
-	//toggle bounding box visibility
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::B)){
-
-		//toggle off
-		if (m_pBndObjMngr->boVisible){
-			m_pBndObjMngr->SetBOVisible("Steve", false);
-			m_pBndObjMngr->SetBOVisible("Creeper", false);
-		}
-
-		//toggle on
-		else if (!(m_pBndObjMngr->boVisible)){
-			m_pBndObjMngr->SetBOVisible("Steve", true);
-			m_pBndObjMngr->SetBOVisible("Creeper", true);
-		}
-	}
-
-	//toggle bounding box visibility
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::V)){
-
-		//toggle off
-		if (m_pBndObjMngr->aabbVisible){
-			m_pBndObjMngr->SetAABBVisible(false);
-			m_pBndObjMngr->SetAABBVisible(false);
-		}
-
-		//toggle on
-		else if (!(m_pBndObjMngr->aabbVisible)){
-			m_pBndObjMngr->SetAABBVisible( true);
-			m_pBndObjMngr->SetAABBVisible( true);
-		}
-	}*/
-#pragma endregion
 
 #pragma region Other Actions
 	ON_KEY_PRESS_RELEASE(Escape, NULL, PostMessage(m_pWindow->GetHandler(), WM_QUIT, NULL, NULL));
@@ -138,6 +102,11 @@ void AppClass::ProcessKeyboard(void)
 	ON_KEY_PRESS_RELEASE(T, ToggleEnvTrack(), NULL);
 #pragma endregion
 }
+
+/////////////////////////////////////////////////////////////////////
+//ProcessMouse() - Manage the response of key presses and mouse 
+//                 position
+/////////////////////////////////////////////////////////////////////
 void AppClass::ProcessMouse(void)
 {
 	m_bArcBall = false;

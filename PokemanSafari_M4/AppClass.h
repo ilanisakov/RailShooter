@@ -22,14 +22,12 @@ Date: 2015/09
 #include "MyEntityManager.h"
 #include "ScoreManager.h"
 
-
-
 using namespace ReEng; //Using ReEng namespace to use all the classes in the dll
 
 class AppClass : public ReEngAppClass
 {
 
-	//window
+	//window properties
 	RECT desktop;
 	int width, widthW;
 	int height, heightW;
@@ -41,10 +39,12 @@ class AppClass : public ReEngAppClass
 	float XRotation, YRotation;
 	float rotationSpeed = 10.0f;
 
+	//Singleton Managers
 	ScoreManager* m_pScoreMngr;
 	MyBOManager* m_pBOMngr;
 	MyEntityManager* m_pEntityMngr;
 	
+	//Pokemon Entity References
 	MyEntityClass* p_pokecube_01;
 	MyEntityClass* c_pika_01;
 	MyEntityClass* c_diglett_01;
@@ -75,81 +75,93 @@ class AppClass : public ReEngAppClass
 public:
 	typedef ReEngAppClass super;
 
-	/* Constructor */
+	/////////////////////////////////////////////////////////////////
+	// Constructor 
+	/////////////////////////////////////////////////////////////////
 	AppClass(HINSTANCE hInstance, LPWSTR lpCmdLine, int nCmdShow, bool a_bUsingConsole = false) : super(hInstance, lpCmdLine, nCmdShow, a_bUsingConsole) {}
 
-	/*
-	ReadConfig
-	Reads the configuration of the application to a file
-	*/
+	/////////////////////////////////////////////////////////////////
+	//ReadConfig()
+	// - Reads the configuration of the application to a file
+	/////////////////////////////////////////////////////////////////
 	virtual void ReadConfig(void) final {}
 
-	/*
-	WriteConfig
-	Writes the configuration of the application to a file
-	*/
+	/////////////////////////////////////////////////////////////////
+	//WriteConfig()
+	// - Writes the configuration of the application to a file
+	/////////////////////////////////////////////////////////////////
 	virtual void WriteConfig(void) final {}
 
-	/*
-	InitWindow
-	Initialize ReEng variables necessary to create the window
-	*/
+	/////////////////////////////////////////////////////////////////
+	//InitWindow()
+	// - Initialize ReEng variables necessary to create the window
+	/////////////////////////////////////////////////////////////////
 	virtual void InitWindow(String a_sWindowName) final;
 
-	/*
-	InitVariables
-	Initializes user specific variables, this is executed right after InitApplicationVariables,
-	the purpose of this member function is to initialize member variables specific for this lesson
-	*/
+	/////////////////////////////////////////////////////////////////
+	//InitVariables()
+	// -Initializes user specific variables, this is executed right after InitApplicationVariables,
+	//  the purpose of this member function is to initialize member variables specific for this lesson
+	/////////////////////////////////////////////////////////////////
 	virtual void InitVariables(void) final;
 
-	/*
-	Update
-	Updates the scene
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Update() - Updates the scene
+	/////////////////////////////////////////////////////////////////
 	virtual void Update(void) final;
 
-	/*
-	Display
-	Displays the scene
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Display() - Displays the scene
+	/////////////////////////////////////////////////////////////////
 	virtual void Display(void) final;
 
-	/*
-	ProcessKeyboard
-	Manage the response of key presses
-	*/
+	/////////////////////////////////////////////////////////////////
+	//ProcessKeyboard() - Manage the response of key presses
+	/////////////////////////////////////////////////////////////////
 	virtual void ProcessKeyboard(void) final;
 
-	/*
-	ProcessMouse
-	Manage the response of key presses and mouse position
-	*/
+	/////////////////////////////////////////////////////////////////
+	//ProcessMouse() - Manage the response of key presses and mouse 
+	//                 position
+	/////////////////////////////////////////////////////////////////
 	virtual void ProcessMouse(void) final;
 
-	/*
-	Release
-	Releases the application
-	IF INHERITED AND OVERRIDEN MAKE SURE TO RELEASE BASE POINTERS (OR CALL BASED CLASS RELEASE)
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Release() - Releases the application
+	//IF INHERITED AND OVERRIDEN MAKE SURE TO RELEASE BASE POINTERS (OR CALL BASED CLASS RELEASE)
+	/////////////////////////////////////////////////////////////////
 	virtual void Release(void) final;
 
-	/*
-	FillPaths
-	Fills the array's with their respective paths
-	*/
+	/////////////////////////////////////////////////////////////////
+	//FillPaths() - Fills entity paths
+	/////////////////////////////////////////////////////////////////
 	virtual void FillPath(void) final;
 
+	/////////////////////////////////////////////////////////////////
+	// ThrowPokecube() - performs the operation to throw a pokecube
+	//                   in game
+	/////////////////////////////////////////////////////////////////
 	void ThrowPokecube();
 
+	/////////////////////////////////////////////////////////////////
+	// ToggleCamera() - toggles betwen rail and free camera
+	/////////////////////////////////////////////////////////////////
 	void ToggleCamera();
 
+	/////////////////////////////////////////////////////////////////
+	// ToggleGeometry() - toggles whether to display collision geometry
+	/////////////////////////////////////////////////////////////////
 	void ToggleGeometry();
 
+	/////////////////////////////////////////////////////////////////
+	// ToggleEnvTrack() - toggles whether using position target
+	//                    (DEBUG USE ONLY)
+	/////////////////////////////////////////////////////////////////
 	void ToggleEnvTrack();
 
-	void UpdatePlayerCamera();
-
+	/////////////////////////////////////////////////////////////////
+	// BuildEnv() - Creates all collision bodies for the environment
+	/////////////////////////////////////////////////////////////////
 	void BuildEnv();
 };
 

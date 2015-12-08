@@ -2,6 +2,17 @@
 Programmer: Alberto Bobadilla (labigm@gmail.com)
 Date: 2015/08
 ----------------------------------------------*/
+/////////////////////////////////////////////////////////////////////
+// File: Main.cpp
+// DSA2 PokemanSafari_M4
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
 
 #include "AppClass.h"
 

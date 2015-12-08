@@ -12,8 +12,12 @@
 
 #include "MyEntityManager.h"
 
+//Singleton Instance
 MyEntityManager* MyEntityManager::m_pInstance = nullptr;
 
+/////////////////////////////////////////////////////////////////////
+// GetInstance() - gets the static instance of manager
+/////////////////////////////////////////////////////////////////////
 MyEntityManager* MyEntityManager::GetInstance()
 {
 	if (m_pInstance == nullptr)
@@ -23,35 +27,72 @@ MyEntityManager* MyEntityManager::GetInstance()
 	return m_pInstance;
 }
 
+/////////////////////////////////////////////////////////////////////
+// ReleaseInstance() 0 release the static class pointer
+/////////////////////////////////////////////////////////////////////
 void MyEntityManager::ReleaseInstance()
 {
-//TODO delete entity list
 	if (m_pInstance != nullptr)
 	{
 		delete m_pInstance;
 		m_pInstance = nullptr;
 	}
 }
-//TODOOOOOOOOO
+
+/////////////////////////////////////////////////////////////////////
+// Release()  - release the objects memory
+/////////////////////////////////////////////////////////////////////
+void MyEntityManager::Release()
+{
+	//Delete entity list
+	for (int i = 0; i < m_nEntityCount; i++)
+	{
+		delete m_lEntity[i];
+	}
+	m_lEntity.clear();
+}
+
+/////////////////////////////////////////////////////////////////////
+// Constructor
+/////////////////////////////////////////////////////////////////////
 MyEntityManager::MyEntityManager()
 {
 	m_pBOMngr = MyBOManager::GetInstance();
 	m_nEntityCount = 0;
 }
+
+/////////////////////////////////////////////////////////////////////
+// Copy Constructor
+/////////////////////////////////////////////////////////////////////
 MyEntityManager::MyEntityManager(MyEntityManager const& other)
 {
-
+	//Nothing to do
 }
+
+/////////////////////////////////////////////////////////////////////
+// Copy Assignment Operator
+/////////////////////////////////////////////////////////////////////
 MyEntityManager& MyEntityManager::operator = (MyEntityManager const& other)
 {
 	return *this;
 }
+
+/////////////////////////////////////////////////////////////////////
+// Destructor
+/////////////////////////////////////////////////////////////////////
 MyEntityManager::~MyEntityManager()
 {
-	ReleaseInstance();
+	Release();
 }
 
-
+/////////////////////////////////////////////////////////////////////
+//AddEntity() - adds projectile entity
+//
+// @param
+//    name - entity name
+//    type - entity type
+// @return -  success
+/////////////////////////////////////////////////////////////////////
 int MyEntityManager::AddEntity(String name, ET_TYPE type)
 {
 	MyEntityClass* ent = new MyEntityClass(name, type);
@@ -64,11 +105,20 @@ int MyEntityManager::AddEntity(String name, ET_TYPE type)
 	return 1;
 }
 
+/////////////////////////////////////////////////////////////////////
+// AddEntity() - adds path following entity
+//
+// @param
+//    name - entity name
+//    type - entity type
+//    time - entity path lap time
+//    movementPath - predetermined entity path
+// @return - success
+/////////////////////////////////////////////////////////////////////
 int MyEntityManager::AddEntity(String name, ET_TYPE type, 
 	float time, std::vector<vector3> movementPath)
 {
 	MyEntityClass* ent = new MyEntityClass(name,type,time,movementPath);
-	//MyEntityClass* ent = new MyEntityClass(name);
 	if (ent == nullptr)
 		return 0;
 	
@@ -78,10 +128,18 @@ int MyEntityManager::AddEntity(String name, ET_TYPE type,
 	return 1;
 }
 
+/////////////////////////////////////////////////////////////////////
+// AddEntity() -  environmental obj entity
+//
+// @param
+//    name - entity name
+//    type - entity type
+//    verts - list of entity verts
+// @return - success
+/////////////////////////////////////////////////////////////////////
 int MyEntityManager::AddEntity(String name, ET_TYPE type, std::vector<vector3> verts)
 {
 	MyEntityClass* ent = new MyEntityClass(name, type, verts);
-	//MyEntityClass* ent = new MyEntityClass(name);
 	if (ent == nullptr)
 		return 0;
 
@@ -91,7 +149,14 @@ int MyEntityManager::AddEntity(String name, ET_TYPE type, std::vector<vector3> v
 	return 1;
 }
 
-//TODO FIXME ---BAD
+/////////////////////////////////////////////////////////////////////
+// AddEntity - Adds already created entity 
+//
+// @param
+//   entity - entity ref
+//   name - entity name
+// @return - success
+/////////////////////////////////////////////////////////////////////
 int MyEntityManager::AddEntity(MyEntityClass* entity, String name)
 {
 	if (entity == nullptr)
@@ -103,6 +168,12 @@ int MyEntityManager::AddEntity(MyEntityClass* entity, String name)
 	return 1;
 }
 
+/////////////////////////////////////////////////////////////////////
+// GetEntity() - returns refernce to an entity
+//
+// @param - name of the entity
+// @return - reference to entity
+/////////////////////////////////////////////////////////////////////
 MyEntityClass* MyEntityManager::GetEntity(String name)
 {
 	//Find the related index
@@ -114,6 +185,10 @@ MyEntityClass* MyEntityManager::GetEntity(String name)
 	return m_lEntity[static_cast<uint>(var->second)];
 }
 
+/////////////////////////////////////////////////////////////////////
+// processCollisions() - processes collision responces for given
+//                       entity name or ALL
+/////////////////////////////////////////////////////////////////////
 void MyEntityManager::processCollisions(String name)
 {
 	//printf("Processing Collision for %s\n", name.c_str());
@@ -131,29 +206,24 @@ void MyEntityManager::processCollisions(String name)
 		return;
 	processCollisions(idx);
 }
+
+/////////////////////////////////////////////////////////////////////
+// processCollisions() - process collisions of entity of given id
+/////////////////////////////////////////////////////////////////////
 void MyEntityManager::processCollisions(int idx)
 {
-	//if (idx >(m_nEntityCount - 1) || idx < 0)
-	//	return;
-	//Else process 
-	//IDxs will be the same in BOmanager!!
-	//std::vector<int> collisionList = m_pBOMngr->GetCollidingVector(idx);
-	
-	//for (int i = 0; i < collisionList.size(); i++)
-	//{
-	//	//wwwwaprintf("COLLISION>");
-	//	m_lEntity[idx]->ApplyCollision(m_lEntity[i]);
-	//}
-	//m_lEntity[idx]
-
+	//Get Colliding List
 	std::vector<int> collisions = m_pBOMngr->GetCollidingVector(idx);
-	//printf("\t collVecSize [%d]\n", collisions.size());
+	//Apply Col
 	for (int i = 0; i < collisions.size(); i++)
 	{
 		m_lEntity[idx]->ApplyCollision(m_lEntity[collisions[i]]);
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+// GetIndex() - return the list index of named entity
+/////////////////////////////////////////////////////////////////////
 int MyEntityManager::GetIndex(String name)
 {
 	//Find the related index
@@ -164,14 +234,22 @@ int MyEntityManager::GetIndex(String name)
 	return var->second;//Get the index
 }
 
+/////////////////////////////////////////////////////////////////////
+// SetRenderGeometry() - sets whether to display entity collision
+//                       boxes
+/////////////////////////////////////////////////////////////////////
 void MyEntityManager::SetRenderGeometry(bool display)
 {
+	//Pass change on to all entities
 	for (uint i = 0; i < m_nEntityCount; i++)
 	{
 		m_lEntity[i]->SetRenderGeometry(display);
 	}
 }
 
+/////////////////////////////////////////////////////////////////////
+//Update() - update manager and all of its entities
+/////////////////////////////////////////////////////////////////////
 void MyEntityManager::Update()
 {
 	//UPdate each entity
@@ -181,15 +259,7 @@ void MyEntityManager::Update()
 	}
 
 	//Update the BO collisions
-	m_pBOMngr->Update();
-	
-}
-
-void MyEntityManager::UpdateCollisions()
-{
-	//m_pBOMngr->Update();
-
-
+	m_pBOMngr->Update();	
 }
 
 

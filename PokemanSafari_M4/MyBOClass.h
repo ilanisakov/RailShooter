@@ -2,6 +2,18 @@
 Programmer: Alberto Bobadilla (labigm@gmail.com)
 Date: 2015/10
 ----------------------------------------------*/
+/////////////////////////////////////////////////////////////////////
+// File: MyBOClass.h
+// DSA2 PokemanSafari_M4
+// Authors:
+//      Ilan Isakov
+//		Marty Kurtz
+//		Mary Spencer
+//
+// Description:
+//
+/////////////////////////////////////////////////////////////////////
+
 #ifndef __MYBOCLASS_H_
 #define __MYBOCLASS_H_
 
@@ -26,142 +38,175 @@ class MyBOClass
 
 	float m_fRadius = 0.0f; //Radius of the Bounding Object
 
-	String m_sName = "";
-	int m_nStoredIndex;
+	String m_sName = "";  //Obj Name
+	int m_nStoredIndex;   //Index stored in BOmanager (used by octtree collision report)
 
 public:
-	/*
-	Method: MyBOClass
-	Usage: Constructor
-	Arguments: ---
-	Output: class object
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: MyBOClass
+	//Usage: Constructor
+	//Arguments: ---
+	//Output: class object
+	/////////////////////////////////////////////////////////////////
 	MyBOClass(std::vector<vector3> a_lVectorList, String name);
-	/*
-	Method: MyBOClass
-	Usage: Copy Constructor
-	Arguments: class object to copy
-	Output: class object instance
-	*/
+
+	/////////////////////////////////////////////////////////////////
+	//Method: MyBOClass
+	//Usage: Copy Constructor
+	//Arguments: class object to copy
+	//Output: class object instance
+	/////////////////////////////////////////////////////////////////
 	MyBOClass(MyBOClass const& other);
-	/*
-	Method: operator=
-	Usage: Copy Assignment Operator
-	Arguments: class object to copy
-	Output: ---
-	*/
+
+	/////////////////////////////////////////////////////////////////
+	//Method: operator=
+	//Usage: Copy Assignment Operator
+	//Arguments: class object to copy
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	MyBOClass& operator=(MyBOClass const& other);
-	/*
-	Method: ~MyBOClass
-	Usage: Destructor
-	Arguments: ---
-	Output: ---
-	*/
+	
+	/////////////////////////////////////////////////////////////////
+	//Method: ~MyBOClass
+	//Usage: Destructor
+	//Arguments: ---
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	~MyBOClass(void);
 
-	/*
-	Method: Swap
-	Usage: Changes object contents for other object's
-	Arguments:
-	other -> object to swap content from
-	Output: ---
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: Swap
+	//Usage: Changes object contents for other object's
+	//Arguments:
+	//other -> object to swap content from
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	void Swap(MyBOClass& other);
 
-	/*
-	Method: SetToWorldMatrix
-	Usage: Sets the Bounding Object into world coordinates
-	Arguments:
-	matrix4 a_m4ToWorld -> Model to World matrix
-	Output: ---
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: SetToWorldMatrix
+	//Usage: Sets the Bounding Object into world coordinates
+	//Arguments:
+	//matrix4 a_m4ToWorld -> Model to World matrix
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	void SetModelMatrix(matrix4 a_m4ToWorld);
 
-	/*
-	Method: GetToWorldMatrix
-	Usage: Gets the Bounding Object into world coordinates
-	Arguments:---
-	Output: matrix4 -> Model to World matrix
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetToWorldMatrix
+	//Usage: Gets the Bounding Object into world coordinates
+	//Arguments:---
+	//Output: matrix4 -> Model to World matrix
+	/////////////////////////////////////////////////////////////////
 	matrix4 GetModelMatrix(void);
 
-	/*
-	Method: GetRadius
-	Usage: Gets the Bounding Object's radius
-	Arguments: ---
-	Output: float -> Radous of the BO
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetRadius
+	//Usage: Gets the Bounding Object's radius
+	//Arguments: ---
+	//Output: float -> Radous of the BO
+	/////////////////////////////////////////////////////////////////
 	float GetRadius(void);
 
-	/*
-	Method: GetCenter
-	Usage: Gets the Bounding Object's center in local coordinates
-	Arguments: ---
-	Output: vector3 -> Center's of the Object in local coordinates
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetCenter
+	//Usage: Gets the Bounding Object's center in local coordinates
+	//Arguments: ---
+	//Output: vector3 -> Center's of the Object in local coordinates
+	/////////////////////////////////////////////////////////////////
 	vector3 GetCenterLocal(void);
 
-	/*
-	Method: GetCenterGlobal
-	Usage: Gets the Bounding Object's center in global coordinates
-	Arguments: ---
-	Output: vector3 -> Center's of the Object in global coordinates
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetCenterGlobal
+	//Usage: Gets the Bounding Object's center in global coordinates
+	//Arguments: ---
+	//Output: vector3 -> Center's of the Object in global coordinates
+	/////////////////////////////////////////////////////////////////
 	vector3 GetCenterGlobal(void);
 
-	/*
-	Method: GetHalfWidth
-	Usage: Gets the Bounding Object sizes for all sides (divided in half)
-	Arguments: ---
-	Output: vector3 -> HalfWidth Vector
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetHalfWidth
+	//Usage: Gets the Bounding Object sizes for all sides (divided in half)
+	//Arguments: ---
+	//Output: vector3 -> HalfWidth Vector
+	/////////////////////////////////////////////////////////////////
 	vector3 GetHalfWidth(void);
 
-	/*
-	Method: GetHalfWidthG
-	Usage: Gets the Bounding Object sizes for all sides (divided in half) reoriented
-	Arguments: ---
-	Output: vector3 -> HalfWidth Vector
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: GetHalfWidthG
+	//Usage: Gets the Bounding Object sizes for all sides (divided in half) reoriented
+	//Arguments: ---
+	//Output: vector3 -> HalfWidth Vector
+	/////////////////////////////////////////////////////////////////
 	vector3 GetHalfWidthG(void);
 
+	/////////////////////////////////////////////////////////////////
+	// GetMaxG() - returns max corner point of BO
+	//
+	// @return - max point of BO
+	/////////////////////////////////////////////////////////////////
 	vector3 GetMaxG();
+
+	/////////////////////////////////////////////////////////////////
+	// GetMinG() - returns min corner point of BO
+	//
+	// @return - min point of BO
+	/////////////////////////////////////////////////////////////////
 	vector3 GetMinG();
 
+	/////////////////////////////////////////////////////////////////
+	// GetName() - returns BO's name
+	//
+	// @return - BO's unique name
+	/////////////////////////////////////////////////////////////////
 	String GetName();
+
+	/////////////////////////////////////////////////////////////////
+	// SetStoredIndex() - saves the index BO is stored in in manager
+	//
+	// @param - (idx) the stored index of the BO in the manager
+	/////////////////////////////////////////////////////////////////
 	void SetStoredIndex(int idx);
+
+	/////////////////////////////////////////////////////////////////
+	// GetStoredIndex() - returns index of BO stored in manager
+	//
+	// @return - idx in manager list
+	/////////////////////////////////////////////////////////////////
 	int GetStoredIndex();
 
-	/*
-	Method: IsColliding
-	Usage: Asks if there is a collision with another Bounding Object Object
-	Arguments:
-	MyBOClass* const a_pOther -> Other object to check collision with
-	Output: bool -> check of the collision
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: IsColliding
+	//Usage: Asks if there is a collision with another Bounding Object Object
+	//Arguments:
+	//MyBOClass* const a_pOther -> Other object to check collision with
+	//Output: bool -> check of the collision
+	/////////////////////////////////////////////////////////////////
 	bool IsColliding(MyBOClass* const a_pOther);
-	/*
-    USAGE: Determines the collision with an incoming object using the SAT
-    ARGUMENTS :
-	- MyBOClass* const a_pOther->Other object to check collision with
-	OUTPUT : result of the collision
-	*/
+
+	/////////////////////////////////////////////////////////////////
+    //USAGE: Determines the collision with an incoming object using the SAT
+    // ARGUMENTS :
+	//- MyBOClass* const a_pOther->Other object to check collision with
+	//OUTPUT : result of the collision
+	/////////////////////////////////////////////////////////////////
 	bool SAT(MyBOClass* const a_pOther);
 
 private:
-	/*
-	Method: Release
-	Usage: Deallocates member fields
-	Arguments: ---
-	Output: ---
-	*/
+	/////////////////////////////////////////////////////////////////
+	//Method: Release
+	//Usage: Deallocates member fields
+	//Arguments: ---
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	void Release(void);
-	/*
-	Method: Init
-	Usage: Allocates member fields
-	Arguments: ---
-	Output: ---
-	*/
+
+	/////////////////////////////////////////////////////////////////
+	//Method: Init
+	//Usage: Allocates member fields
+	//Arguments: ---
+	//Output: ---
+	/////////////////////////////////////////////////////////////////
 	void Init(void);
 };
 

@@ -12,6 +12,10 @@
 
 #include "AppClass.h"
 
+/////////////////////////////////////////////////////////////////////
+//InitWindow()
+// - Initialize ReEng variables necessary to create the window
+/////////////////////////////////////////////////////////////////////
 void AppClass::InitWindow(String a_sWindowName)
 {
 	super::InitWindow("PokemanSafari"); // Window Name
@@ -22,6 +26,11 @@ void AppClass::InitWindow(String a_sWindowName)
 	m_v4ClearColor = vector4(0.4f, 0.6f, 0.9f, 0.0f);
 }
 
+/////////////////////////////////////////////////////////////////////
+//InitVariables()
+// -Initializes user specific variables, this is executed right after InitApplicationVariables,
+//  the purpose of this member function is to initialize member variables specific for this lesson
+/////////////////////////////////////////////////////////////////////
 void AppClass::InitVariables(void)
 {
 	//initializing window variables
@@ -36,6 +45,7 @@ void AppClass::InitVariables(void)
 	windowOffsetX = (widthW - width) / 2;
 	windowOffsetY = (heightW - height) / 2;
 
+	//Retrieve Singletons
 	m_pScoreMngr = ScoreManager::GetInstance();
 	m_pBOMngr = MyBOManager::GetInstance();
 	m_pEntityMngr = MyEntityManager::GetInstance();
@@ -65,7 +75,7 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("PokemanSafari\\diglett.obj", "Diglett");
 	m_pMeshMngr->LoadModel("PokemanSafari\\diglett2.obj", "Diglett2");
 
-
+	//Setup PokeCube
 	m_pEntityMngr->AddEntity("Pokecube", ET_PROJ_POKECUBE);
 	p_pokecube_01 = m_pEntityMngr->GetEntity("Pokecube");
 	p_pokecube_01->SetPosition(m_v3PosPokeCube);
@@ -73,10 +83,10 @@ void AppClass::InitVariables(void)
 	p_pokecube_01->SetAcceleration(vector3(0.0f, -0.002f, 0.0f));
 	p_pokecube_01->SetMass(1.2f);
 
-	//m_pEntityMngr->AddEntity("player", ET_CHAR_PLAYER, 80, playerPath);
+	//Create Player
 	c_player = new MyEntityClass("player", ET_CHAR_PLAYER, 80, playerPath);
-	//c_player = m_pEntityMngr->GetEntity("player");
-
+	
+	//Create Pokemans
 	m_pEntityMngr->AddEntity("Pikachu", ET_CHAR_POKEMAN, 5, pikachuPath);
 	m_pEntityMngr->AddEntity("Diglett", ET_CHAR_POKEMAN, 2, diglettPath);
 	m_pEntityMngr->AddEntity("Diglett2", ET_CHAR_POKEMAN, 1, diglettPath2);
@@ -90,9 +100,10 @@ void AppClass::InitVariables(void)
 	XRotation = 0;
 	YRotation = 0;
 
+	//Set to Rail Cam
 	ToggleCamera();
 
-
+	//Build Env Position Target Object
 	std::vector<vector3> envTargetVert;
 	envTargetVert.push_back(vector3(0.125f, 0.125f, 0.125f));
 	envTargetVert.push_back(vector3(0.125f, 0.125f, -0.125f));
@@ -102,15 +113,20 @@ void AppClass::InitVariables(void)
 	envTargetVert.push_back(vector3(-0.125f, 0.125f, -0.125f));
 	envTargetVert.push_back(vector3(-0.125f, -0.125f, 0.125f));
 	envTargetVert.push_back(vector3(-0.125f, -0.125f, -0.125f));
-
 	m_pEntityMngr->AddEntity("envTarget", ET_ENVIRONMENT, envTargetVert);
 	envPosEntity = m_pEntityMngr->GetEntity("envTarget");
 	displayTracking = false;
+
+	//Build Environment Collisions
 	BuildEnv();
 
+	//Initialize OctTree (Puts all entities in the tree)
 	m_pBOMngr->InitOctTree(2);
 }
 
+/////////////////////////////////////////////////////////////////////
+//FillPaths() - Fills entity paths
+/////////////////////////////////////////////////////////////////////
 void AppClass::FillPath(void)
 {
 	/////////////////////////////////////////////////////////////////
@@ -148,10 +164,13 @@ void AppClass::FillPath(void)
 	diglettPath2.push_back(vector3(-52.0f, -16.0f, 5));
 }
 
+/////////////////////////////////////////////////////////////////////
+// BuildEnv() - Creates all collision bodies for the environment
+/////////////////////////////////////////////////////////////////////
 void AppClass::BuildEnv()
 {
 	/////////////////////////////////////////////////////////////////
-	// TREES (Trunk, Canopy)
+	// TREES (Trunk, Canopy) [0 - 18]
 	/////////////////////////////////////////////////////////////////
 	std::vector<vector3> eBOX;
 	eBOX.push_back(vector3(-62.1f, -15.9f, 64.4f));
@@ -326,7 +345,7 @@ void AppClass::BuildEnv()
 	eBOX.clear();
 
 	/////////////////////////////////////////////////////////////////
-	// BUSHES
+	// BUSHES [1-4]
 	/////////////////////////////////////////////////////////////////
 	eBOX.push_back(vector3(21.6f, -10.8f, -58.4f));
 	eBOX.push_back(vector3(10.7f, -15.3f, -63.4f));
