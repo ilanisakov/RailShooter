@@ -6,7 +6,23 @@ Team Off the Rails
 Repo
 https://github.com/ilanisakov/RailShooter
 
+Pokeman Safari Project (Milestone 4)
 
+Throw Pokecubes to capture Pokemans
+
+Controls:
+   [Mouse] - movement rotates player camera.
+   [SpaceBar] - throws pokecube
+   
+Misc Developer Controls:
+   [C] - toggle between rail camera and free camera
+       - in free camera mode, camera rotation via [Right Click] and drag
+   [G] - toggle rendering collision geometry
+
+
+
+
+/////////////////////////////////////////////////////////////////////
 A_11_SAT
 
 Team Responsibilities
@@ -15,7 +31,7 @@ Team Responsibilities
     Mary Spencer
         Due to the small scope of this assignment we each had identical responsibilities. We worked together in/out of the lab to implement and troubleshoot a working solution for the Spanning Axis Theorm
 
-
+/////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////////////////////////
