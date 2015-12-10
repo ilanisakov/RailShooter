@@ -30,7 +30,7 @@
 #define ET_PROJECTILE      (ET_PROJ_POKECUBE)
 
 //Pokecube Ground Freeze Duration
-#define PC_STILLCOUNT      30
+#define PC_STILLCOUNT      25
 
 typedef unsigned char ET_TYPE;
 

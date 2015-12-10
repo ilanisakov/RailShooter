@@ -47,8 +47,23 @@ class AppClass : public ReEngAppClass
 	//Pokemon Entity References
 	MyEntityClass* p_pokecube_01;
 	MyEntityClass* c_pika_01;
+	MyEntityClass* c_pika_02;
+	MyEntityClass* c_pika_03;
+	MyEntityClass* c_pika_04;
+	MyEntityClass* c_pika_05;
+
+
 	MyEntityClass* c_diglett_01;
 	MyEntityClass* c_diglett_02;
+	MyEntityClass* c_diglett_03;
+	MyEntityClass* c_diglett_04;
+	MyEntityClass* c_diglett_05;
+	MyEntityClass* c_diglett_06;
+
+
+	MyEntityClass* c_piplup_01;
+	MyEntityClass* c_piplup_02;
+
 
 	vector3 m_v3PosEnv = vector3(2.5f, 0.0f, 0.0f);
 	vector3 lookDir = vector3(0.0f, 0.0f, 0.0f);
@@ -69,8 +84,22 @@ class AppClass : public ReEngAppClass
 	//Entity Character Paths
 	std::vector<vector3> playerPath;
 	std::vector<vector3> pikachuPath;
+	std::vector<vector3> pikachuPath2;
+	std::vector<vector3> pikachuPath3;
+	std::vector<vector3> pikachuPath4;
+	std::vector<vector3> pikachuPath5;
+
 	std::vector<vector3> diglettPath;
 	std::vector<vector3> diglettPath2;
+	std::vector<vector3> diglettPath3;
+	std::vector<vector3> diglettPath4;
+	std::vector<vector3> diglettPath5;
+	std::vector<vector3> diglettPath6;
+
+	std::vector<vector3> piplupPath;
+	std::vector<vector3> piplupPath2;
+
+
 
 public:
 	typedef ReEngAppClass super;

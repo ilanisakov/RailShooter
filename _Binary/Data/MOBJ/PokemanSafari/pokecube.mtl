@@ -1,13 +1,11 @@
-newmtl phong3SG
+newmtl pikachu:lambert3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
-map_Kd pokecube.png
+map_Kd pikachu.png
 Ni 1.00
-Ks 0.71 0.71 0.71
-Ns 49.40
-newmtl pokecube1:phong3SG
+newmtl pokecube:phong3SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00

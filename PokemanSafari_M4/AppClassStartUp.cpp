@@ -72,8 +72,20 @@ void AppClass::InitVariables(void)
 	m_pMeshMngr->LoadModel("PokemanSafari\\environment.obj", "Environment");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pokecube.obj", "Pokecube");
 	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu.obj", "Pikachu");
+	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu2.obj", "Pikachu2");
+	//m_pMeshMngr->LoadModel("PokemanSafari\\pikachu3.obj", "Pikachu3");
+	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu4.obj", "Pikachu4");
+	m_pMeshMngr->LoadModel("PokemanSafari\\pikachu5.obj", "Pikachu5");
 	m_pMeshMngr->LoadModel("PokemanSafari\\diglett.obj", "Diglett");
 	m_pMeshMngr->LoadModel("PokemanSafari\\diglett2.obj", "Diglett2");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett3.obj", "Diglett3");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett4.obj", "Diglett4");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett5.obj", "Diglett5");
+	m_pMeshMngr->LoadModel("PokemanSafari\\diglett6.obj", "Diglett6");
+	m_pMeshMngr->LoadModel("PokemanSafari\\piplup.obj", "Piplup");
+	m_pMeshMngr->LoadModel("PokemanSafari\\piplup2.obj", "Piplup2");
+
+
 
 	//Setup PokeCube
 	m_pEntityMngr->AddEntity("Pokecube", ET_PROJ_POKECUBE);
@@ -88,12 +100,41 @@ void AppClass::InitVariables(void)
 	
 	//Create Pokemans
 	m_pEntityMngr->AddEntity("Pikachu", ET_CHAR_POKEMAN, 5, pikachuPath);
+	m_pEntityMngr->AddEntity("Pikachu2", ET_CHAR_POKEMAN, 5, pikachuPath2);
+	//m_pEntityMngr->AddEntity("Pikachu3", ET_CHAR_POKEMAN, 5, pikachuPath3);
+	m_pEntityMngr->AddEntity("Pikachu4", ET_CHAR_POKEMAN, 5, pikachuPath4);
+	m_pEntityMngr->AddEntity("Pikachu5", ET_CHAR_POKEMAN, 5, pikachuPath5);
+
 	m_pEntityMngr->AddEntity("Diglett", ET_CHAR_POKEMAN, 2, diglettPath);
 	m_pEntityMngr->AddEntity("Diglett2", ET_CHAR_POKEMAN, 1, diglettPath2);
+	m_pEntityMngr->AddEntity("Diglett3", ET_CHAR_POKEMAN, 2, diglettPath3);
+	m_pEntityMngr->AddEntity("Diglett4", ET_CHAR_POKEMAN, 2, diglettPath4);
+	m_pEntityMngr->AddEntity("Diglett5", ET_CHAR_POKEMAN, 2, diglettPath5);
+	m_pEntityMngr->AddEntity("Diglett6", ET_CHAR_POKEMAN, 2, diglettPath6);
+
+
+	m_pEntityMngr->AddEntity("Piplup", ET_CHAR_POKEMAN, 5, piplupPath);
+	m_pEntityMngr->AddEntity("Piplup2", ET_CHAR_POKEMAN, 5, piplupPath2);
+
+
 
 	c_pika_01 = m_pEntityMngr->GetEntity("Pikachu");
+	c_pika_02 = m_pEntityMngr->GetEntity("Pikachu2");
+	//c_pika_03 = m_pEntityMngr->GetEntity("Pikachu3");
+	c_pika_04 = m_pEntityMngr->GetEntity("Pikachu4");
+	c_pika_05 = m_pEntityMngr->GetEntity("Pikachu5");
+
 	c_diglett_01 = m_pEntityMngr->GetEntity("Diglett");
 	c_diglett_02 = m_pEntityMngr->GetEntity("Diglett2");
+	c_diglett_03 = m_pEntityMngr->GetEntity("Diglett3");
+	c_diglett_04 = m_pEntityMngr->GetEntity("Diglett4");
+	c_diglett_05 = m_pEntityMngr->GetEntity("Diglett5");
+	c_diglett_06 = m_pEntityMngr->GetEntity("Diglett6");
+
+	c_piplup_01 = m_pEntityMngr->GetEntity("Piplup");
+	c_piplup_02 = m_pEntityMngr->GetEntity("Piplup2");
+
+
 
 	//Setting mouse to center of the screen
 	sf::Mouse::setPosition(sf::Vector2i(widthW / 2, heightW / 2));
@@ -149,10 +190,24 @@ void AppClass::FillPath(void)
 	/////////////////////////////////////////////////////////////////
 	// Basic Pikachu Path
 	/////////////////////////////////////////////////////////////////
-	pikachuPath.push_back(vector3(-20.0f, -14.0f, -7.0f));
-	pikachuPath.push_back(vector3(-20.0f, -14.0f, 10.0f));
+	pikachuPath.push_back(vector3(-25.0f, -14.0f, -7.0f));
+	pikachuPath.push_back(vector3(-25.0f, -14.0f, 10.0f));
 	pikachuPath.push_back(vector3(-35.0f, -14.0f, 10.0f));
 	pikachuPath.push_back(vector3(-35.0f, -14.0f, -7.0f));
+
+
+	pikachuPath2.push_back(vector3(37.0f, -16.0f, -51.0f));
+	pikachuPath2.push_back(vector3(37.0f, -16.0f, -1.0f));
+
+	pikachuPath3.push_back(vector3(-47.0f, -10.0f, 33.0f));
+	pikachuPath3.push_back(vector3(-47.0f, -10.0f, 33.0f));
+
+	pikachuPath4.push_back(vector3(-59.0f, -15.0f, -23.5f));
+	pikachuPath4.push_back(vector3(-59.0f, -15.0f, -10.5f));
+
+	pikachuPath5.push_back(vector3(-2.0f, -13.0f, -14.0f));
+	pikachuPath5.push_back(vector3(4.0f, -13.0f, -14.0f));
+
 
 	/////////////////////////////////////////////////////////////////
 	// Basic Diglett Paths
@@ -160,8 +215,40 @@ void AppClass::FillPath(void)
 	diglettPath.push_back(vector3(-52.0f, -16.0f, -40.0f));
 	diglettPath.push_back(vector3(-52.0f, -20.0f, -40.0f));
 
-	diglettPath2.push_back(vector3(-52.0f, -20.0f, 5));
-	diglettPath2.push_back(vector3(-52.0f, -16.0f, 5));
+	diglettPath2.push_back(vector3(13.0f, -15.0f, 32));
+	diglettPath2.push_back(vector3(13.0f, -19.0f, 32));
+
+	diglettPath3.push_back(vector3(17.0f, -10.0f, 32));
+	diglettPath3.push_back(vector3(17.0f, -14.0f, 32));
+
+	diglettPath4.push_back(vector3(32.0f, -11.0f, 36));
+	diglettPath4.push_back(vector3(32.0f, -15.0f, 36));
+
+	diglettPath5.push_back(vector3(-31.0f, -14.5f, 50));
+	diglettPath5.push_back(vector3(-31.0f, -19.5f, 50));
+
+	diglettPath6.push_back(vector3(56.0f, -14.0f, 50));
+	diglettPath6.push_back(vector3(56.0f, -18.0f, 50));
+
+	/////////////////////////////////////////////////////////////////
+	// Piplup path
+	////////////////////////////////////////////////////////////////
+	piplupPath.push_back(vector3(2.0f, -18.0f, -46.0f));
+	piplupPath.push_back(vector3(2.0f, -19.0f, -30.0f));
+	piplupPath.push_back(vector3(2.0f, -18.0f, -23.0f));
+	piplupPath.push_back(vector3(10.0f, -19.0f, -23.0f));
+	piplupPath.push_back(vector3(25.0f, -18.0f, -23.0f));
+	piplupPath.push_back(vector3(25.0f, -19.0f, -33.0f));
+	piplupPath.push_back(vector3(25.0f, -18.0f, -46.0f));
+	piplupPath.push_back(vector3(15.0f, -19.0f, -46.0f));
+
+	piplupPath2.push_back(vector3(14.0f, -17.5f, -37.0f));
+	piplupPath2.push_back(vector3(14.0f, -19.0f, -37.0f));
+
+
+
+
+
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -476,78 +563,78 @@ void AppClass::BuildEnv()
 	/////////////////////////////////////////////////////////////////
 	// GROUND
 	/////////////////////////////////////////////////////////////////
-	eBOX.push_back(vector3(70.3f, -17.6f, -70.8f));
-	eBOX.push_back(vector3(35.86f, -16.0f, -37.99f));
+	eBOX.push_back(vector3(70.3f, -18.5f, -70.8f));
+	eBOX.push_back(vector3(35.86f, -18.0f, -37.99f));
 	m_pEntityMngr->AddEntity("GRND_001", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(35.9f, -14.3f, -0.2f));
+	eBOX.push_back(vector3(35.9f, -14.5f, -0.2f));
 	eBOX.push_back(vector3(70.8f, -17.5f, -37.0f));
 	m_pEntityMngr->AddEntity("GRND_002", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(35.6f, -14.6f, 1.9f));
-	eBOX.push_back(vector3(70.3f, -16.1f, 36.9f));
+	eBOX.push_back(vector3(35.6f, -14.5f, 1.9f));
+	eBOX.push_back(vector3(70.3f, -16.0f, 36.9f));
 	m_pEntityMngr->AddEntity("GRND_003", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(70.2f, -16.7f, 69.6f));
+	eBOX.push_back(vector3(70.2f, -17.0f, 69.6f));
 	eBOX.push_back(vector3(34.9f, -14.5f, 38.8f));
 	m_pEntityMngr->AddEntity("GRND_004", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(35.2f, -16.0f, -37.8f));
-	eBOX.push_back(vector3(-1.1f, -18.9f,-71.2f));
+	eBOX.push_back(vector3(35.2f, -15.5f, -37.8f));
+	eBOX.push_back(vector3(-1.1f, -19.0f,-71.2f));
 	m_pEntityMngr->AddEntity("GRND_005", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(35.2f, -15.7f, -37.1f));
-	eBOX.push_back(vector3(-0.5f, -15.3f, -1.1f));
+	eBOX.push_back(vector3(35.2f, -16.0f, -37.1f));
+	eBOX.push_back(vector3(-0.5f, -15.5f, -1.1f));
 	m_pEntityMngr->AddEntity("GRND_006", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(16.7f, -14.7f, -16.0f));
-	eBOX.push_back(vector3(-1.4f, -13.3f, -0.6f));
+	eBOX.push_back(vector3(16.7f, -15.0f, -16.0f));
+	eBOX.push_back(vector3(-1.4f, -13.5f, -0.6f));
 	m_pEntityMngr->AddEntity("GRND_006.1", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-1.6f, -15.0f, 0.3f));
-	eBOX.push_back(vector3(34.8f, -15.2f, 12.6f));
+	eBOX.push_back(vector3(34.8f, -15.5f, 12.6f));
 	m_pEntityMngr->AddEntity("GRND_007.1", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(-1.7f, -10.97f, 37.0f));
+	eBOX.push_back(vector3(-1.7f, -11.0f, 37.0f));
 	eBOX.push_back(vector3(34.0f, -11.0f, 19.9f));
 	m_pEntityMngr->AddEntity("GRND_007.2", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(-0.96f, -14.7f, 67.6f));
-	eBOX.push_back(vector3(33.5f, -15.6f, 43.5f));
+	eBOX.push_back(vector3(-0.96f, -15.0f, 67.6f));
+	eBOX.push_back(vector3(33.5f, -15.0f, 43.5f));
 	m_pEntityMngr->AddEntity("GRND_008.1", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-3.0f, -16.0f, -72.2f));
-	eBOX.push_back(vector3(-38.7f, -19.4f, -38.6f));
+	eBOX.push_back(vector3(-38.7f, -19.5f, -38.6f));
 	m_pEntityMngr->AddEntity("GRND_009", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-2.6f, -15.0f, -37.1f));
-	eBOX.push_back(vector3(-36.6f, -17.1f, -1.5f));
+	eBOX.push_back(vector3(-36.6f, -17.0f, -1.5f));
 	m_pEntityMngr->AddEntity("GRND_010", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(-2.8f, -15.1f, 0.5f));
-	eBOX.push_back(vector3(-39.0f, -15.4f, 37.1f));
+	eBOX.push_back(vector3(-2.8f, -15.0f, 0.5f));
+	eBOX.push_back(vector3(-39.0f, -15.5f, 37.1f));
 	m_pEntityMngr->AddEntity("GRND_011", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-39.2f, -15.0f, 37.9f));
-	eBOX.push_back(vector3(-2.9f, -18.1f, 70.0f));
+	eBOX.push_back(vector3(-2.9f, -18.0f, 70.0f));
 	m_pEntityMngr->AddEntity("GRND_012", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(10.7f, -12.1f, 55.7f));
-	eBOX.push_back(vector3(-1.1f, -13.4f, 40.3f));
+	eBOX.push_back(vector3(10.7f, -11.5f, 55.7f));
+	eBOX.push_back(vector3(-1.1f, -13.5f, 40.3f));
 	m_pEntityMngr->AddEntity("GRND_012.1", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
@@ -557,17 +644,28 @@ void AppClass::BuildEnv()
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-70.4f, -18.5f, -36.5f));
-	eBOX.push_back(vector3(-40.4f, -15.1f, -1.2f));
+	eBOX.push_back(vector3(-40.4f, -15.0f, -1.2f));
 	m_pEntityMngr->AddEntity("GRND_014", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
-	eBOX.push_back(vector3(-39.8f, -15.0f, 37.0f));
-	eBOX.push_back(vector3(-70.7f, -18.9f, 0.8f));
+	eBOX.push_back(vector3(-39.8f, -16.0f, 37.0f));
+	eBOX.push_back(vector3(-70.7f, -19.0f, 0.8f));
 	m_pEntityMngr->AddEntity("GRND_015", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 
 	eBOX.push_back(vector3(-39.7f, -16.0f, 37.6f));
-	eBOX.push_back(vector3(-70.3f, -18.9f, 69.6f));
+	eBOX.push_back(vector3(-70.3f, -17.0f, 69.6f));
 	m_pEntityMngr->AddEntity("GRND_016", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+	eBOX.push_back(vector3(-25.7f, -13.6f, 61.0f));
+	eBOX.push_back(vector3(-47.0f, -14.3f, -38.6f));
+	m_pEntityMngr->AddEntity("GRND_017", ET_ENVI_GROUND, eBOX);
+	eBOX.clear();
+
+
+	eBOX.push_back(vector3(-6.0f, -12.5f,0.0f));
+	eBOX.push_back(vector3(16.0f, -14.0f, -15.5f));
+	m_pEntityMngr->AddEntity("GRND_018", ET_ENVI_GROUND, eBOX);
 	eBOX.clear();
 }

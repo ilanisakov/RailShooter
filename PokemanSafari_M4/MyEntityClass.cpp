@@ -359,6 +359,8 @@ void MyEntityClass::Update()
 		{
 			if (stillCount == 0)
 			{
+				this->SetPosition(vector3(-100, -100, -100));
+
 				m_v3Velocity[0] = 0.0f;
 				m_v3Velocity[2] = 0.0f;
 				if (m_v3Velocity[1] > 0.0f)
@@ -497,7 +499,7 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 				score += 5;
 
 			m_pScoreMngr->AddScore(score, other->m_sName);
-
+			other->SetPosition(vector3(-1000, -1000, -1000));
 			m_bHitReg = true;
 
 			//Move to kill zone
@@ -517,6 +519,7 @@ void MyEntityClass::ApplyCollision(MyEntityClass* other)
 		//Hit ground, stick then disappear
 		else if (other->type & ET_ENVI_GROUND)
 		{
+
 			m_bHitReg = true;
 			m_bHitGround = true;
 			stillCount = PC_STILLCOUNT;

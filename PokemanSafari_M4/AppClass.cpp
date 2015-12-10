@@ -25,6 +25,7 @@ void AppClass::ThrowPokecube()
 	matrix4 camView = glm::transpose(m_pCameraMngr->GetViewMatrix(-1));
 	vector3 pos = m_pCameraMngr->GetPosition(-1);
 	pos[1] -= 0.5f; //don't go 'through' the camera
+
 	p_pokecube_01->SetPosition(pos);
 	//Set the velocity in cam z direction
 	vector3 dir = -1.0f * vector3(camView[2][0], camView[2][1], camView[2][2]);
